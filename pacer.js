@@ -7,8 +7,9 @@ document.addEventListener('DOMContentLoaded', function() {
     let data = evenWerte; // Starten mit geraden Jahren
 
     function formatTime(minutes) {
-        let hours = Math.floor(minutes / 60);
-        let mins = Math.floor(minutes % 60);
+        let totalMinutes = Math.floor(minutes % 1440); // Minuten innerhalb eines Tages
+        let hours = Math.floor(totalMinutes / 60);
+        let mins = totalMinutes % 60;
         return `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')} Uhr`;
     }
 
