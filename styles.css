@@ -36,64 +36,32 @@ p.copyright {
 }
 
 .slider-table {
-    width: 100%;
     margin-bottom: 20px;
-}
-
-.table-header {
-    font-size: 14px;
-    font-weight: bold;
-    padding-bottom: 10px;
-}
-
-.slider-container {
-    text-align: center;
-}
-
-#paceSlider {
-    width: 100%;
-    margin-top: 10px;
-}
-
-.toggle-container {
-    text-align: center;
-    margin-top: 20px;
-    position: relative;
-}
-
-.toggle-image {
-    width: 25px;
-    height: 25px;
-    cursor: pointer;
-}
-
-.table-container {
-    overflow-x: auto;
     width: 100%;
 }
 
+/* Tabelle */
 table {
     width: 100%;
     border-collapse: collapse;
     table-layout: fixed;
 }
 
-th, td {
-    padding: 10px;
-    text-align: left;
-}
-
+/* Tabellenkopf */
 th {
     background-color: #ff8c00;
     color: white;
     font-weight: bold;
+    padding: 10px;
 }
 
+/* Tabellenzellen */
 td {
     padding: 3px;
     text-align: left;
 }
 
+/* Hintergrundfarbe für die Zeilen */
 tbody tr:nth-child(odd) {
     background-color: #fff;
 }
@@ -102,16 +70,19 @@ tbody tr:nth-child(even) {
     background-color: #ffdab9;
 }
 
+/* Hintergrundfarbe für die WP-Zeilen */
 tr.wp-row {
     background-color: #f0f0f0 !important;
 }
 
+/* Hintergrundfarbe für VP 10 */
 tr.vp10-row {
     background-color: #add8e6 !important;
 }
 
+/* Styling für die letzten beiden Spalten */
 th:nth-child(5), th:nth-child(6) {
-    background-color: #ff8c00;
+    background-color: #ff8c00; /* Orange Hintergrund für die Überschriften */
     color: white;
     text-align: center;
     font-weight: bold;
@@ -122,36 +93,70 @@ td:nth-child(5), td:nth-child(6) {
     text-align: center;
 }
 
+/* Styling für die Uhrzeiten in den letzten beiden Spalten */
 td:nth-child(4)::after, td:nth-child(5)::after, td:nth-child(6)::after {
     content: " Uhr";
 }
 
-/* Media Queries für Responsivität */
+/* Styling für die Slider Container */
+.slider-container {
+    text-align: center;
+}
+
+/* Umschalter Container */
+.toggle-container {
+    text-align: center;
+}
+
+/* Umschalter */
+.toggle-image {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+/* Media Queries */
 @media (max-width: 768px) {
-    /* Hochformat auf mobilen Geräten */
-    table thead th:nth-child(2),
-    table tbody td:nth-child(2),
-    table thead th:nth-child(4),
-    table tbody td:nth-child(4),
-    table thead th:nth-child(5),
-    table tbody td:nth-child(5),
-    table thead th:nth-child(6),
-    table tbody td:nth-child(6) {
+    /* Im Hochformat - Tabelle auf eine Spalte reduzieren */
+    .slider-table table {
+        display: block;
+        width: 100%;
+    }
+    .slider-table td {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+    }
+    .slider-container {
+        margin-bottom: 10px;
+    }
+    .toggle-container {
+        margin-top: 10px;
+    }
+
+    /* Tabelle - Spalten ausblenden */
+    .table-container table td:nth-child(2),
+    .table-container table td:nth-child(4),
+    .table-container table td:nth-child(5),
+    .table-container table td:nth-child(6) {
+        display: none;
+    }
+
+    /* Display der Header für alle Spalten */
+    .table-container table th:nth-child(2),
+    .table-container table th:nth-child(4),
+    .table-container table th:nth-child(5),
+    .table-container table th:nth-child(6) {
         display: none;
     }
 }
 
-@media (max-width: 768px) and (orientation: landscape) {
-    /* Querformat auf mobilen Geräten */
-    table thead th:nth-child(2),
-    table tbody td:nth-child(2),
-    table thead th:nth-child(4),
-    table tbody td:nth-child(4),
-    table thead th:nth-child(5),
-    table tbody td:nth-child(5),
-    table thead th:nth-child(6),
-    table tbody td:nth-child(6) {
-        display: table-cell;
+@media (min-width: 769px) {
+    /* Im Querformat - Tabelle auf zwei Spalten reduzieren */
+    .slider-table {
+        display: flex;
+        justify-content: space-between;
     }
 }
- 
