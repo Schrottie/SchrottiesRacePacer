@@ -35,26 +35,59 @@ p.copyright {
     margin-top: 10px;
 }
 
-.slider-container {
+.slider-table {
     margin-bottom: 20px;
+}
+
+/* Tabelle für Slider und Toggle */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Spaltenüberschriften */
+.table-header {
+    font-weight: bold;
+    padding: 10px;
     text-align: center;
+}
+
+/* Slider Container */
+.slider-container {
+    text-align: center;
+    margin: 0;
 }
 
 #paceSlider {
     width: 100%;
-    margin-top: 10px;
 }
 
+/* Pace Display */
 #paceDisplay {
-    font-size: 24px;
     margin-top: 10px;
+    font-size: 16px;
 }
 
-/* Tabelle */
+/* Umschalter Container */
+.toggle-container {
+    text-align: center;
+}
+
+/* Toggle Image */
+.toggle-image {
+    cursor: pointer;
+    width: 25px; /* Größe des Umschalters */
+    height: 25px;
+    vertical-align: middle;
+}
+
+/* Tabelle für die Anzeigedaten */
 .table-container {
     overflow-x: auto;
+    width: 100%;
 }
 
+/* Styling für die Tabelle */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -67,7 +100,6 @@ th {
     color: white;
     font-weight: bold;
     padding: 10px;
-    text-align: center;
 }
 
 /* Tabellenzellen */
@@ -95,48 +127,37 @@ tr.vp10-row {
     background-color: #add8e6 !important;
 }
 
-/* Styling für die Toggle Image */
-.toggle-image {
-    width: 25px;
-    height: 25px;
-    cursor: pointer;
+/* Styling für die letzten beiden Spalten */
+th:nth-child(5), th:nth-child(6) {
+    background-color: #ff8c00; /* Orange Hintergrund für die Überschriften */
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
 }
 
-/* Media Queries */
-@media (max-width: 768px) {
-    /* Im Hochformat - Tabelle auf eine Spalte reduzieren */
-    .table-container table {
-        display: block;
-        width: 100%;
-    }
-    .table-container td, .table-container th {
-        display: block;
-        width: 100%;
-        text-align: center;
-        padding: 10px;
+td:nth-child(5), td:nth-child(6) {
+    text-align: center;
+}
+
+/* Styling für die Uhrzeiten in den letzten beiden Spalten */
+td:nth-child(4)::after, td:nth-child(5)::after, td:nth-child(6)::after {
+    content: " Uhr";
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    /* Tabelle: Spalten anpassen */
+    table td:nth-child(2),
+    table td:nth-child(4),
+    table td:nth-child(5),
+    table td:nth-child(6) {
+        display: none;
     }
     
-    /* Tabelle - Spalten ausblenden */
-    .table-container table td:nth-child(2),
-    .table-container table td:nth-child(4),
-    .table-container table td:nth-child(5),
-    .table-container table td:nth-child(6) {
-        display: none;
-    }
-
-    /* Display der Header für alle Spalten */
-    .table-container table th:nth-child(2),
-    .table-container table th:nth-child(4),
-    .table-container table th:nth-child(5),
-    .table-container table th:nth-child(6) {
-        display: none;
-    }
-}
-
-@media (min-width: 769px) {
-    /* Im Querformat - Tabelle auf zwei Spalten reduzieren */
-    .slider-container {
-        display: flex;
-        justify-content: center;
+    /* Toggle Image in der mobilen Ansicht */
+    .toggle-container {
+        display: block;
+        text-align: center;
     }
 }
