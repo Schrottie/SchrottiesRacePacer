@@ -1,0 +1,141 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 800px;
+    margin: 20px 0;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+p.copyright {
+    text-align: right;
+    font-size: 75%;
+    margin-top: 10px;
+}
+
+.slider-container {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#paceSlider {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.slider-table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.slider-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-header {
+    background-color: #ff8c00;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    text-align: center;
+}
+
+.small-column {
+    max-width: 60px;
+    text-align: center;
+}
+
+.toggle-container {
+    text-align: center;
+    margin-top: 10px;
+    position: relative;
+}
+
+.toggle-image {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.table-container {
+    overflow-x: auto;
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+th {
+    background-color: #ff8c00;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+}
+
+td {
+    padding: 3px;
+    text-align: left;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #ffdab9;
+}
+
+tr.wp-row {
+    background-color: #f0f0f0 !important;
+}
+
+tr.vp10-row {
+    background-color: #add8e6 !important;
+}
+
+th:nth-child(5), th:nth-child(6) {
+    background-color: #ff8c00;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+}
+
+td:nth-child(5), td:nth-child(6) {
+    text-align: center;
+}
+
+td:nth-child(4)::after, td:nth-child(5)::after, td:nth-child(6)::after {
+    content: " Uhr";
+}
+
+.small-column {
+    max-width: 60px;
+    text-align: center;
+}
