@@ -27,7 +27,7 @@ body {
 h1 {
     text-align: center;
     margin-bottom: 15px;
-    margin-bottom: 15px;
+    margin-top: 15px;
 }
 
 p.copyright {
@@ -68,6 +68,7 @@ table {
     margin: 10px;
     font-size: 16px;
     font-weight: bold;
+    text-align: center;
 }
 
 #paceDisplay::before {
@@ -77,12 +78,13 @@ table {
 
 #paceDisplay::after {
     content: " min/km";
-    font-size: 16px; 
+    font-size: 16px;
 }
 
 /* Umschalter Container */
 .toggle-container {
     text-align: center;
+    margin-top: 10px;
 }
 
 /* Toggle Image */
@@ -163,7 +165,11 @@ td:nth-child(4)::after, td:nth-child(5)::after, td:nth-child(6)::after {
     table td:nth-child(2),
     table td:nth-child(4),
     table td:nth-child(5),
-    table td:nth-child(6) {
+    table td:nth-child(6),
+    table th:nth-child(2),
+    table th:nth-child(4),
+    table th:nth-child(5),
+    table th:nth-child(6) {
         display: none;
     }
     
@@ -171,5 +177,6 @@ td:nth-child(4)::after, td:nth-child(5)::after, td:nth-child(6)::after {
     .toggle-container {
         display: block;
         text-align: center;
+        margin-top: 10px;
     }
 }
