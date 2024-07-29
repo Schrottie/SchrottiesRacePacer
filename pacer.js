@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const paceDisplay = document.getElementById('paceDisplay');
     const paceTableBody = document.querySelector('#paceTable tbody');
     const toggleImage = document.getElementById('toggleImage');
-    const directionLabel = document.getElementById('directionLabel');
 
     function formatTime(minutes) {
         let hours = Math.floor(minutes / 60);
@@ -47,7 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function handleToggleChange() {
-        const isEvenYear = (new Date().getFullYear() % 2 === 0);
         const values = toggleImage.src.includes('uzs2.png') ? standardWerte : alternativeWerte;
         updateTable(values, paceSlider.value);
     }
@@ -55,10 +53,8 @@ document.addEventListener('DOMContentLoaded', function() {
     toggleImage.addEventListener('click', function() {
         if (toggleImage.src.includes('uzs2.png')) {
             toggleImage.src = 'uzs1.png';
-            directionLabel.textContent = 'im UZS';
         } else {
             toggleImage.src = 'uzs2.png';
-            directionLabel.textContent = 'gd UZS';
         }
         handleToggleChange();
     });
@@ -71,10 +67,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const isEvenYear = (new Date().getFullYear() % 2 === 0);
     if (isEvenYear) {
         toggleImage.src = 'uzs2.png';
-        directionLabel.textContent = 'gd UZS';
     } else {
         toggleImage.src = 'uzs1.png';
-        directionLabel.textContent = 'im UZS';
     }
 
     handleToggleChange();
