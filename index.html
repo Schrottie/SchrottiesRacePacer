@@ -8,38 +8,24 @@
 </head>
 <body>
     <div class="container">
+        <img src="100meilenberlinlogo.jpg" />
         <h1>Durchlaufzeiten 100 Meilen Berlin</h1>
-        <div class="slider-table">
-            <table>
-                <tr>
-                    <td class="table-header">Pace</td>
-                    <td class="table-header">Richtung</td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="slider-container">
-                            <input type="range" id="paceSlider" min="300" max="665" step="5" value="515">
-                            <div id="paceDisplay">8:35</div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="toggle-container">
-                            <img id="toggleImage" src="uzs2.png" alt="Toggle Image" class="toggle-image">
-                        </div>
-                    </td>
-                </tr>
-            </table>
+        <div class="slider-container">
+            <input type="range" id="paceSlider" min="300" max="665" step="5" value="515">
+            <div id="paceDisplay">8:35</div>
         </div>
         <div class="table-container">
             <table id="paceTable">
                 <thead>
                     <tr>
-                        <th>VP</th>
-                        <th>Kilometer</th>
-                        <th>Ankunftszeit</th>
-                        <th>Cutoff</th>
-                        <th>Open</th>
-                        <th>Close</th>
+                        <th id="toggleHeader">
+                            <img id="toggleImage" src="uzs2.png" alt="Toggle Image" class="toggle-image">
+                        </th>
+                        <th>Km</th>
+                        <th>progn. Durchlaufzeit</th>
+                        <th>Cutoff Einzel</th>
+                        <th>VP öffnet</th>
+                        <th>VP schließt</th>
                     </tr>
                 </thead>
                 <tbody></tbody>

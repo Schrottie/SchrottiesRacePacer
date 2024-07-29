@@ -35,12 +35,26 @@ p.copyright {
     margin-top: 10px;
 }
 
-.slider-table {
+.slider-container {
     margin-bottom: 20px;
+    text-align: center;
+}
+
+#paceSlider {
     width: 100%;
+    margin-top: 10px;
+}
+
+#paceDisplay {
+    font-size: 24px;
+    margin-top: 10px;
 }
 
 /* Tabelle */
+.table-container {
+    overflow-x: auto;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -53,6 +67,7 @@ th {
     color: white;
     font-weight: bold;
     padding: 10px;
+    text-align: center;
 }
 
 /* Tabellenzellen */
@@ -80,62 +95,27 @@ tr.vp10-row {
     background-color: #add8e6 !important;
 }
 
-/* Styling für die letzten beiden Spalten */
-th:nth-child(5), th:nth-child(6) {
-    background-color: #ff8c00; /* Orange Hintergrund für die Überschriften */
-    color: white;
-    text-align: center;
-    font-weight: bold;
-    padding: 10px;
-}
-
-td:nth-child(5), td:nth-child(6) {
-    text-align: center;
-}
-
-/* Styling für die Uhrzeiten in den letzten beiden Spalten */
-td:nth-child(4)::after, td:nth-child(5)::after, td:nth-child(6)::after {
-    content: " Uhr";
-}
-
-/* Styling für die Slider Container */
-.slider-container {
-    text-align: center;
-}
-
-/* Umschalter Container */
-.toggle-container {
-    text-align: center;
-}
-
-/* Umschalter */
+/* Styling für die Toggle Image */
 .toggle-image {
     width: 25px;
     height: 25px;
     cursor: pointer;
-    vertical-align: middle;
 }
 
 /* Media Queries */
 @media (max-width: 768px) {
     /* Im Hochformat - Tabelle auf eine Spalte reduzieren */
-    .slider-table table {
+    .table-container table {
         display: block;
         width: 100%;
     }
-    .slider-table td {
+    .table-container td, .table-container th {
         display: block;
         width: 100%;
         text-align: center;
         padding: 10px;
     }
-    .slider-container {
-        margin-bottom: 10px;
-    }
-    .toggle-container {
-        margin-top: 10px;
-    }
-
+    
     /* Tabelle - Spalten ausblenden */
     .table-container table td:nth-child(2),
     .table-container table td:nth-child(4),
@@ -155,8 +135,8 @@ td:nth-child(4)::after, td:nth-child(5)::after, td:nth-child(6)::after {
 
 @media (min-width: 769px) {
     /* Im Querformat - Tabelle auf zwei Spalten reduzieren */
-    .slider-table {
+    .slider-container {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
     }
 }
