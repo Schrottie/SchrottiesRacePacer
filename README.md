@@ -1,0 +1,2 @@
+Der 100MeilenBerlinPacer soll Angehörigen und Helfern dabei behilflich sein, die Durchlaufzeit eines Läufers Beim Mauerweglauf zu prognostizieren. Du läufst mit und Deine Freunde wollen an VP 12 auf dich warten? Kein Problem, mittels LiveTrack von Garmin kannst Du nicht nur Deinen aktuellen Standort teilen, sondern es wird auch die Gesamtpace angezeigt. Und mit deren Hilfe kann dann die Prognose erfolgen, wann Du ankommst.
+
