@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function handleToggleChange() {
-        const values = toggleImage.src.includes('uzs2.png') ? standardWerte : alternativeWerte;
+        const values = toggleImage.src.includes('uzs2.png') ? evenWerte : oddWerte;
         updateTable(values, paceSlider.value);
     }
 
