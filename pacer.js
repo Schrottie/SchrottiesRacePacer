@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <td>${item.vp}</td>
                 <td>${item.kilometer.toFixed(1)} km</td>
                 <td>${formattedTime}</td>
-                <td>${item.cutoff} Uhr</td>
+                <td>${item.cutoff}</td>
                 <td>${item.open}</td>
                 <td>${item.close}</td>
             `;
