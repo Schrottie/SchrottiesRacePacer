@@ -35,8 +35,18 @@ p.copyright {
     margin-top: 10px;
 }
 
-.slider-container {
+.slider-table {
+    width: 100%;
     margin-bottom: 20px;
+}
+
+.table-header {
+    font-size: 14px;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.slider-container {
     text-align: center;
 }
 
@@ -45,32 +55,9 @@ p.copyright {
     margin-top: 10px;
 }
 
-.slider-table {
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-.slider-table table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.table-header {
-    background-color: #ff8c00;
-    color: white;
-    font-weight: bold;
-    padding: 10px;
-    text-align: center;
-}
-
-.small-column {
-    max-width: 60px;
-    text-align: center;
-}
-
 .toggle-container {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 20px;
     position: relative;
 }
 
@@ -91,11 +78,15 @@ table {
     table-layout: fixed;
 }
 
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
 th {
     background-color: #ff8c00;
     color: white;
     font-weight: bold;
-    padding: 10px;
 }
 
 td {
@@ -135,7 +126,31 @@ td:nth-child(4)::after, td:nth-child(5)::after, td:nth-child(6)::after {
     content: " Uhr";
 }
 
-.small-column {
-    max-width: 60px;
-    text-align: center;
+/* Media Queries für Responsivität */
+@media (max-width: 768px) {
+    /* Hochformat auf mobilen Geräten */
+    table thead th:nth-child(2),
+    table tbody td:nth-child(2),
+    table thead th:nth-child(4),
+    table tbody td:nth-child(4),
+    table thead th:nth-child(5),
+    table tbody td:nth-child(5),
+    table thead th:nth-child(6),
+    table tbody td:nth-child(6) {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+    /* Querformat auf mobilen Geräten */
+    table thead th:nth-child(2),
+    table tbody td:nth-child(2),
+    table thead th:nth-child(4),
+    table tbody td:nth-child(4),
+    table thead th:nth-child(5),
+    table tbody td:nth-child(5),
+    table thead th:nth-child(6),
+    table tbody td:nth-child(6) {
+        display: table-cell;
+    }
 }
