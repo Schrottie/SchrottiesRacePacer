@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const paceTableBody = document.querySelector('#paceTable tbody');
     const toggleImage = document.getElementById('toggleImage');
 
-    let data = evenWerte; // Starten mit geraden Jahren
+    let data = gdUZSWerte; // Starten mit geraden Jahren
 
     function formatTime(minutes) {
         let totalMinutes = Math.floor(minutes % 1440); // Minuten innerhalb eines Tages
@@ -48,9 +48,9 @@ document.addEventListener('DOMContentLoaded', function() {
     function handleToggleChange() {
         const isOddYear = (new Date().getFullYear() % 2 !== 0);
         if (toggleImage.src.includes('uzs1.png')) {
-            data = oddWerte;
+            data = imUZSWerte;
         } else {
-            data = evenWerte;
+            data = gdUZSWerte;
         }
         updateTable(data, paceSlider.value);
     }

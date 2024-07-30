@@ -1,6 +1,6 @@
 // data-even.js
 
-const evenWerte = [
+const gdUZSWerte = [
     { vp: 'Start - Erika-Hess-Stadion', kilometer: 0, cutoff: '07:00', open: '04:00', close: '08:30' },
     { vp: 'VP 1 - Mauerpark', kilometer: 4.5, cutoff: '07:50', open: '06:05', close: '08:45' },
     { vp: 'VP 2 - S-Bahnhof Wilhelmsruh', kilometer: 10, cutoff: '08:51', open: '06:30', close: '09:40' },
