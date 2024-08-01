@@ -159,6 +159,46 @@ td:nth-child(4)::after, td:nth-child(5)::after, td:nth-child(6)::after {
     content: " Uhr";
 }
 
+/* Styling für die letzten beiden Spalten */
+th:nth-child(7),
+th:nth-child(8) {
+    background-color: #ff8c00; /* Orange Hintergrund für die Überschriften */
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+}
+
+td:nth-child(7),
+td:nth-child(8) {
+    text-align: center;
+}
+
+/* Fußnotenstyling */
+.footnote {
+    position: relative;
+    font-size: 70%;
+    padding-top: 10px; /* Abstand zwischen Linie und Text */
+    margin-top: 35px; /* Abstand oben zur vorherigen Zeile */
+}
+
+.footnote::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px; /* Breite der Linie */
+    height: 1px; /* Dicke der Linie */
+    background: #333; /* Farbe der Linie */
+}
+
+.footnote::after {
+    content: attr(data-content);
+    position: relative;
+    display: block;
+    padding-top: 10px; /* Abstand zwischen der Linie und dem restlichen Text */
+}
+
 /* Responsive Design */
 @media (max-width: 600px) {
     /* Tabelle: Spalten anpassen */

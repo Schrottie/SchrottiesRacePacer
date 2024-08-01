@@ -4,12 +4,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const paceTableBody = document.querySelector('#paceTable tbody');
     const toggleImage = document.getElementById('toggleImage');
 
-    let data = gdUZSWerte; // Starten mit geraden Jahren
+    const MINUTES_IN_DAY = 1440; // Anzahl Minuten in einem Tag (24 Stunden)
 
     function formatTime(minutes) {
-        let totalMinutes = Math.floor(minutes % 1440); // Minuten innerhalb eines Tages
-        let hours = Math.floor(totalMinutes / 60);
-        let mins = totalMinutes % 60;
+        // Berücksichtige Tageswechsel
+        minutes = minutes % MINUTES_IN_DAY;
+        let hours = Math.floor(minutes / 60);
+        let mins = Math.floor(minutes % 60);
         return `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')} Uhr`;
     }
 
@@ -18,64 +19,83 @@ document.addEventListener('DOMContentLoaded', function() {
         return formatTime(timeInMinutes);
     }
 
+    function calculateNutrition(distance) {
+        const weight = 85; // Festes Gewicht in kg
+        const caloriesPerKm = 0.9 * weight; // 0.9 kcal/kg/km
+        const waterPerKm = 0.5 * weight * (24 / 21); // 0.5 l/kg/km, Temperatur auf 24°C festgelegt
+
+        return {
+            calories: Math.round(caloriesPerKm * distance),
+            water: Math.round(waterPerKm * distance)
+        };
+    }
+
     function updateTable(values, pace) {
         paceTableBody.innerHTML = '';
 
         const startTime = 6 * 60; // 6:00 Uhr in Minuten
 
+        let previousKilometer = 0;
+
         values.forEach(item => {
+            const distance = item.kilometer - previousKilometer;
+            const { calories, water } = calculateNutrition(distance);
+
             const formattedTime = calculateTime(startTime, item.kilometer, pace / 60);
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${item.vp}</td>
-                <td>${item.kilometer.toFixed(1)} km</td>
+                <td>${item.kilometer}</td>
                 <td>${formattedTime}</td>
                 <td>${item.cutoff}</td>
                 <td>${item.open}</td>
                 <td>${item.close}</td>
+                <td>${water}</td>
+                <td>${calories}</td>
             `;
-
-            if (item.vp.includes('WP')) {
-                row.classList.add('wp-row');
-            } else if (item.vp.includes('VP 10') && !toggleImage.src.includes('uzs1.png')) {
-                row.classList.add('vp10-row');
-            }
-
             paceTableBody.appendChild(row);
+
+            previousKilometer = item.kilometer;
         });
     }
 
-    function handleToggleChange() {
-        const isOddYear = (new Date().getFullYear() % 2 !== 0);
-        if (toggleImage.src.includes('uzs1.png')) {
-            data = imUZSWerte;
-        } else {
-            data = gdUZSWerte;
-        }
-        updateTable(data, paceSlider.value);
-    }
-
-    function updateToggleImage() {
-        if (toggleImage.src.includes('uzs1.png')) {
-            toggleImage.src = 'uzs2.png';
-        } else {
-            toggleImage.src = 'uzs1.png';
-        }
-        handleToggleChange();
-    }
-
-    paceSlider.max = 665; // Maximalwert auf 11:05 min/km setzen
-    paceSlider.value = 515;
-    paceDisplay.textContent = '8:35';
-    updateTable(data, paceSlider.value);
-
-    paceSlider.addEventListener('input', function() {
+    function handlePaceChange() {
         const pace = paceSlider.value;
-        const minutes = Math.floor(pace / 60);
-        const seconds = pace % 60;
-        paceDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-        updateTable(data, pace);
-    });
+        const paceMinutes = Math.floor(pace / 60);
+        const paceSeconds = pace % 60;
+        const paceValue = `${paceMinutes}:${paceSeconds.toString().padStart(2, '0')}`; // Korrektes Format
+        paceDisplay.textContent = `${paceValue}`;
 
-    toggleImage.addEventListener('click', updateToggleImage);
+        const isEvenYear = toggleImage.src.includes('uzs2.png');
+        const values = isEvenYear ? gdUZSWerte : imUZSWerte;
+
+        updateTable(values, pace);
+    }
+
+    function handleToggleChange() {
+        const isEvenYear = toggleImage.src.includes('uzs2.png');
+        toggleImage.src = isEvenYear ? 'uzs1.png' : 'uzs2.png';
+        handlePaceChange();
+    }
+
+    function handleDateChange() {
+        const now = new Date();
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+
+        if (hours === 23 && minutes === 59) {
+            // Setze auf 0 Uhr für den Tageswechsel
+            paceDisplay.textContent = `Pace: 00:00 min/km`;
+        }
+    }
+
+    // Setze Standardwert und Anzeige
+    paceSlider.value = 515; // Standardwert in Sekunden
+    handlePaceChange();
+
+    paceSlider.addEventListener('input', handlePaceChange);
+    toggleImage.addEventListener('click', handleToggleChange);
+
+    // Initiale Tabelle laden
+    handleDateChange();
 });
