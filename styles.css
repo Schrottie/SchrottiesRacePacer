@@ -25,20 +25,20 @@ body {
     position: relative;
 }
 
+/* Header Container */
 .header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    height: 93px;
+    justify-content: space-between; /* Verteile den Platz zwischen den Elementen */
+    align-items: center; /* Zentriert die Elemente vertikal */
+    padding: 10px; /* Innenabstand für den Header */
+    background-color: #fff; /* Hintergrundfarbe des Headers */
+    border-bottom: 1px solid #ddd; /* Optionale untere Grenze für den Header */
+    width: 100%; /* Stellt sicher, dass der Header die gesamte Breite einnimmt */
+    box-sizing: border-box; /* Verhindert, dass Padding und Border die Gesamtbreite beeinflussen */
 }
 
 .print-icon {
     cursor: pointer;
-    width: 32px;
-    height: 32px;
 }
 
 h1 {
