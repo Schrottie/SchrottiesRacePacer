@@ -26,11 +26,17 @@
     <meta name="twitter:site" content="@schrottie" />
 
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="print.css" />
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' />
 </head>
 <body>
     <div class="container">
-        <a href="https://www.100meilen.de/" target="_foo"><img src="logo.png" alt="Logo des Mauerweglaufes - 100 Meilen Berlin" /></a>
+        <div class="header">
+            <a href="https://www.100meilen.de/" target="_foo">
+                <img src="logo.png" alt="Logo des Mauerweglaufes - 100 Meilen Berlin" title="Logo des Mauerweglaufes - 100 Meilen Berlin" width="236" height="93" class="logo" />
+            </a>
+            <img src="print.png" alt="Drucken" title="Drucken" id="printIcon" class="print-icon">
+        </div>
         <h1>Durchlaufzeit (Prognose)</h1>
         <div class="slider-container">
             <input type="range" id="paceSlider" min="300" max="665" step="1" value="515">
@@ -62,5 +68,6 @@
     <script src="data-even.js"></script>
     <script src="data-odd.js"></script>
     <script src="pacer.js"></script>
+    <script src="print.js"></script>
 </body>
 </html>

@@ -1,0 +1,60 @@
+/* Druckversion der Tabelle */
+@media print {
+    /* Verstecke alle Elemente, die nicht gedruckt werden sollen */
+    .header, .slider-container, .copyright, h1, .footnote, .print-icon, .toggle-image {
+        display: none;
+    }
+
+    /* Container für die Druckversion */
+    .container {
+        width: 100%; /* Volle Breite der Seite nutzen */
+        padding: 0; /* Innenabstand entfernen */
+        margin: 0; /* Kein zusätzlicher Abstand */
+        border-radius: 0; /* Eckenradius entfernen */
+    }
+
+    /* Tabelle für den Druck */
+    table {
+        width: 100%; /* Volle Breite der Seite nutzen */
+        border: 1px solid #000; /* Schwarz für die Rahmenfarbe */
+        border-collapse: collapse; /* Zusammenführung der Rahmen */
+        page-break-inside: avoid; /* Verhindert Seitenumbrüche innerhalb der Tabelle */
+        font-size: 10px; /* Kleinere Schriftgröße für die Druckversion */
+        margin: 0; /* Kein zusätzlicher Abstand */
+        overflow: hidden; /* Verhindert Überlauf */
+    }
+
+    /* Tabellenkopf */
+    thead th {
+        background-color: #333; /* Dunkelgrauer Hintergrund für den Kopfbereich */
+        color: #fff; /* Weißer Text */
+        border: 1px solid #000; /* Schwarz für die Rahmenfarbe */
+        padding: 1px 5px 1px 5px; /* Innenabstand für die Kopfzeilen */
+    }
+
+    /* Tabellenzellen */
+    td, th {
+        border: 0.5px solid #000; /* Schwarz für die Rahmenfarbe */
+        padding: 0.5px 5px 0.5px 5px; /* Innenabstand für die Zellen */
+    }
+
+    /* Hintergrundfarbe für die Zeilen */
+    tbody tr:nth-child(odd) {
+        background-color: #f0f0f0; /* Hellgrau für ungerade Zeilen */
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #fff; /* Weiß für gerade Zeilen */
+    }
+
+    /* Verstecke Spalten 5 bis 8 */
+    td:nth-child(n+5), th:nth-child(n+5) {
+        display: none;
+    }
+
+    /* Skalierung der Tabelle für eine A4-Seite */
+    @page {
+        size: A5; /* Setzt die Seitengröße auf A5 */
+        margin: 5mm; /* Setzt Ränder für eine saubere Ausgabe */
+    }
+}
