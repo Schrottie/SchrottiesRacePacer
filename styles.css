@@ -174,7 +174,7 @@ td:nth-child(5), td:nth-child(6) {
     text-align: center;
 }
 
-/* Spezielles Styling für die "Privat"-Zeile */
+/* Spezielles Styling für die "Privat-VP"-Zeile */
 .privat-row {
     background-color: #d3d3d3; /* Hellgrauer Hintergrund */
     color: #696969; /* Dunkelgrauer Text */

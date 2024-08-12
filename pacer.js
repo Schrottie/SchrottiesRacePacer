@@ -105,8 +105,11 @@ document.addEventListener("DOMContentLoaded", function() {
     
     rows.forEach(row => {
         const cells = row.getElementsByTagName("td");
-        if (cells[0] && cells[0].textContent.includes("Privat")) {
-            row.classList.add("privat-row");
+        for (let cell of cells) {
+            if (cell.textContent.includes("Privat")) {
+                row.classList.add("privat-row");
+                break;
+            }
         }
     });
 });
