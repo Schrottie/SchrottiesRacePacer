@@ -57,6 +57,17 @@ p.copyright {
     margin-bottom: 20px;
 }
 
+div.attention {
+    border: 1px solid red; /* Dünner roter Rand */
+    border-radius: 10px; /* Abgerundete Ecken */
+    padding: 5px; /* Abstand nach innen */
+    margin: 2px; /* Abstand nach außen */
+}
+
+div.attention p {
+    font-size: 70%;
+}
+
 /* Tabelle für Slider und Toggle */
 table {
     width: 100%;
