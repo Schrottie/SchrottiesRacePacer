@@ -99,3 +99,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initiale Tabelle laden
     handleDateChange();
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    const rows = document.querySelectorAll("#paceTable tbody tr");
+    
+    rows.forEach(row => {
+        const cells = row.getElementsByTagName("td");
+        if (cells[0] && cells[0].textContent.includes("Privat")) {
+            row.classList.add("privat-row");
+        }
+    });
+});

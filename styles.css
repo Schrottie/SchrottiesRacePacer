@@ -169,7 +169,20 @@ th:nth-child(5), th:nth-child(6) {
 }
 
 td:nth-child(5), td:nth-child(6) {
+ 
+ 
     text-align: center;
+}
+
+/* Spezielles Styling für die "Privat"-Zeile */
+.privat-row {
+    background-color: #d3d3d3; /* Hellgrauer Hintergrund */
+    color: #696969; /* Dunkelgrauer Text */
+    font-style: italic; /* Kursive Schrift */
+}
+
+.privat-row td:nth-child(n+4) {
+    display: none; /* Blendet Spalten ab der vierten Spalte aus */
 }
 
 /* Styling für die Uhrzeiten in den letzten beiden Spalten */
