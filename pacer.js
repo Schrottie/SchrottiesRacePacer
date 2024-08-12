@@ -101,15 +101,28 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 document.addEventListener("DOMContentLoaded", function() {
-    const rows = document.querySelectorAll("#paceTable tbody tr");
-    
-    rows.forEach(row => {
-        const cells = row.getElementsByTagName("td");
-        for (let cell of cells) {
-            if (cell.textContent.includes("Privat")) {
-                row.classList.add("privat-row");
-                break;
+    const paceTable = document.getElementById("paceTable");
+    const toggleImage = document.querySelector(".toggle-image");
+
+    // Funktion zum Anwenden des speziellen Stylings auf die "Privat"-Zeilen
+    function stylePrivatRows() {
+        const rows = paceTable.querySelectorAll("tbody tr");
+        rows.forEach(row => {
+            const cells = row.getElementsByTagName("td");
+            for (let cell of cells) {
+                if (cell.textContent.includes("Privat")) {
+                    row.classList.add("privat-row");
+                    break;
+                }
             }
-        }
+        });
+    }
+
+    // Initiale Anwendung des Stylings beim Laden der Seite
+    stylePrivatRows();
+
+    // Anwendung des Stylings bei Änderung der Laufrichtung
+    toggleImage.addEventListener("click", function() {
+        setTimeout(stylePrivatRows, 100); // Verzögerung, um sicherzustellen, dass die Tabelle aktualisiert wurde
     });
 });

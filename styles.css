@@ -176,13 +176,13 @@ td:nth-child(5), td:nth-child(6) {
 
 /* Spezielles Styling für die "Privat-VP"-Zeile */
 .privat-row {
-    background-color: #d3d3d3; /* Hellgrauer Hintergrund */
+    background-color: #d3d3d3 !important; /* Hellgrauer Hintergrund, !important um andere Styles zu überschreiben */
     color: #696969; /* Dunkelgrauer Text */
     font-style: italic; /* Kursive Schrift */
 }
 
 .privat-row td:nth-child(n+4) {
-    display: none; /* Blendet Spalten ab der vierten Spalte aus */
+    color: transparent; /* Blendet Text ab der vierten Spalte aus */
 }
 
 /* Styling für die Uhrzeiten in den letzten beiden Spalten */
