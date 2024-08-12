@@ -11,7 +11,7 @@ const imUZSWerte  = [
     { vp: 'VP 6 - Buckow', kilometer: 35.9, cutoff: '13:36', open: '08:25', close: '13:50' },
     { vp: 'VP 7 - Ninas Eltern', kilometer: 43.3, cutoff: '14:42', open: '09:00', close: '15:00' },
     { vp: 'VP 8 - Osdorfer Straße', kilometer: 49.6, cutoff: '15:51', open: '09:30', close: '16:00' },
-    { vp: 'VP xx - Privat-VP - Paul-Gerhardt-Straße', kilometer: 52.7, cutoff: '', open: '09:30', close: '16:00' },
+    { vp: 'VP 8,5 - Privat-VP - Paul-Gerhardt-Straße', kilometer: 52.7, cutoff: '', open: '09:30', close: '16:00' },
     { vp: 'VP 9/WP 1 - Sportplatz Teltow', kilometer: 56.1, cutoff: '17:01', open: '10:00', close: '17:05' },
     { vp: 'VP 10 - Königsweg', kilometer: 62.3, cutoff: '18:18', open: '10:25', close: '18:05' },
     { vp: 'VP 11 - Gedenkstätte Griebnitzsee', kilometer: 69.2, cutoff: '19:34', open: '11:00', close: '19:10' },
