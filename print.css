@@ -1,7 +1,7 @@
 /* Druckversion der Tabelle */
 @media print {
     /* Verstecke alle Elemente, die nicht gedruckt werden sollen */
-    .header, .slider-container, .copyright, h1, .footnote, .print-icon, .toggle-image {
+    .header, .slider-container, .copyright, h1, .footnote, .print-icon, .toggle-image, .attention {
         display: none;
     }
 
