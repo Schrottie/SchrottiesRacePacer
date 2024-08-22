@@ -175,6 +175,18 @@ const myChart = new Chart(ctx, {
                 data: adjustedData2024,
                 borderColor: 'green',
                 fill: false
+            },
+            {
+                label: 'Zeitlimit (24h)',
+                data: [
+                    { x: 0, y: 24 },
+                    { x: 161.3, y: 24 }
+                ],
+                borderColor: 'grey',
+                borderDash: [5, 5],
+                borderWidth: 1,
+                fill: false,
+                label: '24h Zeitlimit'
             }
         ]
     },
