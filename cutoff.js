@@ -238,14 +238,17 @@ toggleSizeButton.addEventListener('click', () => {
         chartContainer.style.height = '400px'; // Ursprüngliche Höhe
         toggleSizeButton.textContent = 'Vergrößern';
         toggleSizeButton.classList.remove('active');
+        myChart.options.aspectRatio = 2; // Ursprüngliches Seitenverhältnis
     } else {
         chartContainer.style.height = '80vh'; // Höhe auf 80% der Viewport-Höhe
         toggleSizeButton.textContent = 'Verkleinern';
         toggleSizeButton.classList.add('active');
+        myChart.options.aspectRatio = 4; // Verändertes Seitenverhältnis für Vollbild
     }
     isFullScreen = !isFullScreen;
-    myChart.resize(); // Diagramm neu skalieren
+    myChart.update(); // Diagramm neu skalieren
 });
+
 
 // Auf Bildschirmdrehungen reagieren
 window.addEventListener('resize', () => {
