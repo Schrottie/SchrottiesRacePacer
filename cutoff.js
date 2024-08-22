@@ -177,16 +177,16 @@ const myChart = new Chart(ctx, {
                 fill: false
             },
             {
-                label: 'Zeitlimit (24h)',
+                label: 'Zeitlimit (linear)',
                 data: [
-                    { x: 0, y: 24 },
-                    { x: 161.3, y: 24 }
+                    { x: 0, y: 0 },
+                    { x: 161, y: 30 }
                 ],
                 borderColor: 'grey',
                 borderDash: [5, 5],
                 borderWidth: 1,
                 fill: false,
-                label: '24h Zeitlimit'
+                pointRadius: 0 // Punkte am Ende der Linie verstecken
             }
         ]
     },
@@ -201,12 +201,20 @@ const myChart = new Chart(ctx, {
                 title: {
                     display: true,
                     text: 'Kilometer'
+                },
+                ticks: {
+                    // Optional: set x-axis ticks for better readability
+                    stepSize: 20
                 }
             },
             y: {
                 title: {
                     display: true,
                     text: 'Cutoff-Zeit (Stunden seit 6 Uhr)'
+                },
+                ticks: {
+                    // Optional: set y-axis ticks for better readability
+                    stepSize: 5
                 }
             }
         },
