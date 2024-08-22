@@ -215,8 +215,7 @@ const myChart = new Chart(ctx, {
         },
         plugins: {
             title: {
-                display: false,
-                text: 'Vergleich der Cutoff-Zeiten für 2022, 2023 und 2024'
+                display: false // Titel entfernen
             },
             tooltip: {
                 callbacks: {
