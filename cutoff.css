@@ -11,7 +11,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    /* padding: 20px; */
+    padding: 20px;
 }
 
 /* Container für den weißen Bereich */
@@ -22,7 +22,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 90%;
     max-width: 800px;
-    margin: 20px auto; /* Zentriert den Container horizontal und sorgt für Abstand nach oben und unten */
+    margin: 0px auto; /* Zentriert den Container horizontal und sorgt für Abstand nach oben und unten */
     position: relative;
 }
 
