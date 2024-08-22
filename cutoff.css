@@ -1,3 +1,19 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Roboto, Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
 /* Container für den weißen Bereich */
 .container {
     max-width: 800px; /* Maximale Breite des weißen Bereichs */
@@ -8,6 +24,8 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Schatten für Tiefe */
     position: relative; /* Notwendig für absolute Positionierung der Copyright-Info */
     overflow: hidden; /* Verhindert, dass der Inhalt außerhalb des Containers sichtbar wird */
+    margin: 20px 0;
+    position: relative;
 }
 
 /* Überschrift */
