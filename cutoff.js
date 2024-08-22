@@ -162,7 +162,30 @@ const myChart = new Chart(ctx, {
     type: 'line',
     data: {
         datasets: [
-            // Ihre Daten hier
+            {
+                label: '2022',
+                data: adjustedData2022,
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                fill: false,
+                pointRadius: 3
+            },
+            {
+                label: '2023',
+                data: adjustedData2023,
+                borderColor: 'rgba(54, 162, 235, 1)',
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                fill: false,
+                pointRadius: 3
+            },
+            {
+                label: '2024',
+                data: adjustedData2024,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                fill: false,
+                pointRadius: 3
+            }
         ]
     },
     options: {
