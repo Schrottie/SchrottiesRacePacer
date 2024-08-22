@@ -4,40 +4,51 @@
     margin: 0 auto; /* Zentriert den Container horizontal */
     padding: 20px; /* Innenabstand für etwas Luft um den Inhalt */
     background-color: #ffffff; /* Hintergrundfarbe Weiß */
+    border-radius: 15px; /* Abgerundete Ecken */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Schatten für Tiefe */
     position: relative; /* Notwendig für absolute Positionierung der Copyright-Info */
+    overflow: hidden; /* Verhindert, dass der Inhalt außerhalb des Containers sichtbar wird */
 }
 
 /* Überschrift */
 h1 {
-    margin-bottom: 45px; /* Abstand nach unten zu den Paragraphen */
+    margin-bottom: 30px; /* Abstand nach unten zu den Paragraphen */
+    font-size: 2em; /* Größere Schriftgröße für die Überschrift */
+    color: #333333; /* Dunklerer Farbton für die Überschrift */
+    text-align: center; /* Zentriert die Überschrift */
 }
 
 /* Paragraphen */
 p {
-    margin-top: 45px; /* Abstand nach oben zu den vorherigen Elementen */
-    margin-bottom: 45px; /* Abstand nach unten zu den nächsten Elementen */
-    font-size: 90%; /* Schriftgröße oben */
+    margin-top: 20px; /* Abstand nach oben zu den vorherigen Elementen */
+    margin-bottom: 20px; /* Abstand nach unten zu den nächsten Elementen */
+    font-size: 1em; /* Normale Schriftgröße für Paragraphen */
+    line-height: 1.6; /* Zeilenhöhe für bessere Lesbarkeit */
+    color: #555555; /* Etwas hellerer Farbton für den Text */
 }
 
 /* Copyright */
 .footer {
     position: absolute; /* Absolute Positionierung innerhalb des Containers */
     bottom: 20px; /* Abstand zum unteren Rand des Containers */
-    margin-top: 35px; /* Abstand nach oben */
     right: 20px; /* Abstand zum rechten Rand des Containers */
     text-align: right; /* Rechtsbündig ausgerichtet */
-    font-size: 75%; /* Schriftgröße für das Copyright */
-    color: #666666; /* Farbe für das Copyright */
+    font-size: 0.8em; /* Schriftgröße für das Copyright */
+    color: #999999; /* Farbe für das Copyright */
 }
 
-#myChart {
-    width: 100%;
-    height: 100%;
-}
-
-/* Entfernen des Vergrößerungs-Buttons und der Containerhöhe */
+/* Chart Container */
 #chartContainer {
-    height: 400px; /* Ursprüngliche Höhe */
-    position: relative; /* Notwendig für die Positionierung des Buttons */
+    height: 400px; /* Höhe des Chart-Containers */
+    position: relative; /* Notwendig für die Positionierung des Chart */
     overflow: hidden; /* Verhindert, dass der Chart aus dem Container herausragt */
+    border-radius: 10px; /* Abgerundete Ecken */
+    background-color: #f9f9f9; /* Hintergrundfarbe für besseren Kontrast */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Schatten für Tiefe */
+}
+
+/* Chart Canvas */
+#myChart {
+    width: 100%; /* Volle Breite */
+    height: 100%; /* Volle Höhe */
 }
