@@ -138,6 +138,19 @@ const filteredData2023 = filterInvalidPoints(data2023);
 const filteredData2024 = filterInvalidPoints(data2024);
 const filteredData2022 = filterInvalidPoints(data2022);
 
+// Funktion zur Anpassung der Zeitwerte
+function adjustTime(data) {
+    return data.map(point => ({
+        x: point.x, 
+        y: point.y - 6 // Subtrahiere 6 Stunden, um bei Stunde 0 zu starten
+    }));
+}
+
+// Angepasste Daten
+const adjustedData2022 = adjustTime(filteredData2022);
+const adjustedData2023 = adjustTime(filteredData2023);
+const adjustedData2024 = adjustTime(filteredData2024);
+
 // Erstellen des Diagramms
 const ctx = document.getElementById('myChart').getContext('2d');
 const myChart = new Chart(ctx, {
@@ -146,7 +159,7 @@ const myChart = new Chart(ctx, {
         datasets: [
             {
                 label: '2022',
-                data: filteredData2022,
+                data: adjustedData2022,
                 borderColor: 'rgba(54, 162, 235, 1)',
                 backgroundColor: 'rgba(54, 162, 235, 0.2)',
                 fill: false,
@@ -154,7 +167,7 @@ const myChart = new Chart(ctx, {
             },
             {
                 label: '2023',
-                data: filteredData2023,
+                data: adjustedData2023,
                 borderColor: 'rgba(75, 192, 192, 1)',
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 fill: false,
@@ -162,7 +175,7 @@ const myChart = new Chart(ctx, {
             },
             {
                 label: '2024',
-                data: filteredData2024,
+                data: adjustedData2024,
                 borderColor: 'rgba(255, 99, 132, 1)',
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 fill: false,
@@ -196,7 +209,7 @@ const myChart = new Chart(ctx, {
             y: {
                 title: {
                     display: true,
-                    text: 'Cutoff-Zeit (Stunden)'
+                    text: 'Cutoff-Zeit (Stunden seit 6 Uhr)'
                 }
             }
         },
