@@ -227,7 +227,7 @@ const myChart = new Chart(ctx, {
                     label: function(tooltipItem) {
                         const xLabel = tooltipItem.raw.x;
                         const yLabel = tooltipItem.raw.y.toFixed(2); // Runden auf zwei Dezimalstellen
-                        return `Kilometer: ${xLabel}, Cutoff-Zeit: ${yLabel} h`;
+                        return `Strecke: ${xLabel} km, Cutoff: ${yLabel} h`;
                     }
                 }
             },
