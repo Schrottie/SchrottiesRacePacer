@@ -16,14 +16,12 @@ body {
 
 /* Container für den weißen Bereich */
 .container {
-    max-width: 800px; /* Maximale Breite des weißen Bereichs */
-    margin: 0 auto; /* Zentriert den Container horizontal */
-    padding: 20px; /* Innenabstand für etwas Luft um den Inhalt */
-    background-color: #ffffff; /* Hintergrundfarbe Weiß */
-    border-radius: 15px; /* Abgerundete Ecken */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Schatten für Tiefe */
-    position: relative; /* Notwendig für absolute Positionierung der Copyright-Info */
-    overflow: hidden; /* Verhindert, dass der Inhalt außerhalb des Containers sichtbar wird */
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 800px;
     margin: 20px 0;
     position: relative;
 }
