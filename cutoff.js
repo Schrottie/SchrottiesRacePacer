@@ -151,9 +151,8 @@ const adjustedData2022 = adjustTime(filteredData2022);
 const adjustedData2023 = adjustTime(filteredData2023);
 const adjustedData2024 = adjustTime(filteredData2024);
 
-// Erstellen des Diagramms
+// Erstellen des Diagramms im Hauptbereich
 const ctx = document.getElementById('myChart').getContext('2d');
-const lightboxChartCanvas = document.getElementById('lightboxChart').getContext('2d');
 
 const myChart = new Chart(ctx, {
     type: 'line',
@@ -223,6 +222,32 @@ const myChart = new Chart(ctx, {
             }
         }
     }
+});
+
+// Erstellen des Diagramms in der Lightbox
+const lightbox = document.getElementById('lightbox');
+const closeLightbox = document.getElementById('closeLightbox');
+const openLightboxButton = document.getElementById('openLightbox');
+const lightboxChartCanvas = document.getElementById('lightboxChart').getContext('2d');
+
+const lightboxChart = new Chart(lightboxChartCanvas, {
+    type: 'line',
+    data: myChart.data,
+    options: {
+        maintainAspectRatio: false,
+        responsive: true
+    }
+});
+
+// Öffnen der Lightbox
+openLightboxButton.addEventListener('click', () => {
+    lightbox.style.display = 'flex';
+    lightboxChart.update();
+});
+
+// Schließen der Lightbox
+closeLightbox.addEventListener('click', () => {
+    lightbox.style.display = 'none';
 });
 
 const lightbox = document.getElementById('lightbox');
