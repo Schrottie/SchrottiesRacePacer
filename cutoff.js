@@ -94,7 +94,6 @@ const imUZSWerteOld  = [
     { vp: 'VP 26 - Mauerpark', kilometer: 156.8, cutoff: '12:00', open: '17:30', close: '11:10' },
     { vp: 'Ziel - Erika-Hess-Stadion', kilometer: 161.3, cutoff: '12:00', open: '18:00', close: '12:00' }
 ];
-
 // Funktion zum Konvertieren von "HH:MM" in Stunden als Dezimalzahl
 function timeToDecimal(timeStr) {
     const [hours, minutes] = timeStr.split(':').map(Number);
@@ -105,13 +104,13 @@ function timeToDecimal(timeStr) {
 function getXYValues(dataArray) {
     let previousTime = 0;
     let dayOffset = 0;
-    
+
     return dataArray.map(point => {
         let currentTime = timeToDecimal(point.cutoff);
 
-        // Falls ein Tageswechsel erkannt wird
+        // Falls ein Tageswechsel erkannt wird (neuer Tag beginnt)
         if (currentTime < previousTime) {
-            dayOffset += 24;  // 24 Stunden dazu addieren
+            dayOffset += 24; // 24 Stunden dazu addieren
         }
 
         previousTime = currentTime;
@@ -122,10 +121,24 @@ function getXYValues(dataArray) {
     });
 }
 
-// Extrahieren der Daten für die Linien
+// Daten für 2023, 2024 und 2022
 const data2023 = getXYValues(gdUZSWerteOld);
 const data2024 = getXYValues(gdUZSWerteNew);
 const data2022 = getXYValues(imUZSWerteOld);
+
+// Funktion zum Filtern von nicht verbundenen Punkten (z.B. bei großen Lücken)
+function filterInvalidPoints(dataArray) {
+    return dataArray.filter((point, index, arr) => {
+        if (index === 0) return true; // Erster Punkt bleibt immer
+        const previousPoint = arr[index - 1];
+        return point.y - previousPoint.y < 12; // Maximal erlaubter Sprung (12 Stunden)
+    });
+}
+
+// Gefilterte Daten
+const filteredData2023 = filterInvalidPoints(data2023);
+const filteredData2024 = filterInvalidPoints(data2024);
+const filteredData2022 = filterInvalidPoints(data2022);
 
 // Erstellen des Diagramms
 const ctx = document.getElementById('myChart').getContext('2d');
@@ -135,7 +148,7 @@ const myChart = new Chart(ctx, {
         datasets: [
             {
                 label: 'gg. den UZS 2023',
-                data: data2023,
+                data: filteredData2023,
                 borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 2,
                 fill: false,
@@ -143,7 +156,7 @@ const myChart = new Chart(ctx, {
             },
             {
                 label: 'gg. den UZS 2024',
-                data: data2024,
+                data: filteredData2024,
                 borderColor: 'rgba(54, 162, 235, 1)',
                 borderWidth: 2,
                 fill: false,
@@ -151,7 +164,7 @@ const myChart = new Chart(ctx, {
             },
             {
                 label: 'im UZS 2022',
-                data: data2022,
+                data: filteredData2022,
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 2,
                 fill: false,
