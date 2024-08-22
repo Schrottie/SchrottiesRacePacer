@@ -34,6 +34,10 @@ canvas {
     border-radius: 10px;
     border: 1px solid #ddd;
 }
+.copyright {
+    font-size: 70%;
+    text-align: right;
+}
 
 @media (max-width: 768px) {
     h1 {
