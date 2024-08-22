@@ -1,6 +1,6 @@
 /* Container für den weißen Bereich */
 .container {
-    max-width: 1024px; /* Maximale Breite des weißen Bereichs */
+    max-width: 800px; /* Maximale Breite des weißen Bereichs */
     margin: 0 auto; /* Zentriert den Container horizontal */
     padding: 20px; /* Innenabstand für etwas Luft um den Inhalt */
     background-color: #ffffff; /* Hintergrundfarbe Weiß */
@@ -40,9 +40,12 @@ p {
     height: 400px; /* Höhe des Chart-Containers */
     position: relative; /* Notwendig für die Positionierung des Chart */
     overflow: hidden; /* Verhindert, dass der Chart aus dem Container herausragt */
-    border-radius: 10px; /* Abgerundete Ecken */
-    background-color: #f9f9f9; /* Hintergrundfarbe für besseren Kontrast */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Schatten für Tiefe */
+    border-radius: 15px; /* Abgerundete Ecken, angepasst an .container */
+    background-color: #ffffff; /* Hintergrundfarbe Weiß, angepasst an .container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Schatten für Tiefe, angepasst an .container */
+    padding: 20px; /* Innenabstand für etwas Luft um den Inhalt, angepasst an .container */
+    margin: 0 auto; /* Zentriert den Container horizontal */
+    max-width: 1024px; /* Maximale Breite, angepasst an .container */
 }
 
 /* Chart Canvas */
