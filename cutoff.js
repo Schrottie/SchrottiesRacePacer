@@ -17,8 +17,7 @@
      { vp: 'VP 15 - Brauhaus Meierei', kilometer: 85.5, cutoff: '00:09', open: '12:30', close: '21:50', cutoff2er: '21:21', cutoff4er: '21:34', cutoff10er: '21:49' },
      { vp: 'VP 16 - Gedenkstätte Griebnitzsee', kilometer: 92.3, cutoff: '01:22', open: '13:00', close: '22:55', cutoff2er: '22:29', cutoff4er: '22:41', cutoff10er: '22:54' },
      { vp: 'VP 17 - Königsweg', kilometer: 99.2, cutoff: '02:25', open: '13:35', close: '00:05', cutoff2er: '23:39', cutoff4er: '23:49', cutoff10er: '00:01' },
-     { vp: 'VP 18/WP 3 - Sportplatz Teltow', kilometer: 105.4, cutoff: '03:49', open: '14:05', close: '01:05', cutoff2er: '00:41', cutoff4er: '00:50', cutoff10er: '01:01' },
-     { vp: 'VP 18,5 - Privat-VP - Paul-Gerhardt-Straße', kilometer: 108.8, cutoff: '??:??', open: '14:00', close: '01:00', cutoff2er: '', cutoff4er: '', cutoff10er: '' },
+     { vp: 'VP 18/WP 3 - Sportplatz Teltow', kilometer: 105.4, cutoff: '03:49', open: '14:05', close: '01:05', cutoff2er: '00:41', cutoff4er: '00:50', cutoff10er: '01:01'
      { vp: 'VP 19 - Osdorfer Straße', kilometer: 111.9, cutoff: '04:42', open: '14:35', close: '02:15', cutoff2er: '01:46', cutoff4er: '01:54', cutoff10er: '02:04' },
      { vp: 'VP 20 - Ninas Eltern', kilometer: 118, cutoff: '05:48', open: '15:05', close: '03:25', cutoff2er: '02:48', cutoff4er: '02:54', cutoff10er: '03:04' },
      { vp: 'VP 21 - Buckow', kilometer: 126.5, cutoff: '06:49', open: '15:45', close: '05:10', cutoff2er: '04:13', cutoff4er: '04:18', cutoff10er: '04:26' },
@@ -49,7 +48,6 @@
     { vp: 'VP 14 - Gedenkstätte Griebnitzsee', kilometer: 85.2, cutoff: '20:42', open: '12:15', close: '22:00' },
     { vp: 'VP 15 - Königsweg', kilometer: 92.1, cutoff: '22:00', open: '12:45', close: '22:55' },
     { vp: 'VP 16/WP 3 - Sportplatz Teltow', kilometer: 98.2, cutoff: '23:09', open: '13:10', close: '23:55' },
-    { vp: 'VP 16,5 - Privat-VP - Paul-Gerhardt-Straße', kilometer: 101.6, cutoff: '??:??', open: '14:00', close: '01:00' },
     { vp: 'VP 17 - Osdorfer Straße', kilometer: 105.1, cutoff: '00:34', open: '13:50', close: '01:00' },
     { vp: 'VP 18 - Ninas Eltern', kilometer: 111.3, cutoff: '01:50', open: '14:10', close: '02:00' },
     { vp: 'VP 19 - Buckow', kilometer: 120.0, cutoff: '03:37', open: '14:50', close: '03:40' },
