@@ -13,10 +13,19 @@
             die CutOff-Zeiten im Jahr 2024 teilweise recht knapp berechnet sind. Immer noch ausreichend, aber eben knapper als in den 
             Jahren zuvor. Also habe ic das Ganze mal visualisiert und tatsächlich, im Jahr 2024 rutschte die Linie sogar unter die 
             lineare Linie, die einfach "stur geradeaus" von 0 bis 30 Stunden geht.</p>
-            <div id="chartContainer">
-                <canvas id="myChart"></canvas>
+        <div id="chartContainer" style="position: relative;">
+            <canvas id="myChart"></canvas>
+            <button id="openLightbox">Vollbild</button>
+        </div>
+        
+        <!-- Lightbox -->
+        <div id="lightbox" style="display: none;">
+            <div id="lightbox-content">
+                <span id="closeLightbox">&times;</span>
+                <canvas id="lightboxChart"></canvas>
             </div>
-            <button id="toggleSize">Vergrößern</button>
+        </div>
+
         <div class=""footer>
             &copy; 2024 Schrotties Laufblog "<a href="https://running.maik-bischoff.de/ein-kleiner-service-fuer-begleiter-beim-mauerweglauf-und-bei-anderen-events/">Das Ziel steht im Weg</a>"</p>
         </div>  

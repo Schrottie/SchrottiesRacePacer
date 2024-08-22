@@ -153,10 +153,7 @@ const adjustedData2024 = adjustTime(filteredData2024);
 
 // Erstellen des Diagramms
 const ctx = document.getElementById('myChart').getContext('2d');
-const chartContainer = document.getElementById('chartContainer');
-const toggleSizeButton = document.getElementById('toggleSize');
-
-let isFullScreen = false;
+const lightboxChartCanvas = document.getElementById('lightboxChart').getContext('2d');
 
 const myChart = new Chart(ctx, {
     type: 'line',
@@ -165,32 +162,27 @@ const myChart = new Chart(ctx, {
             {
                 label: '2022',
                 data: adjustedData2022,
-                borderColor: 'rgba(255, 99, 132, 1)',
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                fill: false,
-                pointRadius: 3
+                borderColor: 'blue',
+                fill: false
             },
             {
                 label: '2023',
                 data: adjustedData2023,
-                borderColor: 'rgba(54, 162, 235, 1)',
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                fill: false,
-                pointRadius: 3
+                borderColor: 'red',
+                fill: false
             },
             {
                 label: '2024',
                 data: adjustedData2024,
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                fill: false,
-                pointRadius: 3
+                borderColor: 'green',
+                fill: false
             }
         ]
     },
     options: {
-        maintainAspectRatio: true,
+        maintainAspectRatio: false,
         responsive: true,
+        aspectRatio: 2,
         scales: {
             x: {
                 type: 'linear',
@@ -233,29 +225,24 @@ const myChart = new Chart(ctx, {
     }
 });
 
-toggleSizeButton.addEventListener('click', () => {
-    if (isFullScreen) {
-        chartContainer.style.height = '400px'; // Ursprüngliche Höhe
-        toggleSizeButton.textContent = 'Vergrößern';
-        toggleSizeButton.classList.remove('active');
-        myChart.options.aspectRatio = 2; // Ursprüngliches Seitenverhältnis
-    } else {
-        chartContainer.style.height = '80vh'; // Höhe auf 80% der Viewport-Höhe
-        toggleSizeButton.textContent = 'Verkleinern';
-        toggleSizeButton.classList.add('active');
-        myChart.options.aspectRatio = 4; // Verändertes Seitenverhältnis für Vollbild
+const lightbox = document.getElementById('lightbox');
+const closeLightbox = document.getElementById('closeLightbox');
+const openLightboxButton = document.getElementById('openLightbox');
+
+const lightboxChart = new Chart(lightboxChartCanvas, {
+    type: 'line',
+    data: myChart.data,
+    options: {
+        maintainAspectRatio: false,
+        responsive: true
     }
-    isFullScreen = !isFullScreen;
-    myChart.update(); // Diagramm neu skalieren
 });
 
+openLightboxButton.addEventListener('click', () => {
+    lightbox.style.display = 'flex';
+    lightboxChart.update();
+});
 
-// Auf Bildschirmdrehungen reagieren
-window.addEventListener('resize', () => {
-    if (window.innerHeight > window.innerWidth) {
-        chartContainer.style.height = '400px'; // Zurücksetzen auf die ursprüngliche Höhe im Hochformat
-        toggleSizeButton.textContent = 'Vergrößern';
-        toggleSizeButton.classList.remove('active');
-        isFullScreen = false;
-    }
+closeLightbox.addEventListener('click', () => {
+    lightbox.style.display = 'none';
 });
