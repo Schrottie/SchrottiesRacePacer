@@ -203,7 +203,8 @@ const myChart = new Chart(ctx, {
                     text: 'Kilometer'
                 },
                 ticks: {
-                    stepSize: 20 // Optional: set x-axis ticks for better readability
+                    // Optional: set x-axis ticks for better readability
+                    stepSize: 20
                 }
             },
             y: {
@@ -212,7 +213,8 @@ const myChart = new Chart(ctx, {
                     text: 'Cutoff-Zeit (Stunden seit 6 Uhr)'
                 },
                 ticks: {
-                    stepSize: 5 // Optional: set y-axis ticks for better readability
+                    // Optional: set y-axis ticks for better readability
+                    stepSize: 5
                 }
             }
         },
@@ -224,7 +226,7 @@ const myChart = new Chart(ctx, {
                     },
                     label: function(tooltipItem) {
                         const xLabel = tooltipItem.raw.x;
-                        const yLabel = tooltipItem.raw.y;
+                        const yLabel = tooltipItem.raw.y.toFixed(2); // Runden auf zwei Dezimalstellen
                         return `Kilometer: ${xLabel}, Cutoff-Zeit: ${yLabel} h`;
                     }
                 }
