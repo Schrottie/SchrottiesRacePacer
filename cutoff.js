@@ -163,7 +163,8 @@ const myChart = new Chart(ctx, {
                 borderColor: 'rgba(54, 162, 235, 1)',
                 backgroundColor: 'rgba(54, 162, 235, 0.2)',
                 fill: false,
-                lineTension: 0.1
+                lineTension: 0.1,
+                borderWidth: 1 // Linienbreite auf 1 setzen
             },
             {
                 label: '2023',
@@ -171,7 +172,8 @@ const myChart = new Chart(ctx, {
                 borderColor: 'rgba(75, 192, 192, 1)',
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 fill: false,
-                lineTension: 0.1
+                lineTension: 0.1,
+                borderWidth: 1 // Linienbreite auf 1 setzen
             },
             {
                 label: '2024',
@@ -179,7 +181,8 @@ const myChart = new Chart(ctx, {
                 borderColor: 'rgba(255, 99, 132, 1)',
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 fill: false,
-                lineTension: 0.1
+                lineTension: 0.1,
+                borderWidth: 1 // Linienbreite auf 1 setzen
             },
             {
                 label: 'Zeitlimit (linear)',
@@ -192,11 +195,13 @@ const myChart = new Chart(ctx, {
                 borderDash: [5, 5],
                 pointRadius: 0,
                 fill: false,
-                lineTension: 0
+                lineTension: 0,
+                borderWidth: 1 // Linienbreite auf 1 setzen
             }
         ]
     },
     options: {
+        maintainAspectRatio: false, // Erlaubt flexible Höhe des Diagramms
         scales: {
             x: {
                 type: 'linear',
