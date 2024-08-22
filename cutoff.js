@@ -151,8 +151,10 @@ const adjustedData2022 = adjustTime(filteredData2022);
 const adjustedData2023 = adjustTime(filteredData2023);
 const adjustedData2024 = adjustTime(filteredData2024);
 
-// Erstellen des Diagramms im Hauptbereich
+// Erstellen des Diagramms
 const ctx = document.getElementById('myChart').getContext('2d');
+const lightboxChartCanvas = document.getElementById('lightboxChart').getContext('2d');
+
 const myChart = new Chart(ctx, {
     type: 'line',
     data: {
@@ -221,48 +223,6 @@ const myChart = new Chart(ctx, {
             }
         }
     }
-});
-
-// Erstellen des Diagramms in der Lightbox
-const lightboxCtx = document.getElementById('lightboxChart').getContext('2d');
-const lightboxChart = new Chart(lightboxCtx, {
-    type: 'line',
-    data: {
-        datasets: [
-            {
-                label: '2022',
-                data: adjustedData2022,
-                borderColor: 'blue',
-                fill: false
-            },
-            {
-                label: '2023',
-                data: adjustedData2023,
-                borderColor: 'red',
-                fill: false
-            },
-            {
-                label: '2024',
-                data: adjustedData2024,
-                borderColor: 'green',
-                fill: false
-            }
-        ]
-    },
-    options: {
-        maintainAspectRatio: false,
-        responsive: true
-    }
-});
-
-// Öffnen der Lightbox
-document.getElementById('openLightbox').addEventListener('click', () => {
-    document.getElementById('lightbox').style.display = 'flex';
-});
-
-// Schließen der Lightbox
-document.getElementById('closeLightbox').addEventListener('click', () => {
-    document.getElementById('lightbox').style.display = 'none';
 });
 
 const lightbox = document.getElementById('lightbox');
