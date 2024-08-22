@@ -22,7 +22,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 90%;
     max-width: 800px;
-    margin: 0px auto; /* Zentriert den Container horizontal und sorgt für Abstand nach oben und unten */
+    margin: 20px 0
     position: relative;
 }
 
