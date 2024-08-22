@@ -145,36 +145,28 @@ const myChart = new Chart(ctx, {
     data: {
         datasets: [
             {
-                label: 'gg. den UZS 2023',
+                label: '2023',
                 data: filteredData2023,
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 2,
-                fill: false,
-                pointRadius: 4,
-            },
-            {
-                label: 'gg. den UZS 2024',
-                data: filteredData2024,
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 2,
-                fill: false,
-                pointRadius: 4,
-            },
-            {
-                label: 'im UZS 2022',
-                data: filteredData2022,
                 borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 2,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 fill: false,
-                pointRadius: 4,
+                lineTension: 0.1
             },
             {
-                label: 'Zeitlimit',
-                data: [{ x: 0, y: 0 }, { x: 161.3, y: 30 }],
-                borderColor: 'rgba(153, 102, 255, 1)',
-                borderWidth: 2,
+                label: '2024',
+                data: filteredData2024,
+                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 fill: false,
-                borderDash: [5, 5]
+                lineTension: 0.1
+            },
+            {
+                label: '2022',
+                data: filteredData2022,
+                borderColor: 'rgba(54, 162, 235, 1)',
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                fill: false,
+                lineTension: 0.1
             }
         ]
     },
@@ -191,14 +183,21 @@ const myChart = new Chart(ctx, {
             y: {
                 title: {
                     display: true,
-                    text: 'Zeit (Stunden)'
+                    text: 'Cutoff-Zeit (Stunden)'
                 }
             }
         },
         plugins: {
-            legend: {
+            title: {
                 display: true,
-                position: 'bottom'
+                text: 'Vergleich der Cutoff-Zeiten für 2022, 2023 und 2024'
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(tooltipItem) {
+                        return `Kilometer: ${tooltipItem.parsed.x}, Zeit: ${tooltipItem.parsed.y.toFixed(2)} Stunden`;
+                    }
+                }
             }
         }
     }
