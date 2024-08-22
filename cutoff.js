@@ -1,5 +1,5 @@
  const gdUZSWerteOld = [
-     { vp: 'Start - Erika-Hess-Stadion', kilometer: 0, cutoff: '07:00', open: '04:00', close: '08:30', cutoff2er: '-', cutoff4er: '-', cutoff10er: '-' },
+     { vp: 'Start - Erika-Hess-Stadion', kilometer: 0, cutoff: '06:00', open: '04:00', close: '08:30', cutoff2er: '-', cutoff4er: '-', cutoff10er: '-' },
      { vp: 'VP 1 - Mauerpark', kilometer: 4.5, cutoff: '07:50', open: '06:05', close: '08:45', cutoff2er: '07:45', cutoff4er: '08:14', cutoff10er: '08:43' },
      { vp: 'VP 2 - S-Bahnhof Wilhelmsruh', kilometer: 10, cutoff: '08:51', open: '06:30', close: '09:40', cutoff2er: '08:40', cutoff4er: '09:08', cutoff10er: '09:37' },
      { vp: 'VP 3 - Lübars', kilometer: 15.6, cutoff: '09:51', open: '07:00', close: '10:35', cutoff2er: '09:36', cutoff4er: '10:04', cutoff10er: '10:31' },
@@ -62,7 +62,7 @@
 
 
 const imUZSWerteOld  = [
-    { vp: 'Start - Erika-Hess-Stadion', kilometer: 0, cutoff: '07:00', open: '04:00', close: '08:30' },
+    { vp: 'Start - Erika-Hess-Stadion', kilometer: 0, cutoff: '06:00', open: '04:00', close: '08:30' },
     { vp: 'VP 1 - Checkpoint Charlie', kilometer: 5.7, cutoff: '07:50', open: '06:10', close: '08:55' },
     { vp: 'VP 2 - East Side Gallery', kilometer: 10.4, cutoff: '08:51', open: '06:30', close: '09:40' },
     { vp: 'VP 3 - Dammweg', kilometer: 16.2, cutoff: '09:51', open: '07:00', close: '10:40' },
