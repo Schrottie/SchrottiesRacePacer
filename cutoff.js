@@ -145,6 +145,14 @@ const myChart = new Chart(ctx, {
     data: {
         datasets: [
             {
+                label: '2022',
+                data: filteredData2022,
+                borderColor: 'rgba(54, 162, 235, 1)',
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                fill: false,
+                lineTension: 0.1
+            },
+            {
                 label: '2023',
                 data: filteredData2023,
                 borderColor: 'rgba(75, 192, 192, 1)',
@@ -161,12 +169,17 @@ const myChart = new Chart(ctx, {
                 lineTension: 0.1
             },
             {
-                label: '2022',
-                data: filteredData2022,
-                borderColor: 'rgba(54, 162, 235, 1)',
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                label: 'Zeitlimit (linear)',
+                data: [
+                    { x: 0, y: 0 },
+                    { x: 161, y: 30 }
+                ],
+                borderColor: 'rgba(0, 0, 0, 1)',
+                backgroundColor: 'rgba(0, 0, 0, 0)',
+                borderDash: [5, 5],
+                pointRadius: 0,
                 fill: false,
-                lineTension: 0.1
+                lineTension: 0
             }
         ]
     },
@@ -197,6 +210,17 @@ const myChart = new Chart(ctx, {
                     label: function(tooltipItem) {
                         return `Kilometer: ${tooltipItem.parsed.x}, Zeit: ${tooltipItem.parsed.y.toFixed(2)} Stunden`;
                     }
+                }
+            },
+            legend: {
+                display: true,
+                position: 'top',
+                align: 'start',
+                labels: {
+                    usePointStyle: true,
+                    boxWidth: 10,
+                    boxHeight: 10,
+                    padding: 15
                 }
             }
         }
