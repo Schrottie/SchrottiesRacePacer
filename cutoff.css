@@ -50,3 +50,12 @@ p {
     width: 100%; /* Volle Breite */
     height: 100%; /* Volle Höhe */
 }
+
+/* Stil für die Tooltip-Container im Diagramm */
+.chartjs-tooltip {
+    background-color: #333; /* Hintergrundfarbe des Tooltips */
+    color: #fff; /* Textfarbe */
+    border-radius: 3px; /* Abgerundete Ecken */
+    padding: 5px; /* Innenabstand */
+    font-size: 0.8em; /* Schriftgröße */
+}

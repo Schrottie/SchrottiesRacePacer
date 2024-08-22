@@ -203,8 +203,7 @@ const myChart = new Chart(ctx, {
                     text: 'Kilometer'
                 },
                 ticks: {
-                    // Optional: set x-axis ticks for better readability
-                    stepSize: 20
+                    stepSize: 20 // Optional: set x-axis ticks for better readability
                 }
             },
             y: {
@@ -213,8 +212,7 @@ const myChart = new Chart(ctx, {
                     text: 'Cutoff-Zeit (Stunden seit 6 Uhr)'
                 },
                 ticks: {
-                    // Optional: set y-axis ticks for better readability
-                    stepSize: 5
+                    stepSize: 5 // Optional: set y-axis ticks for better readability
                 }
             }
         },
