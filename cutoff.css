@@ -27,3 +27,9 @@ p {
     font-size: 14px; /* Schriftgröße für das Copyright */
     color: #666666; /* Farbe für das Copyright */
 }
+
+/* Diagramm formatieren */
+#myChart {
+    width: 100%; /* Vollständige Breite */
+    height: 400px; /* Höhe erhöhen für bessere Sichtbarkeit auf mobilen Geräten */
+}

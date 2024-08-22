@@ -201,7 +201,8 @@ const myChart = new Chart(ctx, {
         ]
     },
     options: {
-        maintainAspectRatio: false, // Erlaubt flexible Höhe des Diagramms
+        maintainAspectRatio: true, // Aspect Ratio beibehalten
+        responsive: true, // Diagramm auf die Größe des Containers anpassen
         scales: {
             x: {
                 type: 'linear',
