@@ -219,6 +219,18 @@ const myChart = new Chart(ctx, {
             }
         },
         plugins: {
+            tooltip: {
+                callbacks: {
+                    title: function(tooltipItems) {
+                        return tooltipItems[0].dataset.label;
+                    },
+                    label: function(tooltipItem) {
+                        const xLabel = tooltipItem.raw.x;
+                        const yLabel = tooltipItem.raw.y;
+                        return `Kilometer: ${xLabel}, Cutoff-Zeit: ${yLabel} h`;
+                    }
+                }
+            },
             title: {
                 display: false
             }

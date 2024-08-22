@@ -16,16 +16,17 @@ h1 {
 p {
     margin-top: 45px; /* Abstand nach oben zu den vorherigen Elementen */
     margin-bottom: 45px; /* Abstand nach unten zu den nächsten Elementen */
-    font-size: 75%; /* Schriftgröße oben */
+    font-size: 90%; /* Schriftgröße oben */
 }
 
 /* Copyright */
 .footer {
     position: absolute; /* Absolute Positionierung innerhalb des Containers */
     bottom: 20px; /* Abstand zum unteren Rand des Containers */
+    margin-top: 20px; /* Abstand nach oben */
     right: 20px; /* Abstand zum rechten Rand des Containers */
     text-align: right; /* Rechtsbündig ausgerichtet */
-    font-size: 65%; /* Schriftgröße für das Copyright */
+    font-size: 75%; /* Schriftgröße für das Copyright */
     color: #666666; /* Farbe für das Copyright */
 }
 
