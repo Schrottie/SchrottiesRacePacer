@@ -153,7 +153,6 @@ const adjustedData2024 = adjustTime(filteredData2024);
 
 // Erstellen des Diagramms im Hauptbereich
 const ctx = document.getElementById('myChart').getContext('2d');
-
 const myChart = new Chart(ctx, {
     type: 'line',
     data: {
@@ -225,14 +224,31 @@ const myChart = new Chart(ctx, {
 });
 
 // Erstellen des Diagramms in der Lightbox
-const lightbox = document.getElementById('lightbox');
-const closeLightbox = document.getElementById('closeLightbox');
-const openLightboxButton = document.getElementById('openLightbox');
-const lightboxChartCanvas = document.getElementById('lightboxChart').getContext('2d');
-
-const lightboxChart = new Chart(lightboxChartCanvas, {
+const lightboxCtx = document.getElementById('lightboxChart').getContext('2d');
+const lightboxChart = new Chart(lightboxCtx, {
     type: 'line',
-    data: myChart.data,
+    data: {
+        datasets: [
+            {
+                label: '2022',
+                data: adjustedData2022,
+                borderColor: 'blue',
+                fill: false
+            },
+            {
+                label: '2023',
+                data: adjustedData2023,
+                borderColor: 'red',
+                fill: false
+            },
+            {
+                label: '2024',
+                data: adjustedData2024,
+                borderColor: 'green',
+                fill: false
+            }
+        ]
+    },
     options: {
         maintainAspectRatio: false,
         responsive: true
@@ -240,14 +256,13 @@ const lightboxChart = new Chart(lightboxChartCanvas, {
 });
 
 // Öffnen der Lightbox
-openLightboxButton.addEventListener('click', () => {
-    lightbox.style.display = 'flex';
-    lightboxChart.update();
+document.getElementById('openLightbox').addEventListener('click', () => {
+    document.getElementById('lightbox').style.display = 'flex';
 });
 
 // Schließen der Lightbox
-closeLightbox.addEventListener('click', () => {
-    lightbox.style.display = 'none';
+document.getElementById('closeLightbox').addEventListener('click', () => {
+    document.getElementById('lightbox').style.display = 'none';
 });
 
 const lightbox = document.getElementById('lightbox');
