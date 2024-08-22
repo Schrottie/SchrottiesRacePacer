@@ -23,7 +23,7 @@ p {
 .footer {
     position: absolute; /* Absolute Positionierung innerhalb des Containers */
     bottom: 20px; /* Abstand zum unteren Rand des Containers */
-    margin-top: 20px; /* Abstand nach oben */
+    margin-top: 35px; /* Abstand nach oben */
     right: 20px; /* Abstand zum rechten Rand des Containers */
     text-align: right; /* Rechtsbündig ausgerichtet */
     font-size: 75%; /* Schriftgröße für das Copyright */
