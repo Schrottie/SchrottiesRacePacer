@@ -153,56 +153,21 @@ const adjustedData2024 = adjustTime(filteredData2024);
 
 // Erstellen des Diagramms
 const ctx = document.getElementById('myChart').getContext('2d');
+const chartContainer = document.getElementById('chartContainer');
+const toggleSizeButton = document.getElementById('toggleSize');
+
+let isFullScreen = false;
+
 const myChart = new Chart(ctx, {
     type: 'line',
     data: {
         datasets: [
-            {
-                label: '2022',
-                data: adjustedData2022,
-                borderColor: 'rgba(54, 162, 235, 1)',
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                fill: false,
-                lineTension: 0.1,
-                borderWidth: 1 // Linienbreite auf 1 setzen
-            },
-            {
-                label: '2023',
-                data: adjustedData2023,
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                fill: false,
-                lineTension: 0.1,
-                borderWidth: 1 // Linienbreite auf 1 setzen
-            },
-            {
-                label: '2024',
-                data: adjustedData2024,
-                borderColor: 'rgba(255, 99, 132, 1)',
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                fill: false,
-                lineTension: 0.1,
-                borderWidth: 1 // Linienbreite auf 1 setzen
-            },
-            {
-                label: 'Zeitlimit (linear)',
-                data: [
-                    { x: 0, y: 0 },
-                    { x: 161, y: 30 }
-                ],
-                borderColor: 'rgba(0, 0, 0, 1)',
-                backgroundColor: 'rgba(0, 0, 0, 0)',
-                borderDash: [5, 5],
-                pointRadius: 0,
-                fill: false,
-                lineTension: 0,
-                borderWidth: 1 // Linienbreite auf 1 setzen
-            }
+            // Ihre Daten hier
         ]
     },
     options: {
-        maintainAspectRatio: true, // Aspect Ratio beibehalten
-        responsive: true, // Diagramm auf die Größe des Containers anpassen
+        maintainAspectRatio: true,
+        responsive: true,
         scales: {
             x: {
                 type: 'linear',
@@ -221,7 +186,7 @@ const myChart = new Chart(ctx, {
         },
         plugins: {
             title: {
-                display: false // Titel entfernen
+                display: false
             },
             tooltip: {
                 callbacks: {
@@ -242,5 +207,29 @@ const myChart = new Chart(ctx, {
                 }
             }
         }
+    }
+});
+
+toggleSizeButton.addEventListener('click', () => {
+    if (isFullScreen) {
+        chartContainer.style.height = '400px'; // Ursprüngliche Höhe
+        toggleSizeButton.textContent = 'Vergrößern';
+        toggleSizeButton.classList.remove('active');
+    } else {
+        chartContainer.style.height = '80vh'; // Höhe auf 80% der Viewport-Höhe
+        toggleSizeButton.textContent = 'Verkleinern';
+        toggleSizeButton.classList.add('active');
+    }
+    isFullScreen = !isFullScreen;
+    myChart.resize(); // Diagramm neu skalieren
+});
+
+// Auf Bildschirmdrehungen reagieren
+window.addEventListener('resize', () => {
+    if (window.innerHeight > window.innerWidth) {
+        chartContainer.style.height = '400px'; // Zurücksetzen auf die ursprüngliche Höhe im Hochformat
+        toggleSizeButton.textContent = 'Vergrößern';
+        toggleSizeButton.classList.remove('active');
+        isFullScreen = false;
     }
 });
