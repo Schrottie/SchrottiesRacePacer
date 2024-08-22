@@ -1,46 +1,29 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body, html {
-    height: 100%;
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-}
-
+/* Container für den weißen Bereich */
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    padding: 75px;
+    max-width: 1024px; /* Maximale Breite des weißen Bereichs */
+    margin: 0 auto; /* Zentriert den Container horizontal */
+    padding: 20px; /* Innenabstand für etwas Luft um den Inhalt */
+    background-color: #ffffff; /* Hintergrundfarbe Weiß */
+    position: relative; /* Notwendig für absolute Positionierung der Copyright-Info */
 }
 
+/* Überschrift */
 h1 {
-    color: #333;
-    margin-bottom: 20px;
-    font-size: 2.5rem;
-    text-align: center;
+    margin-bottom: 45px; /* Abstand nach unten zu den Paragraphen */
 }
 
-canvas {
-    width: 100% !important;
-    height: calc(100% - 75px) !important;
-    background-color: #fff;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    border: 1px solid #ddd;
-}
-.copyright {
-    font-size: 70%;
-    text-align: right;
+/* Paragraphen */
+p {
+    margin-top: 45px; /* Abstand nach oben zu den vorherigen Elementen */
+    margin-bottom: 45px; /* Abstand nach unten zu den nächsten Elementen */
 }
 
-@media (max-width: 768px) {
-    h1 {
-        font-size: 2rem;
-    }
+/* Copyright */
+.footer {
+    position: absolute; /* Absolute Positionierung innerhalb des Containers */
+    bottom: 20px; /* Abstand zum unteren Rand des Containers */
+    right: 20px; /* Abstand zum rechten Rand des Containers */
+    text-align: right; /* Rechtsbündig ausgerichtet */
+    font-size: 14px; /* Schriftgröße für das Copyright */
+    color: #666666; /* Farbe für das Copyright */
 }
