@@ -153,7 +153,6 @@ const adjustedData2024 = adjustTime(filteredData2024);
 
 // Erstellen des Diagramms
 const ctx = document.getElementById('myChart').getContext('2d');
-const lightboxChartCanvas = document.getElementById('lightboxChart').getContext('2d');
 
 const myChart = new Chart(ctx, {
     type: 'line',
@@ -202,47 +201,7 @@ const myChart = new Chart(ctx, {
         plugins: {
             title: {
                 display: false
-            },
-            tooltip: {
-                callbacks: {
-                    label: function(tooltipItem) {
-                        return `Kilometer: ${tooltipItem.parsed.x}, Zeit: ${tooltipItem.parsed.y.toFixed(2)} Stunden`;
-                    }
-                }
-            },
-            legend: {
-                display: true,
-                position: 'top',
-                align: 'start',
-                labels: {
-                    usePointStyle: true,
-                    boxWidth: 10,
-                    boxHeight: 10,
-                    padding: 15
-                }
             }
         }
     }
-});
-
-const lightbox = document.getElementById('lightbox');
-const closeLightbox = document.getElementById('closeLightbox');
-const openLightboxButton = document.getElementById('openLightbox');
-
-const lightboxChart = new Chart(lightboxChartCanvas, {
-    type: 'line',
-    data: myChart.data,
-    options: {
-        maintainAspectRatio: false,
-        responsive: true
-    }
-});
-
-openLightboxButton.addEventListener('click', () => {
-    lightbox.style.display = 'flex';
-    lightboxChart.update();
-});
-
-closeLightbox.addEventListener('click', () => {
-    lightbox.style.display = 'none';
 });
