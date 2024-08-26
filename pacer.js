@@ -1,4 +1,3 @@
-//debug: 2
 document.addEventListener('DOMContentLoaded', function() {
     const raceDropdown = document.getElementById('raceDropdown');
     const raceNameElement = document.getElementById('raceName');
@@ -11,8 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch('list_races.php')
             .then(response => response.json())
             .then(data => {
-                // Popup mit der Datenausgabe anzeigen
-                alert(JSON.stringify(data, null, 2));
+                console.log('Daten von list_races.php:', data);
 
                 if (data && Array.isArray(data)) {
                     data.forEach(file => {
@@ -37,14 +35,19 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch(`races/${filename}`)
             .then(response => response.text())
             .then(data => {
+                console.log(`Daten aus ${filename}:`, data);
+
                 const lines = data.split('\n');
                 const fullName = lines[0].replace(/^\/\/\s*/, ''); // Kommentar entfernen
-                const jsonArray = lines.slice(1).join('\n'); // Den Rest des Inhalts zusammenfügen
+                console.log('Rennname aus Datei:', fullName);
+
+                const jsonArrayString = lines.slice(1).join('\n'); // Den Rest des Inhalts zusammenfügen
 
                 try {
                     // Versuche, das Datenarray zu evaluieren
-                    const dataArray = eval(`(${jsonArray})`);
-                    
+                    const dataArray = eval(jsonArrayString);
+                    console.log('Parsed Data Array:', dataArray);
+
                     raceNameElement.textContent = fullName;
                     updateTable(dataArray);
                 } catch (e) {
@@ -56,6 +59,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Tabelle aktualisieren
     function updateTable(values) {
+        console.log('Aktualisiere Tabelle mit Werten:', values);
+
         paceTableBody.innerHTML = '';
 
         const startTime = 6 * 60; // 6:00 Uhr in Minuten

@@ -50,6 +50,7 @@ h1 {
 h2 {
     text-align: center;
     font-size: 85%;
+    margin-bottom: 15px;
 }
 
 p.copyright {
@@ -84,6 +85,16 @@ table {
     font-weight: bold;
     padding: 10px;
     text-align: center;
+}
+
+/* Dropdown Container */
+.dropdown-container {
+    text-align: center;
+    margin: 0;
+}
+
+#raceDropdown {
+    width: 100%;
 }
 
 /* Slider Container */
