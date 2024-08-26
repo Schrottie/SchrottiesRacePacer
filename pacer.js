@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Funktion zum Auslesen der Dateien im Verzeichnis "races"
     function fetchRaceFiles() {
-        fetch('listRaces.php')
+        fetch('list_races.php')
             .then(response => response.json())
             .then(data => {
                 if (data && Array.isArray(data)) {
