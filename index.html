@@ -6,13 +6,11 @@
     <meta name="description" content="Web application for calculating the running time of an individual runner in the Mauerweglauf - 100 miles Berlin - using the current average pace." />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Durchlaufzeitberechnung 100 Meilen Berlin</title>
-    	
     <link rel="author" href="https://running.maik-bischoff.de/author/schrottie/" />
     <link rel="icon" href="https://i0.wp.com/running.maik-bischoff.de/wp-content/uploads/2023/01/cropped-running.png?fit=32%2C32&#038;ssl=1" sizes="32x32" />
     <link rel="icon" href="https://i0.wp.com/running.maik-bischoff.de/wp-content/uploads/2023/01/cropped-running.png?fit=192%2C192&#038;ssl=1" sizes="192x192" />
     <link rel="apple-touch-icon" href="https://i0.wp.com/running.maik-bischoff.de/wp-content/uploads/2023/01/cropped-running.png?fit=180%2C180&#038;ssl=1" />
     <link rel="shortcut icon" href="https://i0.wp.com/running.maik-bischoff.de/wp-content/uploads/2023/01/cropped-running.png?fit=32%2C32&#038;ssl=1" sizes="32x32" type="image/png" />
-    
     <meta property="og:type" content="website" />
     <meta property="og:title" content="100 Meilen Berlin Durchlaufzeitenrechner" />
     <meta property="og:description" content="proudly presented by: Schrotties Laufblog Das Ziel steht im Weg" />
@@ -24,7 +22,6 @@
     <meta property="og:image:alt" content="" />
     <meta property="og:locale" content="de_DE" />
     <meta name="twitter:site" content="@schrottie" />
-
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="print.css" />
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' />
@@ -38,6 +35,10 @@
             <img src="print.png" alt="Drucken" title="Drucken" id="printIcon" width="32" height="32" class="print-icon">
         </div>
         <h1>Durchlaufzeit (Prognose)</h1>
+        <h2 id="raceName">###Racename###</h2>
+        <select id="raceDropdown">
+            <option value="">Bitte wählen...</option>
+        </select>
         <div class="slider-container">
             <input type="range" id="paceSlider" min="300" max="665" step="1" value="515">
             <div id="paceDisplay">8:35</div>
@@ -46,9 +47,6 @@
             <table id="paceTable">
                 <thead>
                     <tr>
-                        <th id="toggleHeader">
-                            <img id="toggleImage" src="uzs2.png" alt="Switch direction" title="Switch direction" class="toggle-image">
-                        </th>
                         <th>Km</th>
                         <th>progn. Durchlaufzeit</th>
                         <th>Cutoff Einzel</th>
@@ -73,5 +71,6 @@
     <script src="data-odd.js"></script>
     <script src="pacer.js"></script>
     <script src="print.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,5 +1,4 @@
-// data-odd.js
-// VP-Daten, ohne Staffel-Cutoff-Zeiten
+// 100 Meilen Berlin (Lauf im Uhrzeigersinn)
 
 const imUZSWerte  = [
     { vp: 'Start - Erika-Hess-Stadion', kilometer: 0, cutoff: '07:00', open: '04:00', close: '08:30' },

@@ -1,7 +1,6 @@
-// data-even.js
-// VP-Daten inklusive Cutoff-Zeiten für die Staffeln
+// 100 Meilen Berlin (Lauf gegen den Uhrzeigersinn)
 
-const gdUZSWerte = [
+const mwl_ggduzs = [
     { vp: 'Start - Werner-Kluge-Sportplatz', kilometer: 0, cutoff: '06:00', open: '04:30', close: '08:30' },
     { vp: 'VP 1 - Lauftreff Lübars', kilometer: 8.6, cutoff: '07:27', open: '06:30', close: '09:30' },
     { vp: 'VP 2 - Oranienburger Chaussee', kilometer: 14.0, cutoff: '08:21', open: '07:25', close: '11:25' },
@@ -31,6 +30,3 @@ const gdUZSWerte = [
     { vp: 'VP 25 - Südpankepark', kilometer: 154.7, cutoff: '10:43', open: '17:30', close: '10:45' },
     { vp: 'Ziel - Werner-Kluge-Sportplatz', kilometer: 161.0, cutoff: '12:00', open: '18:00', close: '13:00' }
 ];
-
-
-
