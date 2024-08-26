@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const paceDisplay = document.getElementById('paceDisplay');
     const paceTableBody = document.querySelector('#paceTable tbody');
 
-    // Funktion zum Auslesen der Dateien im Verzeichnis "races"
     function fetchRaceFiles() {
         fetch('list_races.php')
             .then(response => response.json())
@@ -20,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         raceDropdown.appendChild(option);
                     });
 
-                    // Standardmäßig den aktuellen Renntitel einstellen
                     const currentYear = new Date().getFullYear();
                     const defaultFile = (currentYear % 2 === 0) ? 'mwl_ggduzs.js' : 'mwl_iuzs.js';
                     raceDropdown.value = defaultFile;
@@ -30,7 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Fehler beim Abrufen der Renn-Dateien:', error));
     }
 
-    // Funktion zum Laden der Renn-Daten und Aktualisieren der Tabelle
     function loadRaceData(filename) {
         fetch(`races/${filename}`)
             .then(response => response.text())
@@ -41,15 +38,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 const fullName = lines[0].replace(/^\/\/\s*/, ''); // Kommentar entfernen
                 console.log('Rennname aus Datei:', fullName);
 
-                const jsonArrayString = lines.slice(1).join('\n'); // Den Rest des Inhalts zusammenfügen
-
+                const jsonArrayString = lines.slice(1).join('\n');
+                
                 try {
-                    // Versuche, das Datenarray zu evaluieren
-                    const dataArray = eval(jsonArrayString);
+                    const dataArray = eval(jsonArrayString); // Versuche, das Datenarray zu evaluieren
                     console.log('Parsed Data Array:', dataArray);
 
                     raceNameElement.textContent = fullName;
-                    updateTable(dataArray);
+
+                    if (Array.isArray(dataArray)) {
+                        updateTable(dataArray);
+                    } else {
+                        console.error('Fehler: Das geparste Datenarray ist kein Array.');
+                    }
                 } catch (e) {
                     console.error('Fehler beim Parsen der Renn-Daten:', e);
                 }
@@ -57,7 +58,6 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Fehler beim Laden der Renn-Daten:', error));
     }
 
-    // Tabelle aktualisieren
     function updateTable(values) {
         console.log('Aktualisiere Tabelle mit Werten:', values);
 
@@ -68,24 +68,28 @@ document.addEventListener('DOMContentLoaded', function() {
         let previousKilometer = 0;
 
         values.forEach(item => {
-            const distance = item.kilometer - previousKilometer;
-            const { calories, water } = calculateNutrition(distance);
+            if (item && item.kilometer && item.vp) { // Überprüfen, ob die wesentlichen Eigenschaften vorhanden sind
+                const distance = item.kilometer - previousKilometer;
+                const { calories, water } = calculateNutrition(distance);
 
-            const formattedTime = calculateTime(startTime, item.kilometer, paceSlider.value / 60);
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${item.vp}</td>
-                <td>${item.kilometer}</td>
-                <td>${formattedTime}</td>
-                <td>${item.cutoff}</td>
-                <td>${item.open}</td>
-                <td>${item.close}</td>
-                <td>${water}</td>
-                <td>${calories}</td>
-            `;
-            paceTableBody.appendChild(row);
+                const formattedTime = calculateTime(startTime, item.kilometer, paceSlider.value / 60);
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.vp}</td>
+                    <td>${item.kilometer}</td>
+                    <td>${formattedTime}</td>
+                    <td>${item.cutoff}</td>
+                    <td>${item.open}</td>
+                    <td>${item.close}</td>
+                    <td>${water}</td>
+                    <td>${calories}</td>
+                `;
+                paceTableBody.appendChild(row);
 
-            previousKilometer = item.kilometer;
+                previousKilometer = item.kilometer;
+            } else {
+                console.warn('Einträge in values entsprechen nicht dem erwarteten Format:', item);
+            }
         });
     }
 
@@ -102,9 +106,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function calculateNutrition(distance) {
-        const weight = 85; // Festes Gewicht in kg
-        const caloriesPerKm = 0.9 * weight; // 0.9 kcal/kg/km
-        const waterPerKm = 0.5 * weight * (24 / 21); // 0.5 l/kg/km, Temperatur auf 24°C festgelegt
+        const weight = 85;
+        const caloriesPerKm = 0.9 * weight;
+        const waterPerKm = 0.5 * weight * (24 / 21);
 
         return {
             calories: Math.round(caloriesPerKm * distance),
@@ -116,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const pace = paceSlider.value;
         const paceMinutes = Math.floor(pace / 60);
         const paceSeconds = pace % 60;
-        const paceValue = `${paceMinutes}:${paceSeconds.toString().padStart(2, '0')}`; // Korrektes Format
+        const paceValue = `${paceMinutes}:${paceSeconds.toString().padStart(2, '0')}`;
         paceDisplay.textContent = `${paceValue}`;
 
         if (raceDropdown.value) {
@@ -128,7 +132,6 @@ document.addEventListener('DOMContentLoaded', function() {
         loadRaceData(raceDropdown.value);
     }
 
-    // Initiales Laden der Renn-Dateien
     fetchRaceFiles();
 
     paceSlider.addEventListener('input', handlePaceChange);
