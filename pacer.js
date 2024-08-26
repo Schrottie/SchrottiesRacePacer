@@ -36,10 +36,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 const lines = data.split('\n');
                 const fullName = lines[0].replace(/^\/\/\s*/, ''); // Kommentar entfernen
                 const jsonArray = lines.slice(1).join('\n'); // Den Rest des Inhalts zusammenfügen
-                
+
                 try {
                     // Versuche, das Datenarray zu evaluieren
-                    eval(`const dataArray = ${jsonArray};`);
+                    const dataArray = eval(`(${jsonArray})`);
                     
                     raceNameElement.textContent = fullName;
                     updateTable(dataArray);
