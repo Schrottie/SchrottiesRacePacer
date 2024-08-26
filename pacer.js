@@ -27,25 +27,26 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(error => console.error('Fehler beim Abrufen der Renn-Dateien:', error));
     }
-
     function loadRaceData(filename) {
         fetch(`races/${filename}`)
             .then(response => response.text())
             .then(data => {
                 console.log(`Daten aus ${filename}:`, data);
-
+    
                 const lines = data.split('\n');
-                const fullName = lines[0].replace(/^\/\/\s*/, ''); // Kommentar entfernen
+                const fullName = lines[0].replace(/^\/\/\s*/, '');
                 console.log('Rennname aus Datei:', fullName);
-
-                const jsonArrayString = lines.slice(1).join('\n');
+    
+                raceNameElement.textContent = fullName;
+    
+                // Array-Name ohne ".js" Endung
+                const arrayName = filename.replace('.js', '');
                 
+                // Evaluieren des spezifischen Array-Namens
                 try {
-                    const dataArray = eval(jsonArrayString); // Versuche, das Datenarray zu evaluieren
+                    const dataArray = eval(arrayName);
                     console.log('Parsed Data Array:', dataArray);
-
-                    raceNameElement.textContent = fullName;
-
+    
                     if (Array.isArray(dataArray)) {
                         updateTable(dataArray);
                     } else {
@@ -57,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(error => console.error('Fehler beim Laden der Renn-Daten:', error));
     }
+    
 
     function updateTable(values) {
         console.log('Aktualisiere Tabelle mit Werten:', values);
