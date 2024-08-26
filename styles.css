@@ -49,7 +49,7 @@ h1 {
 
 h2 {
     text-align: center;
-    font-size: 85%;
+    font-size: 95%;
     margin-bottom: 15px;
 }
 
@@ -105,6 +105,11 @@ table {
 
 #paceSlider {
     width: 100%;
+}
+
+p.dropdown-container, p.slider-container {
+    font-size: 85%;
+    text-align: left;
 }
 
 /* Pace Display */

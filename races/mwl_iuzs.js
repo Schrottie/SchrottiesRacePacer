@@ -1,6 +1,6 @@
 // 100 Meilen Berlin (Lauf im Uhrzeigersinn)
 
-const imUZSWerte  = [
+const mwl_iuzs  = [
     { vp: 'Start - Erika-Hess-Stadion', kilometer: 0, cutoff: '07:00', open: '04:00', close: '08:30' },
     { vp: 'VP 1 - Checkpoint Charlie', kilometer: 5.7, cutoff: '07:50', open: '06:10', close: '08:55' },
     { vp: 'VP 2 - East Side Gallery', kilometer: 10.4, cutoff: '08:51', open: '06:30', close: '09:40' },
