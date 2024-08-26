@@ -1,3 +1,4 @@
+//debug: 1
 document.addEventListener('DOMContentLoaded', function() {
     const raceDropdown = document.getElementById('raceDropdown');
     const raceNameElement = document.getElementById('raceName');
