@@ -36,10 +36,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 const lines = data.split('\n');
                 const fullName = lines[0].replace(/^\/\/\s*/, ''); // Kommentar entfernen
                 const jsonArray = lines.slice(1).join('\n'); // Den Rest des Inhalts zusammenfügen
-                eval(`const dataArray = ${jsonArray};`); // Datenarray definieren
-
-                raceNameElement.textContent = fullName;
-                updateTable(dataArray);
+                
+                try {
+                    // Versuche, das Datenarray zu evaluieren
+                    eval(`const dataArray = ${jsonArray};`);
+                    
+                    raceNameElement.textContent = fullName;
+                    updateTable(dataArray);
+                } catch (e) {
+                    console.error('Fehler beim Parsen der Renn-Daten:', e);
+                }
             })
             .catch(error => console.error('Fehler beim Laden der Renn-Daten:', error));
     }
