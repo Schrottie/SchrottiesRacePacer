@@ -1,4 +1,4 @@
-//debug: 1
+//debug: 2
 document.addEventListener('DOMContentLoaded', function() {
     const raceDropdown = document.getElementById('raceDropdown');
     const raceNameElement = document.getElementById('raceName');
@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch('list_races.php')
             .then(response => response.json())
             .then(data => {
+                // Popup mit der Datenausgabe anzeigen
+                alert(JSON.stringify(data, null, 2));
+
                 if (data && Array.isArray(data)) {
                     data.forEach(file => {
                         const option = document.createElement('option');
