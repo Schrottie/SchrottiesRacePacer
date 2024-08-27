@@ -30,7 +30,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function loadRaceData(filename) {
         const script = document.createElement('script');
+        console.log(`Lade Skript von: races/${filename}`);
         script.src = `races/${filename}`;
+        console.log(`Skript ${filename} wurde geladen.`);
         script.onload = function() {
             const arrayName = filename.replace('.js', '');
     
