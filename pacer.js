@@ -9,21 +9,20 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch('list_races.php')
             .then(response => response.json())
             .then(data => {
-                console.log('Daten von list_races.php:', data);
-    
+
                 if (data && Array.isArray(data)) {
                     data.forEach(file => {
                         const option = document.createElement('option');
                         option.value = file.filename;
-                        option.textContent = file.fullName; // Vollname wird hier angezeigt
+                        option.textContent = file.fullName;
                         raceDropdown.appendChild(option);
                     });
     
-                    // Setze das Standard-Dateiformat auf JSON
                     const currentYear = new Date().getFullYear();
                     const defaultFile = (currentYear % 2 === 0) ? 'mwl_ggduzs.json' : 'mwl_iuzs.json';
                     raceDropdown.value = defaultFile;
                     loadRaceData(`races/${defaultFile}`);
+
                 }
             })
             .catch(error => console.error('Fehler beim Abrufen der Renn-Dateien:', error));
@@ -33,16 +32,11 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch(filename)
             .then(response => response.json())
             .then(data => {
-                console.log(`Daten aus ${filename}:`, data);
-    
-                const raceTitle = data.title || data[0]?.vp; // Verwenden Sie den Titel oder den Namen des ersten Points
-                console.log('Rennname aus Datei:', raceTitle);
-    
-                // Aktualisieren Sie die Überschrift
+                const raceTitle = data.title || data[0]?.vp;
+
                 updateRaceTitle(raceTitle);
-    
-                // Hier können Sie die Tabelle aktualisieren
                 updateTable(data.checkpoints || data);
+
             })
             .catch(error => console.error('Fehler beim Laden der Renn-Daten:', error));
     }
@@ -52,11 +46,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateTable(values) {
-        console.log('Aktualisiere Tabelle mit Werten:', values);
 
         paceTableBody.innerHTML = '';
 
-        const startTime = 6 * 60; // 6:00 Uhr in Minuten
+        const startTime = 6 * 60;
 
         let previousKilometer = 0;
 
@@ -142,7 +135,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     fetchRaceFiles();
 
-    // Überprüfen, ob Einstellungen aus Cookies geladen werden sollen
     loadSettings();
     
     paceSlider.addEventListener('input', handlePaceChange);
