@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     data.forEach(file => {
                         const option = document.createElement('option');
                         option.value = file.filename;
-                        option.textContent = file.fullName;
+                        option.textContent = file.fullName; // Vollname wird hier angezeigt
                         raceDropdown.appendChild(option);
                     });
     
@@ -119,20 +119,10 @@ document.addEventListener('DOMContentLoaded', function() {
         if (raceDropdown.value) {
             loadRaceData(`races/${raceDropdown.value}`);
         }
-        saveSettings();
     }
 
     function handleRaceChange() {
         loadRaceData(`races/${raceDropdown.value}`);
-        saveSettings();
-    }
-
-    function saveSettings() {
-        const selectedRace = raceDropdown.value;
-        const selectedPace = paceSlider.value;
-
-        setCookie('selectedRace', selectedRace, 30);
-        setCookie('selectedPace', selectedPace, 30);
     }
 
     function loadSettings() {
