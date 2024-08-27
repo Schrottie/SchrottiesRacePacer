@@ -128,6 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (raceDropdown.value) {
             loadRaceData(`races/${raceDropdown.value}`);
         }
+        saveSettings();
     }
 
     function handleRaceChange() {
@@ -147,6 +148,8 @@ document.addEventListener('DOMContentLoaded', function() {
             paceSlider.value = savedPace;
             handlePaceChange();
         }
+
+        saveSettings();
     }
 
     fetchRaceFiles();
