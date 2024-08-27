@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-
+ 
     function formatTime(minutes) {
         minutes = minutes % (24 * 60);
         let hours = Math.floor(minutes / 60);
