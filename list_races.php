@@ -1,24 +1,18 @@
 <?php
-header('Content-Type: application/json');
-
-$directory = 'races';
+$directory = 'races/';
 $files = array_diff(scandir($directory), array('..', '.'));
-$response = array();
+
+$raceFiles = array();
 
 foreach ($files as $file) {
-    if (pathinfo($file, PATHINFO_EXTENSION) === 'js') {
-        // Versuche, den ersten Kommentar aus der Datei zu extrahieren
-        $filePath = $directory . '/' . $file;
-        $fileContent = file_get_contents($filePath);
-        $firstLine = strtok($fileContent, "\n");
-        $fullName = trim(substr($firstLine, 2)); // Entferne "//" vom Kommentar
-
-        $response[] = array(
+    if (pathinfo($file, PATHINFO_EXTENSION) === 'json') {
+        $raceFiles[] = array(
             'filename' => $file,
-            'fullName' => $fullName
+            'fullName' => pathinfo($file, PATHINFO_FILENAME)
         );
     }
 }
 
-echo json_encode($response);
+header('Content-Type: application/json');
+echo json_encode($raceFiles);
 ?>
