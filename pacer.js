@@ -32,15 +32,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const script = document.createElement('script');
         script.src = `races/${filename}`;
         script.onload = function() {
-            // Der Array-Name ohne ".js" Endung
             const arrayName = filename.replace('.js', '');
-            
+
             try {
-                // Zugriff auf das Array über den globalen Kontext
                 const dataArray = window[arrayName];
                 console.log('Parsed Data Array:', dataArray);
     
                 if (Array.isArray(dataArray)) {
+                    raceNameElement.textContent = arrayName; // Setze die Überschrift
                     updateTable(dataArray);
                 } else {
                     console.error('Fehler: Das geparste Datenarray ist kein Array.');
@@ -55,8 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
         document.head.appendChild(script);
     }
-    
-    
 
     function updateTable(values) {
         console.log('Aktualisiere Tabelle mit Werten:', values);
@@ -68,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let previousKilometer = 0;
 
         values.forEach(item => {
-            if (item && item.kilometer && item.vp) { // Überprüfen, ob die wesentlichen Eigenschaften vorhanden sind
+            if (item && item.kilometer && item.vp) { 
                 const distance = item.kilometer - previousKilometer;
                 const { calories, water } = calculateNutrition(distance);
 
@@ -132,6 +129,49 @@ document.addEventListener('DOMContentLoaded', function() {
     function handleRaceChange() {
         loadRaceData(raceDropdown.value);
         saveSettings();
+    }
+
+    function saveSettings() {
+        const selectedRace = raceDropdown.value;
+        const selectedPace = paceSlider.value;
+
+        setCookie('selectedRace', selectedRace, 30);
+        setCookie('selectedPace', selectedPace, 30);
+    }
+
+    function loadSettings() {
+        const savedRace = getCookie('selectedRace');
+        const savedPace = getCookie('selectedPace');
+
+        if (savedRace) {
+            raceDropdown.value = savedRace;
+            loadRaceData(savedRace);
+        }
+
+        if (savedPace) {
+            paceSlider.value = savedPace;
+            handlePaceChange();
+        }
+    }
+
+    function setCookie(name, value, days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        const expires = "expires=" + date.toUTCString();
+        document.cookie = name + "=" + value + ";" + expires + ";path=/";
+    }
+
+    function getCookie(name) {
+        const cname = name + "=";
+        const decodedCookie = decodeURIComponent(document.cookie);
+        const cookies = decodedCookie.split(';');
+        for(let i = 0; i < cookies.length; i++) {
+            let c = cookies[i].trim();
+            if (c.indexOf(cname) === 0) {
+                return c.substring(cname.length, c.length);
+            }
+        }
+        return "";
     }
 
     fetchRaceFiles();
