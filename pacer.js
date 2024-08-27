@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(error => console.error('Fehler beim Abrufen der Renn-Dateien:', error));
     }
-    
+
     function loadRaceData(filename) {
         const script = document.createElement('script');
         script.src = `races/${filename}`;
@@ -126,14 +126,19 @@ document.addEventListener('DOMContentLoaded', function() {
         if (raceDropdown.value) {
             loadRaceData(raceDropdown.value);
         }
+        saveSettings();
     }
 
     function handleRaceChange() {
         loadRaceData(raceDropdown.value);
+        saveSettings();
     }
 
     fetchRaceFiles();
 
+    // Überprüfen, ob Einstellungen aus Cookies geladen werden sollen
+    loadSettings();
+    
     paceSlider.addEventListener('input', handlePaceChange);
     raceDropdown.addEventListener('change', handleRaceChange);
 });
