@@ -89,7 +89,7 @@ table {
 /* Dropdown Container */
 .dropdown-container {
     text-align: center;
-    margin: 0;
+    margin: 0 0 0 15px;
 }
 
 #raceDropdown {
@@ -99,7 +99,7 @@ table {
 /* Slider Container */
 .slider-container {
     text-align: center;
-    margin: 0;
+    margin: 0 0 0 15px;
 }
 
 #paceSlider {
