@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     const currentYear = new Date().getFullYear();
                     const defaultFile = (currentYear % 2 === 0) ? 'mwl_ggduzs.json' : 'mwl_iuzs.json';
                     raceDropdown.value = defaultFile;
-                    loadRaceData(defaultFile);
+                    loadRaceData(`races/${defaultFile}`);
                 }
             })
             .catch(error => console.error('Fehler beim Abrufen der Renn-Dateien:', error));
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
- 
+
     function formatTime(minutes) {
         minutes = minutes % (24 * 60);
         let hours = Math.floor(minutes / 60);
@@ -117,13 +117,13 @@ document.addEventListener('DOMContentLoaded', function() {
         paceDisplay.textContent = `${paceValue}`;
 
         if (raceDropdown.value) {
-            loadRaceData(raceDropdown.value);
+            loadRaceData(`races/${raceDropdown.value}`);
         }
         saveSettings();
     }
 
     function handleRaceChange() {
-        loadRaceData(raceDropdown.value);
+        loadRaceData(`races/${raceDropdown.value}`);
         saveSettings();
     }
 
@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (savedRace) {
             raceDropdown.value = savedRace;
-            loadRaceData(savedRace);
+            loadRaceData(`races/${savedRace}`);
         }
 
         if (savedPace) {
@@ -149,7 +149,6 @@ document.addEventListener('DOMContentLoaded', function() {
             handlePaceChange();
         }
     }
-
 
     fetchRaceFiles();
 
