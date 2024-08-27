@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
 
                     const currentYear = new Date().getFullYear();
-                    const defaultFile = (currentYear % 2 === 0) ? 'mwl_ggduzs.js' : 'mwl_iuzs.js';
+                    const defaultFile = (currentYear % 2 === 0) ? 'races/mwl_ggduzs.js' : 'races/mwl_iuzs.js';
                     raceDropdown.value = defaultFile;
                     loadRaceData(defaultFile);
                 }
