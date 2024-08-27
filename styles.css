@@ -89,7 +89,7 @@ table {
 /* Dropdown Container */
 .dropdown-container {
     text-align: center;
-    margin: 0 0 0 15px;
+    margin: 0;
 }
 
 #raceDropdown {
@@ -99,7 +99,7 @@ table {
 /* Slider Container */
 .slider-container {
     text-align: center;
-    margin: 0 0 0 15px;
+    margin: 0;
 }
 
 #paceSlider {
@@ -107,8 +107,10 @@ table {
 }
 
 p.label {
-    font-size: 85%;
+    font-size: 75%;
     text-align: left;
+    margin-top: 10px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Pace Display */
