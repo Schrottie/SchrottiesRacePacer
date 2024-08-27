@@ -46,7 +46,7 @@ document.getElementById('routeForm').addEventListener('submit', function(e) {
     formData.append('filename', `${kurzName}.js`);
     formData.append('content', data);
 
-    fetch('saveFile.php', {
+    fetch('save_race.php', {
         method: 'POST',
         body: formData
     })
