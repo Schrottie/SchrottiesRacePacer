@@ -29,37 +29,29 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function loadRaceData(filename) {
-        const script = document.createElement('script');
-        console.log(`Lade Skript von: races/${filename}`);
-        script.src = `races/${filename}`;
-        console.log(`Skript ${filename} wurde geladen.`);
-        script.onload = function() {
-            const arrayName = filename.replace('.js', '');
-    
-            try {
-                // Überprüfen, ob die Variable existiert und ob sie ein Array ist
-                if (window.hasOwnProperty(arrayName)) {
-                    const dataArray = window[arrayName];
-                    console.log('Laden erfolgreich:', arrayName, dataArray);
-    
-                    if (Array.isArray(dataArray)) {
-                        raceNameElement.textContent = arrayName; // Setze die Überschrift
-                        updateTable(dataArray);
-                    } else {
-                        console.error('Fehler: Das geparste Datenarray ist kein Array. Empfangen:', typeof dataArray);
-                    }
-                } else {
-                    console.error(`Fehler: Die Variable "${arrayName}" ist im globalen Kontext nicht definiert.`);
+        fetch(`races/${filename}`)
+            .then(response => response.text())
+            .then(data => {
+                console.log(`Daten aus ${filename}:`, data);
+
+                const lines = data.split('\n');
+                const fullName = lines[0].replace(/^\/\/\s*/, ''); // Kommentar entfernen
+                console.log('Rennname aus Datei:', fullName);
+
+                const jsonArrayString = lines.slice(1).join('\n'); // Den Rest des Inhalts zusammenfügen
+
+                try {
+                    // Versuche, das Datenarray zu evaluieren
+                    const dataArray = eval(jsonArrayString);
+                    console.log('Parsed Data Array:', dataArray);
+
+                    raceNameElement.textContent = fullName;
+                    updateTable(dataArray);
+                } catch (e) {
+                    console.error('Fehler beim Parsen der Renn-Daten:', e);
                 }
-            } catch (e) {
-                console.error('Fehler beim Parsen der Renn-Daten:', e);
-            }
-        };
-        script.onerror = function() {
-            console.error(`Fehler beim Laden der Datei: ${filename}`);
-        };
-    
-        document.head.appendChild(script);
+            })
+            .catch(error => console.error('Fehler beim Laden der Renn-Daten:', error));
     }
  
     function updateTable(values) {
