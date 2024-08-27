@@ -5,51 +5,67 @@ document.addEventListener('DOMContentLoaded', function() {
     const paceDisplay = document.getElementById('paceDisplay');
     const paceTableBody = document.querySelector('#paceTable tbody');
 
+    // Lädt die Liste der Renn-Dateien und füllt das Dropdown-Menü
     function fetchRaceFiles() {
         fetch('list_races.php')
             .then(response => response.json())
             .then(data => {
-
                 if (data && Array.isArray(data)) {
-                    data.forEach(file => {
-                        const option = document.createElement('option');
-                        option.value = file.filename;
-                        option.textContent = file.fullName;
-                        raceDropdown.appendChild(option);
-                    });
-    
-                    const currentYear = new Date().getFullYear();
-                    const defaultFile = (currentYear % 2 === 0) ? 'mwl_ggduzs.json' : 'mwl_iuzs.json';
-                    raceDropdown.value = defaultFile;
-                    loadRaceData(`races/${defaultFile}`);
+                    // Alle JSON-Dateien parallel laden
+                    const filePromises = data.map(file => 
+                        fetch(`races/${file.filename}`)
+                            .then(response => response.json())
+                            .then(jsonData => {
+                                const raceTitle = jsonData.title || jsonData[0]?.vp || file.filename.replace('.json', '');
+                                return {
+                                    filename: file.filename,
+                                    fullName: raceTitle
+                                };
+                            })
+                    );
 
+                    Promise.all(filePromises)
+                        .then(files => {
+                            files.forEach(file => {
+                                const option = document.createElement('option');
+                                option.value = file.filename;
+                                option.textContent = file.fullName;
+                                raceDropdown.appendChild(option);
+                            });
+
+                            const currentYear = new Date().getFullYear();
+                            const defaultFile = (currentYear % 2 === 0) ? 'mwl_ggduzs.json' : 'mwl_iuzs.json';
+                            raceDropdown.value = defaultFile;
+                            loadRaceData(`races/${defaultFile}`);
+                        })
+                        .catch(error => console.error('Fehler beim Laden der Renn-Titel:', error));
                 }
             })
             .catch(error => console.error('Fehler beim Abrufen der Renn-Dateien:', error));
     }
-    
+
+    // Lädt die Daten für das ausgewählte Rennen
     function loadRaceData(filename) {
         fetch(filename)
             .then(response => response.json())
             .then(data => {
                 const raceTitle = data.title || data[0]?.vp;
-
                 updateRaceTitle(raceTitle);
                 updateTable(data.checkpoints || data);
-
             })
             .catch(error => console.error('Fehler beim Laden der Renn-Daten:', error));
     }
 
+    // Aktualisiert die Anzeige des Rennnamens
     function updateRaceTitle(title) {
         raceNameElement.textContent = title;
     }
 
+    // Aktualisiert die Tabelle mit den Daten
     function updateTable(values) {
-
         paceTableBody.innerHTML = '';
 
-        const startTime = 6 * 60;
+        const startTime = 6 * 60; // 6:00 Uhr in Minuten
 
         let previousKilometer = 0;
 
