@@ -65,21 +65,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('Rennname aus Datei:', fullName);
     
                 try {
-                    // Den Namen des Arrays extrahieren und das Array aus dem Skript herauslösen
+                    // Erstelle eine neue Funktion und führe sie aus, um das Array im globalen Kontext zu definieren
+                    const func = new Function(data);
+                    func();
+    
+                    // Den Namen des Arrays extrahieren
                     const arrayNameMatch = data.match(/const\s+(\w+)\s*=\s*\[/);
                     if (arrayNameMatch) {
                         const arrayName = arrayNameMatch[1];
                         console.log('Extrahierter Array-Name:', arrayName);
-    
-                        // Erzeuge einen neuen Funktionskontext und führe den Code aus
-                        new Function(data)();
     
                         // Jetzt das Array mit dem extrahierten Namen aus dem globalen Kontext abrufen
                         const dataArray = window[arrayName];
                         console.log('Parsed Data Array:', dataArray);
     
                         if (Array.isArray(dataArray)) {
-                            raceNameElement.textContent = fullName;
+                            raceNameElement.textContent = fullName; // Setze die Überschrift
                             updateTable(dataArray);
                         } else {
                             console.error('Fehler: Das geparste Datenarray ist kein Array.');
@@ -93,6 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(error => console.error('Fehler beim Laden der Renn-Daten:', error));
     }
+    
     
 
     function updateTable(values) {
