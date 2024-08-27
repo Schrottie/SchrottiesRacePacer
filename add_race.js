@@ -6,7 +6,7 @@ document.getElementById('addRow').addEventListener('click', function() {
     const newRow = table.insertRow(lastRowIndex);
     newRow.innerHTML = `
         <td><input type="text" placeholder="VP Name"></td>
-        <td><input type="number" placeholder="Kilometer"></td>
+        <td><input type="text" placeholder="Kilometer" pattern="\\d*\\.?\\d{0,2}"></td>
         <td><input type="time" placeholder="Cutoff"></td>
         <td><input type="time" placeholder="Open"></td>
         <td><input type="time" placeholder="Close"></td>
@@ -31,19 +31,31 @@ document.getElementById('routeForm').addEventListener('submit', function(e) {
         return;
     }
 
-    // Start der Datei mit dem Kommentar für den vollen Namen
-    let data = `// ${name}\n\nconst ${kurzName} = [\n`;
+    // Start der JSON-Datei mit Titel und Checkpoints
+    let raceData = {
+        title: name,
+        checkpoints: []
+    };
+
     rows.forEach(row => {
         const inputs = row.querySelectorAll('input');
         if (inputs[0].value) {
-            data += `    { vp: '${inputs[0].value}', kilometer: ${inputs[1].value || 0}, cutoff: '${inputs[2].value}', open: '${inputs[3].value}', close: '${inputs[4].value}' },\n`;
+            raceData.checkpoints.push({
+                vp: inputs[0].value,
+                kilometer: parseFloat(inputs[1].value) || 0,
+                cutoff: inputs[2].value,
+                open: inputs[3].value,
+                close: inputs[4].value
+            });
         }
     });
-    data += `];`;
+
+    // JSON-String aus dem raceData-Objekt erzeugen
+    const data = JSON.stringify(raceData, null, 4);
 
     // Datei-Generierung und Speicherung
     const formData = new FormData();
-    formData.append('filename', `${kurzName}.js`);
+    formData.append('filename', `${kurzName}.json`);
     formData.append('content', data);
 
     fetch('save_race.php', {
