@@ -33,16 +33,21 @@ document.addEventListener('DOMContentLoaded', function() {
         script.src = `races/${filename}`;
         script.onload = function() {
             const arrayName = filename.replace('.js', '');
-
-            try {
-                const dataArray = window[arrayName];
-                console.log('Parsed Data Array:', dataArray);
     
-                if (Array.isArray(dataArray)) {
-                    raceNameElement.textContent = arrayName; // Setze die Überschrift
-                    updateTable(dataArray);
+            try {
+                // Überprüfen, ob die Variable existiert und ob sie ein Array ist
+                if (window.hasOwnProperty(arrayName)) {
+                    const dataArray = window[arrayName];
+                    console.log('Laden erfolgreich:', arrayName, dataArray);
+    
+                    if (Array.isArray(dataArray)) {
+                        raceNameElement.textContent = arrayName; // Setze die Überschrift
+                        updateTable(dataArray);
+                    } else {
+                        console.error('Fehler: Das geparste Datenarray ist kein Array. Empfangen:', typeof dataArray);
+                    }
                 } else {
-                    console.error('Fehler: Das geparste Datenarray ist kein Array.');
+                    console.error(`Fehler: Die Variable "${arrayName}" ist im globalen Kontext nicht definiert.`);
                 }
             } catch (e) {
                 console.error('Fehler beim Parsen der Renn-Daten:', e);
@@ -54,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
         document.head.appendChild(script);
     }
-
+ 
     function updateTable(values) {
         console.log('Aktualisiere Tabelle mit Werten:', values);
 
