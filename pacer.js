@@ -64,29 +64,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 const fullName = lines[0].replace(/^\/\/\s*/, ''); // Kommentar entfernen
                 console.log('Rennname aus Datei:', fullName);
     
+                // Array-Daten extrahieren (den Rest der Datei nach der ersten Zeile)
+                const jsonArrayString = lines.slice(1).join('\n'); // Den Rest des Inhalts zusammenfügen
+    
                 try {
-                    // Erstelle eine neue Funktion und führe sie aus, um das Array im globalen Kontext zu definieren
-                    const func = new Function(data);
-                    func();
+                    // Verwende eval, um den Array-Daten-String zu verarbeiten
+                    // Achtung: eval kann Sicherheitsrisiken bergen, stellen Sie sicher, dass die Daten vertrauenswürdig sind
+                    const dataArray = eval(jsonArrayString);
+                    console.log('Parsed Data Array:', dataArray);
     
-                    // Den Namen des Arrays extrahieren
-                    const arrayNameMatch = data.match(/const\s+(\w+)\s*=\s*\[/);
-                    if (arrayNameMatch) {
-                        const arrayName = arrayNameMatch[1];
-                        console.log('Extrahierter Array-Name:', arrayName);
-    
-                        // Jetzt das Array mit dem extrahierten Namen aus dem globalen Kontext abrufen
-                        const dataArray = window[arrayName];
-                        console.log('Parsed Data Array:', dataArray);
-    
-                        if (Array.isArray(dataArray)) {
-                            raceNameElement.textContent = fullName; // Setze die Überschrift
-                            updateTable(dataArray);
-                        } else {
-                            console.error('Fehler: Das geparste Datenarray ist kein Array.');
-                        }
+                    if (Array.isArray(dataArray)) {
+                        raceNameElement.textContent = fullName; // Setze die Überschrift
+                        updateTable(dataArray);
                     } else {
-                        console.error('Fehler: Konnte den Array-Namen nicht extrahieren.');
+                        console.error('Fehler: Das geparste Datenarray ist kein Array.');
                     }
                 } catch (e) {
                     console.error('Fehler beim Parsen der Renn-Daten:', e);
@@ -94,6 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(error => console.error('Fehler beim Laden der Renn-Daten:', error));
     }
+    
     
     
 
