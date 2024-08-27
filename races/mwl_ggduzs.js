@@ -18,7 +18,6 @@ const mwl_ggduzs = [
     { vp: 'VP 14 - Gedenkstätte Griebnitzsee', kilometer: 85.2, cutoff: '20:42', open: '12:15', close: '22:00' },
     { vp: 'VP 15 - Königsweg', kilometer: 92.1, cutoff: '22:00', open: '12:45', close: '22:55' },
     { vp: 'VP 16/WP 3 - Sportplatz Teltow', kilometer: 98.2, cutoff: '23:09', open: '13:10', close: '23:55' },
-    { vp: 'VP 16,5 - Privat-VP - Paul-Gerhardt-Straße', kilometer: 101.6, cutoff: '??:??', open: '14:00', close: '01:00' },
     { vp: 'VP 17 - Osdorfer Straße', kilometer: 105.1, cutoff: '00:34', open: '13:50', close: '01:00' },
     { vp: 'VP 18 - Ninas Eltern', kilometer: 111.3, cutoff: '01:50', open: '14:10', close: '02:00' },
     { vp: 'VP 19 - Buckow', kilometer: 120.0, cutoff: '03:37', open: '14:50', close: '03:40' },
