@@ -354,36 +354,6 @@ input {
 }
 
 /* Tabellenkopf */
-#racesTable thead {
-    display: contents;
-}
-
-#racesTable th {
-    padding: 8px;
-    border-bottom: 2px solid #ddd; /* Trennlinie unter dem Tabellenkopf */
-    background-color: #f4f4f4;
-    text-align: left;
-    font-weight: bold;
-}
-
-/* Tabellenkörper */
-#racesTable td {
-    padding: 8px;
-    border-bottom: 1px solid #ddd; /* Trennlinie zwischen Zeilen */
-    text-align: left;
-}
-
-/* Alternierende Zeilenfarben für bessere Lesbarkeit */
-#racesTable tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-#racesTable tr:hover {
-    background-color: #f1f1f1;
-}
-
-/* Optional: Minimale Breite für spezifische Spalten */
-#racesTable td:nth-child(2), /* Titelspalte */
-#racesTable th:nth-child(2) {
-    min-width: 200px; /* Stelle sicher, dass der Titelbereich ausreichend Platz hat */
+#racesTable {
+    table-layout: auto; /* Standard-Layout, Spaltenbreiten werden automatisch angepasst */
 }
