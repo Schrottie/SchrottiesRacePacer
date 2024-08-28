@@ -2,58 +2,89 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
+    <title>100 Meilen Berlin Durchlaufzeitenrechner</title>
+    <meta name="description" content="Web application for calculating the running time of an individual runner in the Mauerweglauf - 100 miles Berlin - using the current average pace." />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Streckenabschnitte Generator</title>
-    <link rel="stylesheet" href="add_race.css" />
+    <link rel="author" href="https://running.maik-bischoff.de/author/schrottie/" />
+    <link rel="icon" href="https://i0.wp.com/running.maik-bischoff.de/wp-content/uploads/2023/01/cropped-running.png?fit=32%2C32&#038;ssl=1" sizes="32x32" />
+    <link rel="icon" href="https://i0.wp.com/running.maik-bischoff.de/wp-content/uploads/2023/01/cropped-running.png?fit=192x192&#038;ssl=1" sizes="192x192" />
+    <link rel="apple-touch-icon" href="https://i0.wp.com/running.maik-bischoff.de/wp-content/uploads/2023/01/cropped-running.png?fit=180x180&#038;ssl=1" />
+    <link rel="shortcut icon" href="https://i0.wp.com/running.maik-bischoff.de/wp-content/uploads/2023/01/cropped-running.png?fit=32x32&#038;ssl=1" sizes="32x32" type="image/png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="100 Meilen Berlin Durchlaufzeitenrechner" />
+    <meta property="og:description" content="proudly presented by: Schrotties Laufblog Das Ziel steht im Weg" />
+    <meta property="og:url" content="https://running.maik-bischoff.de/100meilen/" />
+    <meta property="og:site_name" content="100 Meilen Berlin Durchlaufzeitenrechner" />
+    <meta property="og:image" content="https://i0.wp.com/running.maik-bischoff.de/wp-content/uploads/2023/01/cropped-running.png?fit=512x512&#038;ssl=1" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:alt" content="" />
+    <meta property="og:locale" content="de_DE" />
+    <meta name="twitter:site" content="@schrottie" />
+    <link rel="stylesheet" href="styles.css" />
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' />
 </head>
 <body>
+    <div class="container">
+        <div class="header">
+            <h1>Schrotties Racepacer</h1>
+            <div class="hamburger-menu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="menu-content">
+                    <a href="index.html">Racepacer</a>
+                    <a href="add_race.html">Neues Race</a>
+                    <a href="list_races.html">Races verwalten</a>
+                </div>
+            </div>
+        </div>
+        <h1 id="raceName">Neues Race</h1>
 
-    <h1 id="formTitle">Streckenabschnitte Generator</h1>
+        <form id="routeForm">
+            <label for="name">Name des Rennens</label>
+            <input type="text" id="name" placeholder="z.B. Ultralauf um den Pudding 2024" required><br><br>
 
-    <form id="routeForm">
-        <label for="name">Name der Datei:</label>
-        <input type="text" id="name" placeholder="z.B. Ultralauf 2024" required><br><br>
+            <label for="kurzName">Kurzname des Rennens</label>
+            <input type="text" id="kurzName" placeholder="z.B. puddingultra2024" required><br><br>
 
-        <label for="kurzName">Kurzname der Datei:</label>
-        <input type="text" id="kurzName" placeholder="z.B. ultra2024" required><br><br>
+            <table id="routeTable">
+                <thead>
+                    <tr>
+                        <th>VP Name</th>
+                        <th>Kilometer</th>
+                        <th>Cutoff</th>
+                        <th>Open</th>
+                        <th>Close</th>
+                        <th>Aktionen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" value="Start"></td>
+                        <td><input type="text" value="0"></td>
+                        <td><input type="time" value="06:00"></td>
+                        <td><input type="time" value="04:30"></td>
+                        <td><input type="time" value="08:30"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="Ziel"></td>
+                        <td><input type="text" value="161.0"></td>
+                        <td><input type="time" value="12:00"></td>
+                        <td><input type="time" value="18:00"></td>
+                        <td><input type="time" value="13:00"></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
 
-        <table id="routeTable">
-            <thead>
-                <tr>
-                    <th>VP Name</th>
-                    <th>Kilometer</th>
-                    <th>Cutoff</th>
-                    <th>Open</th>
-                    <th>Close</th>
-                    <th>Aktionen</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><input type="text" value="Start"></td>
-                    <td><input type="text" value="0"></td>
-                    <td><input type="time" value="06:00"></td>
-                    <td><input type="time" value="04:30"></td>
-                    <td><input type="time" value="08:30"></td>
-                    <td></td>
-                </tr>
-                <!-- Hier werden neue Abschnitte eingefügt -->
-                <tr>
-                    <td><input type="text" value="Ziel"></td>
-                    <td><input type="text" value="161.0"></td>
-                    <td><input type="time" value="12:00"></td>
-                    <td><input type="time" value="18:00"></td>
-                    <td><input type="time" value="13:00"></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
-
-        <button type="button" id="addRow">Neuen Abschnitt hinzufügen</button><br><br>
-        <button type="submit" id="saveButton">Datei generieren</button>
-    </form>
-
+            <button type="button" id="addRow">Neuen Abschnitt hinzufügen</button> 
+            <button type="submit" id="saveButton">Rennen speichern</button>
+        </form>
+    </div>
     <script src="add_race.js"></script>
-
+    <script src="cookie_handler.js"></script>
+    <script src="print.js"></script>
 </body>
 </html>

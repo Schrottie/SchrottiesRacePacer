@@ -1,3 +1,4 @@
+/* Grundlegende Stile */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -22,25 +23,73 @@ body {
     width: 90%;
     max-width: 800px;
     margin: 20px 0;
-    position: relative;
 }
 
-/* Header Container */
+/* Header Styling */
 .header {
     display: flex;
-    justify-content: space-between; /* Verteile den Platz zwischen den Elementen */
-    align-items: center; /* Zentriert die Elemente vertikal */
-    padding: 10px; /* Innenabstand für den Header */
-    background-color: #fff; /* Hintergrundfarbe des Headers */
-    border-bottom: 1px solid #ddd; /* Optionale untere Grenze für den Header */
-    width: 100%; /* Stellt sicher, dass der Header die gesamte Breite einnimmt */
-    box-sizing: border-box; /* Verhindert, dass Padding und Border die Gesamtbreite beeinflussen */
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 15px 20px;
+    color: white;
 }
 
-.print-icon {
+.header h1 {
+    font-size: 1.5em;
+    margin: 0;
+    font-weight: bold;
+}
+
+/* Hamburger Menu Styling */
+.hamburger-menu {
+    position: relative;
+    width: 35px;
+    height: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     cursor: pointer;
 }
 
+.hamburger-menu .bar {
+    width: 100%;
+    height: 4px;
+    background-color: white;
+    border-radius: 4px;
+}
+
+/* Menu Dropdown Styling */
+.menu-content {
+    position: absolute;
+    right: 0;
+    top: 40px;
+    background-color: #444;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.menu-content a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    display: block;
+}
+
+.menu-content a:hover {
+    background-color: #555;
+    border-radius: 3px;
+}
+
+/* Toggle menu display on click */
+.hamburger-menu.active .menu-content {
+    display: flex;
+}
+
+/* Allgemeine Textstile */
 h1 {
     text-align: center;
     margin-top: 15px;
@@ -58,193 +107,103 @@ p.copyright {
     margin-top: 10px;
 }
 
-.slider-table {
-    margin-bottom: 20px;
+p.label, label {
+    font-size: 75%;
+    text-align: left;
+    margin-top: 10px;
+    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 div.attention {
-    border: 1px solid red; /* Dünner roter Rand */
-    border-radius: 10px; /* Abgerundete Ecken */
-    padding: 5px; /* Abstand nach innen */
-    margin: 2px; /* Abstand nach außen */
+    border: 1px solid red;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 2px;
 }
 
 div.attention p {
     font-size: 70%;
 }
 
-/* Tabelle für Slider und Toggle */
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-/* Spaltenüberschriften */
-.table-header {
-    font-weight: bold;
-    padding: 10px;
-    text-align: center;
-}
-
-/* Dropdown Container */
-.dropdown-container {
-    text-align: center;
-    margin: 0;
-}
-
-#raceDropdown {
-    width: 100%;
-}
-
-/* Slider Container */
-.slider-container {
-    text-align: center;
-    margin: 0;
-}
-
-#paceSlider {
-    width: 100%;
-}
-
-p.label {
-    font-size: 75%;
-    text-align: left;
-    margin-top: 10px;
-    fon-weight: 600;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-/* Pace Display */
-#paceDisplay {
-    margin: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-}
-
-#paceDisplay::before {
-    content: "Pace: ";
-    font-size: 16px;
-}
-
-#paceDisplay::after {
-    content: " min/km";
-    font-size: 16px;
-}
-
-/* Umschalter Container */
-.toggle-container {
-    text-align: center;
-    margin-top: 10px;
-}
-
-/* Toggle Image */
-.toggle-image {
-    cursor: pointer;
-    width: 25px; /* Größe des Umschalters */
-    height: 25px;
-    vertical-align: middle;
-}
-
-/* Tabelle für die Anzeigedaten */
+/* Tabellenstile */
 .table-container {
     overflow-x: auto;
     width: 100%;
 }
 
-/* Styling für die Tabelle */
 table {
     width: 100%;
     border-collapse: collapse;
     table-layout: fixed;
 }
 
-/* Tabellenkopf */
-th {
-    background-color: #ff8c00;
-    color: white;
-    font-weight: bold;
+th, td {
     padding: 10px;
     text-align: center;
 }
 
-/* Tabellenzellen */
-td {
-    padding: 3px;
-    text-align: left;
+th {
+    background-color: #333;
+    color: white;
+    font-weight: bold;
 }
 
-/* Hintergrundfarbe für die Zeilen */
 tbody tr:nth-child(odd) {
     background-color: #fff;
 }
 
 tbody tr:nth-child(even) {
-    background-color: #ffdab9;
+    background-color: #888;
 }
 
-/* Hintergrundfarbe für die WP-Zeilen */
 tr.wp-row {
     background-color: #f0f0f0 !important;
 }
 
-/* Hintergrundfarbe für VP 10 */
 tr.vp10-row {
     background-color: #add8e6 !important;
 }
 
-/* Styling für die letzten beiden Spalten */
-th:nth-child(5), th:nth-child(6) {
-    background-color: #ff8c00; /* Orange Hintergrund für die Überschriften */
-    color: white;
-    text-align: center;
-    font-weight: bold;
-    padding: 10px;
-}
-
-td:nth-child(5), td:nth-child(6) {
- 
- 
-    text-align: center;
-}
-
-/* Spezielles Styling für die "Privat-VP"-Zeile */
 .privat-row {
-    background-color: #d3d3d3 !important; /* Hellgrauer Hintergrund, !important um andere Styles zu überschreiben */
-    color: #696969; /* Dunkelgrauer Text */
-    font-style: italic; /* Kursive Schrift */
+    background-color: #d3d3d3 !important;
+    color: #696969;
+    font-style: italic;
 }
 
 .privat-row td:nth-child(n+4) {
-    color: transparent; /* Blendet Text ab der vierten Spalte aus */
+    color: transparent;
 }
 
-/* Styling für die Uhrzeiten in den letzten beiden Spalten */
-td:nth-child(4)::after, td:nth-child(5)::after, td:nth-child(6)::after {
+/* td:nth-child(4)::after, td:nth-child(5)::after, td:nth-child(6)::after {
     content: " Uhr";
+} */
+
+/* Formularstile */
+button { 
+    padding: 10px 15px; 
+    background-color: #28a745; 
+    color: white; 
+    border: none; 
+    cursor: pointer; 
+    margin-top: 10px;;
 }
 
-/* Styling für die letzten beiden Spalten */
-th:nth-child(7),
-th:nth-child(8) {
-    background-color: #ff8c00; /* Orange Hintergrund für die Überschriften */
-    color: white;
-    text-align: center;
-    font-weight: bold;
-    padding: 10px;
+button.remove { 
+    background-color: #dc3545; 
 }
 
-td:nth-child(7),
-td:nth-child(8) {
-    text-align: center;
+input { 
+    padding: 8px; 
+    width: 100%; 
 }
 
-/* Fußnotenstyling */
+/* Fußnotenstile */
 .footnote {
     position: relative;
     font-size: 70%;
-    padding-top: 10px; /* Abstand zwischen Linie und Text */
-    margin-top: 35px; /* Abstand oben zur vorherigen Zeile */
+    padding-top: 10px;
+    margin-top: 35px;
 }
 
 .footnote::before {
@@ -252,21 +211,20 @@ td:nth-child(8) {
     position: absolute;
     top: 0;
     left: 0;
-    width: 20px; /* Breite der Linie */
-    height: 1px; /* Dicke der Linie */
-    background: #333; /* Farbe der Linie */
+    width: 20px;
+    height: 1px;
+    background: #333;
 }
 
 .footnote::after {
     content: attr(data-content);
     position: relative;
     display: block;
-    padding-top: 10px; /* Abstand zwischen der Linie und dem restlichen Text */
+    padding-top: 10px;
 }
 
 /* Responsive Design */
 @media (max-width: 600px) {
-    /* Tabelle: Spalten anpassen */
     table td:nth-child(2),
     table td:nth-child(4),
     table td:nth-child(5),
@@ -278,7 +236,6 @@ td:nth-child(8) {
         display: none;
     }
     
-    /* Toggle Image in der mobilen Ansicht */
     .toggle-container {
         display: block;
         text-align: center;
@@ -286,17 +243,29 @@ td:nth-child(8) {
     }
 }
 
-/* Zentrierung der Inhalte in den Spalten 2 bis 6 */
-table td:nth-child(2),
-table td:nth-child(3),
-table td:nth-child(4),
-table td:nth-child(5),
-table td:nth-child(6),
-table th:nth-child(2),
-table th:nth-child(3),
-table th:nth-child(4),
-table th:nth-child(5),
-table th:nth-child(6) {
-    text-align: center;
-    vertical-align: middle; /* Vertikale Zentrierung der Inhalte */
+/* Action-Buttons */
+.action-button {
+    padding: 5px 10px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-right: 5px;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.action-button.edit {
+    background-color: #007bff; /* Blau für Bearbeiten */
+}
+
+.action-button.edit:hover {
+    background-color: #0056b3;
+}
+
+.action-button.delete {
+    background-color: #dc3545; /* Rot für Löschen */
+}
+
+.action-button.delete:hover {
+    background-color: #c82333;
 }
