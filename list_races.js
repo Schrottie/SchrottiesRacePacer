@@ -1,7 +1,3 @@
-document.querySelector('.hamburger-menu').addEventListener('click', function() {
-    this.classList.toggle('active');
-});
-
 document.addEventListener('DOMContentLoaded', function () {
     const racesTableBody = document.querySelector('#racesTable tbody');
     const editRaceButton = document.getElementById('editRace');

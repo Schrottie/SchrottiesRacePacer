@@ -1,7 +1,3 @@
-document.querySelector('.hamburger-menu').addEventListener('click', function() {
-    this.classList.toggle('active');
-});
-
 document.getElementById('addRow').addEventListener('click', function () {
     const table = document.getElementById('routeTable').getElementsByTagName('tbody')[0];
     const lastRowIndex = table.rows.length - 1;

@@ -1,7 +1,3 @@
-document.querySelector('.hamburger-menu').addEventListener('click', function() {
-    this.classList.toggle('active');
-});
-
 document.addEventListener('DOMContentLoaded', function() {
     const raceDropdown = document.getElementById('raceDropdown');
     const raceNameElement = document.getElementById('raceName');
