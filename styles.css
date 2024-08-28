@@ -115,14 +115,10 @@ p.copyright {
 p.label, label {
     font-size: 75%;
     text-align: left;
-    margin-top: 10px;
+    margin-top: 15px;
     font-weight: 600;
     font-family: Arial, Helvetica, sans-serif;
 }
-
-p.label {
-    margin-bottom: 10px;
-} 
 
 div.attention {
     border: 1px solid red;
