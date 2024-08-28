@@ -9,17 +9,17 @@ document.addEventListener('DOMContentLoaded', function () {
         fetch('list_races.php')
             .then(response => response.json())
             .then(data => {
-                racesTableBody.innerHTML = ''; // Sicherstellen, dass alte Zeilen gelöscht werden
-                data.forEach((race, index) => {
+                let rowIndex = 1; // Zähler für die Reihenfolge
+                data.forEach(race => {
                     const row = document.createElement('tr');
 
-                    // Nummerierung
+                    // Reihenfolge-Spalte
                     const indexCell = document.createElement('td');
-                    indexCell.textContent = index + 1;
+                    indexCell.textContent = rowIndex++;
 
                     // Titel
                     const titleCell = document.createElement('td');
-                    titleCell.textContent = race.title; // Hier sollte 'title' sein
+                    titleCell.textContent = race.fullName;
 
                     // Dateiname
                     const filenameCell = document.createElement('td');
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         actionsCell.appendChild(deleteButton);
                     }
 
-                    row.appendChild(indexCell); // Neue Zelle für die Nummerierung
+                    row.appendChild(indexCell);
                     row.appendChild(titleCell);
                     row.appendChild(filenameCell);
                     row.appendChild(actionsCell);
@@ -54,11 +54,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             })
             .catch(error => console.error('Fehler beim Laden der Rennen:', error));
-    }
-
-    function getSelectedRaces() {
-        const checkboxes = racesTableBody.querySelectorAll('input[type="checkbox"]:checked');
-        return Array.from(checkboxes).map(checkbox => checkbox.value);
     }
 
     function editRace(filename) {
@@ -83,13 +78,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     editRaceButton.addEventListener('click', function () {
-        const selectedRaces = getSelectedRaces();
-        if (selectedRaces.length !== 1) {
-            alert('Bitte wählen Sie genau ein Rennen zur Bearbeitung aus.');
+        const selectedRace = racesTableBody.querySelector('input[type="checkbox"]:checked');
+        if (!selectedRace) {
+            alert('Bitte wählen Sie ein Rennen zur Bearbeitung aus.');
             return;
         }
 
-        editRace(selectedRaces[0]);
+        editRace(selectedRace.value);
     });
 
     fetchRaces();
