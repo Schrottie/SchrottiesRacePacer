@@ -344,16 +344,35 @@ input {
     background-color: #0056b3;
 }
 
-/* Races-Table mit Grid-Layout */
 #racesTable {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Alle Spalten gleichmäßig verteilen */
     width: 100%;
     border-collapse: collapse;
     border: 1px solid #ddd; /* Optional: für eine sichtbare Tabellenkante */
+    table-layout: auto; /* Standard-Layout, Spaltenbreiten werden automatisch angepasst */
 }
 
-/* Tabellenkopf */
-#racesTable {
-    table-layout: auto; /* Standard-Layout, Spaltenbreiten werden automatisch angepasst */
+#racesTable thead th {
+    padding: 8px;
+    border-bottom: 2px solid #ddd; /* Trennlinie unter dem Tabellenkopf */
+    background-color: #f4f4f4;
+    text-align: left;
+    font-weight: bold;
+}
+
+#racesTable tbody td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd; /* Trennlinie zwischen Zeilen */
+    text-align: left;
+}
+
+#racesTable tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#racesTable tr:hover {
+    background-color: #f1f1f1;
+}
+
+#racesTable th, #racesTable td {
+    min-width: 50px; /* Setze eine minimale Breite für alle Spalten */
 }
