@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <a href="index.html">Racepacer</a>
                 <a id="addRaceLink" href="add_race.html">Neues Race</a>
                 <a id="listRacesLink" href="list_races.html">Races verwalten</a>
-                <a href="cookies.html">Cookies &amp; Datenschutz</a>
+                <a href="coookies.html">Cookies &amp; Datenschutz</a>
                 <a id="loginLink" href="login.html">Login</a>
             </div>
         </div>
