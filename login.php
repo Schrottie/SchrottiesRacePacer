@@ -1,4 +1,9 @@
 <?php
+// Fehlerberichterstattung aktivieren
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 // Funktion zum Einlesen der .env-Datei
 function loadEnv($filePath) {
     if (!file_exists($filePath)) {
@@ -7,7 +12,7 @@ function loadEnv($filePath) {
 
     $lines = file($filePath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     foreach ($lines as $line) {
-        if (strpos(trim($line), '#') === 0) {
+        if (strpos(trim($line), '#') === 0 || !strpos($line, '=')) {
             continue;
         }
 
@@ -22,10 +27,10 @@ loadEnv(__DIR__ . '/.env');
 // Verarbeite das Login
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Passwort aus der Umgebungsvariablen laden
-    $storedPasswordHash = $_ENV['PASSWORD_HASH'];
+    $storedPasswordHash = $_ENV['PASSWORD_HASH'] ?? '';
 
     // Benutzer-Eingabe
-    $password = $_POST['password'];
+    $password = $_POST['password'] ?? '';
 
     // Passwort-Hash erstellen
     $passwordHash = md5($password);
