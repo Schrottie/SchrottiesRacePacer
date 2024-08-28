@@ -101,6 +101,11 @@ h2 {
     margin-bottom: 15px;
 }
 
+h2.datenschutz {
+    margin-top: 15px;
+    font-size: 110%;
+}
+
 p.copyright {
     text-align: right;
     font-size: 70%;
@@ -286,4 +291,35 @@ input {
 #paceDisplay::after {
     content: " min/km";
     font-size: 16px;
+}
+
+/* Cookiebannerpest */
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    text-align: center;
+    padding: 15px;
+    z-index: 1000;
+}
+
+.cookie-banner p {
+    margin: 0;
+    display: inline;
+}
+
+.cookie-banner button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.cookie-banner button:hover {
+    background-color: #0056b3;
 }

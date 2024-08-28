@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <a href="index.html">Racepacer</a>
                 <a id="addRaceLink" href="add_race.html">Neues Race</a>
                 <a id="listRacesLink" href="list_races.html">Races verwalten</a>
-                <a href="coookies.html">Cookies &amp; Datenschutz</a>
+                <a href="cooookies.html">Cookies &amp; Datenschutz</a>
                 <a id="loginLink" href="login.html">Login</a>
             </div>
         </div>
@@ -54,5 +54,34 @@ document.addEventListener('DOMContentLoaded', function() {
         updateLoginStatus();
     } else {
         console.error('Kein Header-Element gefunden, um das Menü einzufügen.');
+    }
+
+    // Überprüfen, ob das Cookie-Banner-Cookie existiert
+    if (!getCookie('cookiesAccepted')) {
+        // Wenn das Cookie nicht existiert, zeigen wir das Banner an
+        const cookieBannerHtml = `
+        <div id="cookieBanner" class="cookie-banner" style="display: none;">
+            <p>Der Racepacer benötigt Kekse, denn er hat ständig Hunger. 
+            <br /><a href="cooookies.html">Welche das sind, verraten die Cookie-Richtlinien.</a>
+            </p>
+            <button id="acceptCookiesBtn">Ja, das geht so in Ordnung!</button>
+            <button id="declineCookiesBtn">Ablehnen</button>
+        </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', cookieBannerHtml);
+
+        // Event-Listener für den "Zustimmen"-Button
+        document.getElementById('acceptCookiesBtn').addEventListener('click', function() {
+            // Cookie setzen, das die Zustimmung anzeigt
+            setCookie('cookiesAccepted', 'true', 365); // Gültig für 1 Jahr
+            // Banner ausblenden
+            document.getElementById('cookieBanner').style.display = 'none';
+        });
+
+        // Event-Listener für den "Ablehnen"-Button
+        document.getElementById('declineCookiesBtn').addEventListener('click', function() {
+            // Umleitung zur angegebenen URL
+            window.location.href = 'https://running.maik-bischoff.de';
+        });
     }
 });
