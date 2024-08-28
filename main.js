@@ -1,7 +1,3 @@
-document.querySelector('.hamburger-menu').addEventListener('click', function() {
-    this.classList.toggle('active');
-});
-
 document.addEventListener('DOMContentLoaded', function() {
     // HTML-Code für das Menü
     const menuHtml = `
@@ -36,14 +32,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Funktionen für das Login/Abmelden
         function updateLoginStatus() {
-            const isLoggedIn = getCookie('loggedIn') === 'true';
+            const isLoggedIn = document.cookie.split(';').some((item) => item.trim().startsWith('loggedIn='));
             const loginLink = document.getElementById('loginLink');
             const addRaceLink = document.getElementById('addRaceLink');
             const listRacesLink = document.getElementById('listRacesLink');
 
             if (isLoggedIn) {
                 loginLink.textContent = 'Abmelden';
-                loginLink.href = 'logout.html'; // Placeholder, wird später hinzugefügt
+                loginLink.href = 'logout.php'; // Placeholder, wird später hinzugefügt
                 addRaceLink.style.display = 'block';
                 listRacesLink.style.display = 'block';
             } else {
@@ -60,4 +56,3 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('Kein Header-Element gefunden, um das Menü einzufügen.');
     }
 });
-
