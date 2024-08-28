@@ -1,4 +1,9 @@
 <?php
+
+// Debugging-Ausgaben (können später entfernt werden)
+echo "Gespeicherter Hash: " . $storedPasswordHash . "<br>";
+echo "Eingegebener Hash: " . $passwordHash . "<br>";
+
 // Fehlerberichterstattung aktivieren
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
