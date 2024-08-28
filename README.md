@@ -1,2 +1,1 @@
-Der 100MeilenBerlinPacer soll Angehörigen und Helfern dabei behilflich sein, die Durchlaufzeit eines Läufers Beim Mauerweglauf zu prognostizieren. Du läufst mit und Deine Freunde wollen an VP 12 auf dich warten? Kein Problem, mittels LiveTrack von Garmin kannst Du nicht nur Deinen aktuellen Standort teilen, sondern es wird auch die Gesamtpace angezeigt. Und mit deren Hilfe kann dann die Prognose erfolgen, wann Du ankommst.
-
+Schrotties Racepacer ermöglicht es, die Durchlaufzeiten an den verschiedenen VP eines Ultramarathon anhand der Durchschnittspace zu berechnen. Als Stanard ist der Mauerweglauf "100 Meilen berlin" vorgegeben, es können jedoch auch eigene Races angelegt und genutzt werden.
