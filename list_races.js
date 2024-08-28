@@ -9,15 +9,13 @@ document.addEventListener('DOMContentLoaded', function () {
         fetch('list_races.php')
             .then(response => response.json())
             .then(data => {
+                let rowIndex = 1; // Zähler für die Reihenfolge
                 data.forEach(race => {
                     const row = document.createElement('tr');
 
-                    // Auswahl-Checkbox
-                    const checkboxCell = document.createElement('td');
-                    const checkbox = document.createElement('input');
-                    checkbox.type = 'checkbox';
-                    checkbox.value = race.filename;
-                    checkboxCell.appendChild(checkbox);
+                    // Reihenfolge-Spalte
+                    const indexCell = document.createElement('td');
+                    indexCell.textContent = rowIndex++;
 
                     // Titel
                     const titleCell = document.createElement('td');
@@ -47,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         actionsCell.appendChild(deleteButton);
                     }
 
-                    row.appendChild(checkboxCell);
+                    row.appendChild(indexCell);
                     row.appendChild(titleCell);
                     row.appendChild(filenameCell);
                     row.appendChild(actionsCell);
@@ -56,11 +54,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             })
             .catch(error => console.error('Fehler beim Laden der Rennen:', error));
-    }
-
-    function getSelectedRaces() {
-        const checkboxes = racesTableBody.querySelectorAll('input[type="checkbox"]:checked');
-        return Array.from(checkboxes).map(checkbox => checkbox.value);
     }
 
     function editRace(filename) {
@@ -85,13 +78,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     editRaceButton.addEventListener('click', function () {
-        const selectedRaces = getSelectedRaces();
-        if (selectedRaces.length !== 1) {
-            alert('Bitte wählen Sie genau ein Rennen zur Bearbeitung aus.');
+        const selectedRace = racesTableBody.querySelector('input[type="checkbox"]:checked');
+        if (!selectedRace) {
+            alert('Bitte wählen Sie ein Rennen zur Bearbeitung aus.');
             return;
         }
 
-        editRace(selectedRaces[0]);
+        editRace(selectedRace.value);
     });
 
     fetchRaces();
