@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const racesTableBody = document.querySelector('#racesTable tbody');
     const editRaceButton = document.getElementById('editRace');
 
+    // Geschützte Rennen, die nicht gelöscht werden können
     const protectedRaces = ['mwl_iuzs.json', 'mwl_ggduzs.json'];
 
     function fetchRaces() {
@@ -32,18 +33,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     // Aktionen
                     const actionsCell = document.createElement('td');
+
+                    // Bearbeiten-Button
                     const editButton = document.createElement('button');
                     editButton.textContent = 'Bearbeiten';
                     editButton.className = 'action-button edit';
                     editButton.addEventListener('click', () => editRace(race.filename));
 
-                    const deleteButton = document.createElement('button');
-                    deleteButton.textContent = 'Löschen';
-                    deleteButton.className = 'action-button delete';
-                    deleteButton.addEventListener('click', () => deleteRace(race.filename));
-
                     actionsCell.appendChild(editButton);
-                    actionsCell.appendChild(deleteButton);
+
+                    // Löschen-Button, nur wenn das Rennen nicht geschützt ist
+                    if (!protectedRaces.includes(race.filename)) {
+                        const deleteButton = document.createElement('button');
+                        deleteButton.textContent = 'Löschen';
+                        deleteButton.className = 'action-button delete';
+                        deleteButton.addEventListener('click', () => deleteRace(race.filename));
+                        actionsCell.appendChild(deleteButton);
+                    }
 
                     row.appendChild(checkboxCell);
                     row.appendChild(titleCell);
