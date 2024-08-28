@@ -1,44 +1,41 @@
 <?php
-
-// Debugging-Ausgaben (können später entfernt werden)
-echo "Gespeicherter Hash: " . $storedPasswordHash . "<br>";
-echo "Eingegebener Hash: " . $passwordHash . "<br>";
-
-// Fehlerberichterstattung aktivieren
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-// Funktion zum Einlesen der .env-Datei
-function loadEnv($filePath) {
-    if (!file_exists($filePath)) {
-        throw new Exception('.env-Datei nicht gefunden');
-    }
-
-    $lines = file($filePath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+// Überprüfen, ob die .env-Datei vorhanden ist und geladen werden kann
+if (file_exists(__DIR__ . '/.env')) {
+    // .env Datei Zeile für Zeile auslesen
+    $lines = file(__DIR__ . '/.env');
     foreach ($lines as $line) {
-        if (strpos(trim($line), '#') === 0 || !strpos($line, '=')) {
+        // Kommentarzeilen überspringen
+        if (strpos(trim($line), '#') === 0) {
             continue;
         }
-
+        
+        // Schlüssel und Wert extrahieren
         list($name, $value) = explode('=', $line, 2);
-        $_ENV[trim($name)] = trim($value);
+        $name = trim($name);
+        $value = trim($value);
+        
+        // Variable setzen
+        $_ENV[$name] = $value;
     }
+} else {
+    echo "Die .env Datei wurde nicht gefunden.";
+    exit;
 }
-
-// Lade die .env-Datei
-loadEnv(__DIR__ . '/.env');
 
 // Verarbeite das Login
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Passwort aus der Umgebungsvariablen laden
-    $storedPasswordHash = $_ENV['PASSWORD_HASH'] ?? '';
+    // Passwort aus der Umgebungsvariablen laden und Leerzeichen entfernen
+    $storedPasswordHash = trim($_ENV['PASSWORD_HASH'] ?? '');
 
-    // Benutzer-Eingabe
-    $password = $_POST['password'] ?? '';
+    // Benutzer eingeben und Leerzeichen entfernen
+    $password = trim($_POST['password'] ?? '');
 
     // Passwort-Hash erstellen
     $passwordHash = md5($password);
+
+    // Debugging-Ausgaben
+    echo "Gespeicherter Hash: " . htmlspecialchars($storedPasswordHash) . "<br>";
+    echo "Eingegebener Hash: " . htmlspecialchars($passwordHash) . "<br>";
 
     // Überprüfen, ob das eingegebene Passwort korrekt ist
     if ($passwordHash === $storedPasswordHash) {
