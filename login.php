@@ -1,16 +1,30 @@
 <?php
-// Lade die Umgebungsvariablen
-require 'vendor/autoload.php'; // Wenn du Composer verwendest
+// Funktion zum Einlesen der .env-Datei
+function loadEnv($filePath) {
+    if (!file_exists($filePath)) {
+        throw new Exception('.env-Datei nicht gefunden');
+    }
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
+    $lines = file($filePath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        if (strpos(trim($line), '#') === 0) {
+            continue;
+        }
+
+        list($name, $value) = explode('=', $line, 2);
+        $_ENV[trim($name)] = trim($value);
+    }
+}
+
+// Lade die .env-Datei
+loadEnv(__DIR__ . '/.env');
 
 // Verarbeite das Login
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Passwort aus der Umgebungsvariable laden
+    // Passwort aus der Umgebungsvariablen laden
     $storedPasswordHash = $_ENV['PASSWORD_HASH'];
 
-    // Benutzer eingeben
+    // Benutzer-Eingabe
     $password = $_POST['password'];
 
     // Passwort-Hash erstellen
