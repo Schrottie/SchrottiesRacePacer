@@ -2,23 +2,43 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
+    <title data-i18n="app.title">Schrotties Racepacer</title>
+    <title>Schrotties Racepacer - Login</title>
+    <meta name="description" content="Verwalten Sie Ihre Renndaten und bearbeiten oder löschen Sie bestehende Rennen." />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Optional, falls Sie ein Stylesheet verwenden -->
-    <script src="main.js" defer></script> <!-- Dein externes JavaScript für das Menü -->
+    <link rel="author" href="https://running.maik-bischoff.de/author/schrottie/" />
+    <link rel="icon" href="https://i0.wp.com/running.maik-bischoff.de/wp-content/uploads/2023/01/cropped-running.png?fit=32%2C32&#038;ssl=1" sizes="32x32" />
+    <link rel="icon" href="https://i0.wp.com/running.maik-bischoff.de/wp-content/uploads/2023/01/cropped-running.png?fit=192x192&#038;ssl=1" sizes="192x192" />
+    <link rel="apple-touch-icon" href="https://i0.wp.com/running.maik-bischoff.de/wp-content/uploads/2023/01/cropped-running.png?fit=180x180&#038;ssl=1" />
+    <link rel="shortcut icon" href="https://i0.wp.com/running.maik-bischoff.de/wp-content/uploads/2023/01/cropped-running.png?fit=32x32&#038;ssl=1" sizes="32x32" type="image/png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Loginseite" />
+    <meta property="og:description" content="Einloggen." />
+    <meta property="og:url" content="https://running.maik-bischoff.de/100meilen/" />
+    <meta property="og:site_name" content="Schrotties Racepacer - Durchlaufzeitenberechnung für Ultramarathonrennen" />
+    <meta property="og:image" content="https://i0.wp.com/running.maik-bischoff.de/wp-content/uploads/2023/01/cropped-running.png?fit=512x512&#038;ssl=1" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:alt" content="" />
+    <meta property="og:locale" content="de_DE" />
+    <meta name="twitter:site" content="@schrottie" />
+    <link rel="stylesheet" href="styles.css" />
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' />
 </head>
 <body>
-    <header class="header">
-        <!-- Hier wird das Hamburger-Menü eingefügt -->
-    </header>
+    <div class="container">
+        <div class="header">
+            <h1>Schrotties Racepacer</h1>
+            <!-- Platzhalter für das Menü -->
+        </div>
 
-    <main>
-        <h1>Login</h1>
+        <h1 id="raceName">Login</h1>
         <form action="login.php" method="post">
             <label for="password">Passwort:</label>
             <input type="password" id="password" name="password" required>
             <button type="submit">Login</button>
         </form>
-    </main>
+    </div>
+    <script src="main.js"></script>
 </body>
 </html>
