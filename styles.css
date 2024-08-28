@@ -343,3 +343,22 @@ input {
 .cookie-banner button:hover {
     background-color: #0056b3;
 }
+
+/* Races-Table mit Grid-Layout */
+#racesTable {
+    display: grid;
+    grid-template-columns: auto 1fr 1fr 1fr; 
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#racesTable thead {
+    display: contents;
+}
+
+#racesTable th,
+#racesTable td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
