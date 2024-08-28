@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Streckenabschnitte Generator</title>
-
     <link rel="stylesheet" href="add_race.css" />
 </head>
 <body>
 
-    <h1>Streckenabschnitte Generator</h1>
+    <h1 id="formTitle">Streckenabschnitte Generator</h1>
 
     <form id="routeForm">
         <label for="name">Name der Datei:</label>
@@ -41,7 +40,7 @@
                 <!-- Hier werden neue Abschnitte eingefügt -->
                 <tr>
                     <td><input type="text" value="Ziel"></td>
-                    <td><input type="number" value="161.0"></td>
+                    <td><input type="text" value="161.0"></td>
                     <td><input type="time" value="12:00"></td>
                     <td><input type="time" value="18:00"></td>
                     <td><input type="time" value="13:00"></td>
@@ -51,7 +50,7 @@
         </table>
 
         <button type="button" id="addRow">Neuen Abschnitt hinzufügen</button><br><br>
-        <button type="submit">Datei generieren</button>
+        <button type="submit" id="saveButton">Datei generieren</button>
     </form>
 
     <script src="add_race.js"></script>

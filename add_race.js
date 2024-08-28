@@ -1,7 +1,6 @@
-document.getElementById('addRow').addEventListener('click', function() {
+document.getElementById('addRow').addEventListener('click', function () {
     const table = document.getElementById('routeTable').getElementsByTagName('tbody')[0];
-    const rows = table.getElementsByTagName('tr');
-    const lastRowIndex = rows.length - 1;
+    const lastRowIndex = table.rows.length - 1;
 
     const newRow = table.insertRow(lastRowIndex);
     newRow.innerHTML = `
@@ -13,25 +12,22 @@ document.getElementById('addRow').addEventListener('click', function() {
         <td><button type="button" class="remove">Entfernen</button></td>
     `;
 
-    // Hinzufügen eines Ereignislisteners für den Entfernen-Button in der neuen Zeile
-    newRow.querySelector('.remove').addEventListener('click', function() {
+    newRow.querySelector('.remove').addEventListener('click', function () {
         newRow.remove();
     });
 });
 
-document.getElementById('routeForm').addEventListener('submit', function(e) {
+document.getElementById('routeForm').addEventListener('submit', function (e) {
     e.preventDefault();
     const name = document.getElementById('name').value;
     const kurzName = document.getElementById('kurzName').value;
     const rows = document.querySelectorAll('#routeTable tbody tr');
 
-    // Überprüfung, ob der Name und der Kurzname eingegeben wurden
     if (!name.trim() || !kurzName.trim()) {
         alert("Bitte geben Sie sowohl einen Namen als auch einen Kurznamen ein.");
         return;
     }
 
-    // Start der JSON-Datei mit Titel und Checkpoints
     let raceData = {
         title: name,
         checkpoints: []
@@ -50,10 +46,7 @@ document.getElementById('routeForm').addEventListener('submit', function(e) {
         }
     });
 
-    // JSON-String aus dem raceData-Objekt erzeugen
     const data = JSON.stringify(raceData, null, 4);
-
-    // Datei-Generierung und Speicherung
     const formData = new FormData();
     formData.append('filename', `${kurzName}.json`);
     formData.append('content', data);
@@ -62,12 +55,53 @@ document.getElementById('routeForm').addEventListener('submit', function(e) {
         method: 'POST',
         body: formData
     })
-    .then(response => response.text())
-    .then(result => {
-        alert(result);
-    })
-    .catch(error => {
-        console.error('Fehler:', error);
-        alert('Fehler beim Speichern der Datei.');
-    });
+        .then(response => response.text())
+        .then(result => {
+            alert(result);
+        })
+        .catch(error => {
+            console.error('Fehler:', error);
+            alert('Fehler beim Speichern der Datei.');
+        });
 });
+
+function loadRaceForEdit(filename) {
+    fetch(`races/${filename}`)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('name').value = data.title;
+            document.getElementById('kurzName').value = filename.replace('.json', '');
+            document.getElementById('formTitle').textContent = `Rennen bearbeiten: ${data.title}`;
+            document.getElementById('saveButton').textContent = 'Änderungen speichern';
+
+            const table = document.getElementById('routeTable').getElementsByTagName('tbody')[0];
+            table.innerHTML = '';
+
+            data.checkpoints.forEach(cp => {
+                const newRow = table.insertRow();
+                newRow.innerHTML = `
+                    <td><input type="text" value="${cp.vp}"></td>
+                    <td><input type="text" value="${cp.kilometer}"></td>
+                    <td><input type="time" value="${cp.cutoff}"></td>
+                    <td><input type="time" value="${cp.open}"></td>
+                    <td><input type="time" value="${cp.close}"></td>
+                    <td><button type="button" class="remove">Entfernen</button></td>
+                `;
+
+                newRow.querySelector('.remove').addEventListener('click', function () {
+                    newRow.remove();
+                });
+            });
+        })
+        .catch(error => console.error('Fehler beim Laden des Rennens:', error));
+}
+
+function checkEditMode() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const filename = urlParams.get('edit');
+    if (filename) {
+        loadRaceForEdit(filename);
+    }
+}
+
+checkEditMode();
