@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <a href="index.html">Racepacer</a>
                 <a id="addRaceLink" href="add_race.html">Neues Race</a>
                 <a id="listRacesLink" href="list_races.html">Races verwalten</a>
-                <a href="coookies.html">Cookies &amp; Datenschutz</a>
+                <a href="cooookies.html">Cookies &amp; Datenschutz</a>
                 <a id="loginLink" href="login.html">Login</a>
             </div>
         </div>
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const cookieBannerHtml = `
             <div id="cookieBanner" class="cookie-banner">
                 <p>Wir verwenden Cookies, um Ihre Erfahrung zu verbessern. 
-                    <a href="coookies.html">Erfahren Sie mehr in unseren Cookie-Richtlinien.</a>
+                    <a href="cooookies.html">Erfahren Sie mehr in unseren Cookie-Richtlinien.</a>
                 </p>
                 <button id="acceptCookiesBtn">Zustimmen</button>
                 <button id="declineCookiesBtn">Ablehnen</button>
