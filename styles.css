@@ -120,6 +120,10 @@ p.label, label {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+p.label {
+    margin-bottom: 10px;
+} 
+
 div.attention {
     border: 1px solid red;
     border-radius: 10px;

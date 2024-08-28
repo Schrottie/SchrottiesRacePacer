@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <a href="index.html">Racepacer</a>
                 <a id="addRaceLink" href="add_race.html">Neues Race</a>
                 <a id="listRacesLink" href="list_races.html">Races verwalten</a>
-                <a href="cooookies.html">Cookies &amp; Datenschutz</a>
+                <a href="coookies.html">Cookies &amp; Datenschutz</a>
                 <a id="loginLink" href="login.html">Login</a>
             </div>
         </div>
@@ -22,13 +22,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Menü-Toggle
         const menuContainer = document.querySelector('.hamburger-menu');
-        if (menuContainer) {
-            menuContainer.addEventListener('click', function() {
-                this.classList.toggle('active');
-            });
-        } else {
-            console.error('Kein Hamburger-Menü-Container gefunden.');
-        }
+        menuContainer.addEventListener('click', function() {
+            this.classList.toggle('active');
+        });
 
         // Funktionen für das Login/Abmelden
         function updateLoginStatus() {
@@ -60,13 +56,13 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!getCookie('cookiesAccepted')) {
         // Wenn das Cookie nicht existiert, zeigen wir das Banner an
         const cookieBannerHtml = `
-        <div id="cookieBanner" class="cookie-banner" style="display: none;">
-            <p>Der Racepacer benötigt Kekse, denn er hat ständig Hunger. 
-            <br /><a href="cooookies.html">Welche das sind, verraten die Cookie-Richtlinien.</a>
-            </p>
-            <button id="acceptCookiesBtn">Ja, das geht so in Ordnung!</button>
-            <button id="declineCookiesBtn">Ablehnen</button>
-        </div>
+            <div id="cookieBanner" class="cookie-banner">
+                <p>Wir verwenden Cookies, um Ihre Erfahrung zu verbessern. 
+                    <a href="coookies.html">Erfahren Sie mehr in unseren Cookie-Richtlinien.</a>
+                </p>
+                <button id="acceptCookiesBtn">Zustimmen</button>
+                <button id="declineCookiesBtn">Ablehnen</button>
+            </div>
         `;
         document.body.insertAdjacentHTML('beforeend', cookieBannerHtml);
 
@@ -85,7 +81,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
 
 // Setzen von Cookies
 function setCookie(name, value, days) {
@@ -107,3 +102,4 @@ function getCookie(name) {
         }
     }
     return "";
+}
