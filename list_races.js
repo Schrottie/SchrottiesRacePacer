@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
         fetch('list_races.php')
             .then(response => response.json())
             .then(data => {
+                racesTableBody.innerHTML = ''; // Sicherstellen, dass alte Zeilen gelöscht werden
                 data.forEach((race, index) => {
                     const row = document.createElement('tr');
 
@@ -18,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     // Titel
                     const titleCell = document.createElement('td');
-                    titleCell.textContent = race.fullName;
+                    titleCell.textContent = race.title; // Hier sollte 'title' sein
 
                     // Dateiname
                     const filenameCell = document.createElement('td');
