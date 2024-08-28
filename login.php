@@ -33,10 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Passwort-Hash erstellen
     $passwordHash = md5($password);
 
-    // Debugging-Ausgaben
-    echo "Gespeicherter Hash: " . htmlspecialchars($storedPasswordHash) . "<br>";
-    echo "Eingegebener Hash: " . htmlspecialchars($passwordHash) . "<br>";
-
     // Überprüfen, ob das eingegebene Passwort korrekt ist
     if ($passwordHash === $storedPasswordHash) {
         // Setze ein Cookie für 14 Tage
