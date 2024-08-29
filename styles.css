@@ -393,20 +393,6 @@ input {
     margin-left: 10px;
 }
 
-/* Container für Formularelemente */
-.form-group {
-    display: flex; /* Flexbox für horizontale Anordnung */
-    align-items: flex-start; /* Vertikal zentrieren */
-    margin-bottom: 1rem; /* Abstand nach unten, kann angepasst werden */
-}
-
-/* Stile für das Label */
-.form-group label {
-    margin-left: 0.5rem; /* Abstand zwischen Checkbox und Label */
-    margin-right: 0; /* Entfernen des rechten Abstands */
-}
-
-/* Stile für die Checkbox */
-.form-group input[type="checkbox"] {
-    margin: 0; /* Entfernen des Standardabstands der Checkbox */
+#pinned {
+    background: #999;
 }
