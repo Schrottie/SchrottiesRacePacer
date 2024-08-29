@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const paceSlider = document.getElementById('paceSlider');
     const paceDisplay = document.getElementById('paceDisplay');
     const paceTableBody = document.querySelector('#paceTable tbody');
-    let startTime = 6 * 60; // Standardmäßig 6:00 Uhr in Minuten
 
     // Lädt die Liste der Renn-Dateien und füllt das Dropdown-Menü
     function fetchRaceFiles() {
@@ -12,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(data => {
                 if (data && Array.isArray(data)) {
-                    // Alle JSON-Dateien parallel laden
                     const filePromises = data.map(file => 
                         fetch(`races/${file.filename}`)
                             .then(response => response.json())
@@ -51,9 +49,9 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(data => {
                 const raceTitle = data.title || data[0]?.vp;
-                startTime = parseTimeToMinutes(data.start || "06:00"); // Startzeit aus dem JSON setzen
+                const startTime = data.start ? convertTimeToMinutes(data.start) : 600; // Default zu 10:00 Uhr, wenn keine Startzeit angegeben
                 updateRaceTitle(raceTitle);
-                updateTable(data.checkpoints || data);
+                updateTable(data.checkpoints || data, startTime);
             })
             .catch(error => console.error('Fehler beim Laden der Renn-Daten:', error));
     }
@@ -64,12 +62,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Aktualisiert die Tabelle mit den Daten
-    function updateTable(values) {
+    function updateTable(values, startTime) {
         paceTableBody.innerHTML = '';
+
         let previousKilometer = 0;
 
         values.forEach(item => {
-            if (item && item.kilometer && item.vp) { 
+            if (item && item.kilometer && item.vp) {
                 const distance = item.kilometer - previousKilometer;
                 const { calories, water } = calculateNutrition(distance);
 
@@ -106,6 +105,11 @@ document.addEventListener('DOMContentLoaded', function() {
         return formatTime(timeInMinutes);
     }
 
+    function convertTimeToMinutes(timeString) {
+        const [hours, minutes] = timeString.split(':').map(Number);
+        return hours * 60 + minutes;
+    }
+
     function calculateNutrition(distance) {
         const weight = 85;
         const caloriesPerKm = 0.9 * weight;
@@ -115,11 +119,6 @@ document.addEventListener('DOMContentLoaded', function() {
             calories: Math.round(caloriesPerKm * distance),
             water: Math.round(waterPerKm * distance)
         };
-    }
-
-    function parseTimeToMinutes(time) {
-        const [hours, minutes] = time.split(':').map(Number);
-        return (hours * 60) + minutes;
     }
 
     function handlePaceChange() {
@@ -152,8 +151,11 @@ document.addEventListener('DOMContentLoaded', function() {
             paceSlider.value = savedPace;
             handlePaceChange();
         }
+    }
 
-        saveSettings();
+    function saveSettings() {
+        setCookie('selectedRace', raceDropdown.value, 30);
+        setCookie('selectedPace', paceSlider.value, 30);
     }
 
     fetchRaceFiles();
