@@ -1,14 +1,21 @@
 document.addEventListener('DOMContentLoaded', function () {
     const racesTableBody = document.querySelector('#racesTable tbody');
-    let protectedRaces = []; // Initial leer, wird später befüllt
+    let protectedRaces = []; // Liste der geschützten Rennen
 
     function fetchRaces() {
         fetch('list_races.php')
             .then(response => response.json())
             .then(data => {
+                // Rennen sortieren: Zuerst nach pinned, dann alphabetisch
+                data.sort((a, b) => {
+                    if (a.pinned && !b.pinned) return -1; // a ist gepinnt, b nicht
+                    if (!a.pinned && b.pinned) return 1;  // b ist gepinnt, a nicht
+                    return a.fullName.localeCompare(b.fullName); // Alphabetisch sortieren
+                });
+
                 let rowIndex = 1; // Zähler für die Reihenfolge
 
-                // Filter für gepinnte Rennen und befüllen der protectedRaces-Liste
+                // Liste der geschützten Rennen (gepinnte Rennen)
                 protectedRaces = data.filter(race => race.pinned).map(race => `${race.kurzName}.json`);
 
                 data.forEach(race => {
@@ -38,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     actionsCell.appendChild(editButton);
 
                     // Löschen-Button (Font Awesome: fa-trash), nur wenn das Rennen nicht geschützt ist
-                    if (!protectedRaces.includes(race.filename)) {
+                    if (!race.pinned) {
                         const deleteButton = document.createElement('button');
                         deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
                         deleteButton.className = 'action-button delete';
