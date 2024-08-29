@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 let rowIndex = 1; // Zähler für die Reihenfolge
 
                 // Liste der geschützten Rennen (gepinnte Rennen)
-                protectedRaces = data.filter(race => race.pinned).map(race => `${race.kurzName}.json`);
+                protectedRaces = data.filter(race => race.pinned).map(race => `${race.filename}`);
 
                 data.forEach(race => {
                     const row = document.createElement('tr');
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     actionsCell.appendChild(editButton);
 
                     // Löschen-Button (Font Awesome: fa-trash), nur wenn das Rennen nicht geschützt ist
-                    if (!race.pinned) { // Überprüfen, ob das Rennen nicht gepinnt ist
+                    if (!protectedRaces.includes(race.filename)) {
                         const deleteButton = document.createElement('button');
                         deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
                         deleteButton.className = 'action-button delete';
