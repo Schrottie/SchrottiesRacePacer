@@ -17,6 +17,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Liste der geschützten Rennen (gepinnte Rennen)
                 protectedRaces = data.filter(race => race.pinned).map(race => `${race.filename}`);
+                
+               // Debug: Ausgabe der Liste der geschützten Rennen
+               console.log('Gepinnte Rennen:', protectedRaces);
 
                 data.forEach(race => {
                     const row = document.createElement('tr');
