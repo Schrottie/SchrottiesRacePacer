@@ -392,38 +392,30 @@ input {
     font-size: 0.9em;
     margin-left: 10px;
 }
-/* Stile für den Container der Formularelemente */
+
+/* Container für Formularelemente */
 .form-group {
     display: flex; /* Flexbox für horizontale Anordnung */
     align-items: center; /* Vertikal zentrieren */
-    margin-bottom: 1rem; /* Abstand nach unten */
-    /* Optional: Verwende padding für zusätzlichen Abstand zum Container-Rand */
+    margin-bottom: 1rem; /* Abstand nach unten, kann angepasst werden */
 }
 
 /* Stile für das Label */
 .form-group label {
     margin-left: 0.5rem; /* Abstand zwischen Checkbox und Label */
-    margin-right: 0; /* Entfernen des rechten Abstands, wenn nötig */
+    margin-right: 0; /* Entfernen des rechten Abstands */
 }
 
 /* Stile für die Checkbox */
 .form-group input[type="checkbox"] {
-    margin: 0; /* Entfernt Standardabstände */
-    /* Optional: Füge eine feste Breite hinzu, wenn nötig */
+    margin: 0; /* Entfernen des Standardabstands der Checkbox */
 }
 
 /* Stile für andere Eingabefelder */
 input[type="text"],
 input[type="time"] {
-    width: 100%; /* Breite auf 100% setzen */
-}
-
-/* Allgemeine Stile für alle Formularelemente */
-label,
-input[type="text"],
-input[type="time"] {
     display: block; /* Block-Elemente sorgen für eine neue Zeile */
-    width: 100%; /* Vollständige Breite */
-    box-sizing: border-box; /* Berücksichtigt Padding und Border in der Breitenberechnung */
-    margin-bottom: 0.5rem; /* Abstand nach unten */
+    width: 100%; /* Volle Breite der verfügbaren Fläche */
+    margin-bottom: 1rem; /* Abstand nach unten */
+    box-sizing: border-box; /* Padding und Border in der Breitenberechnung berücksichtigen */
 }
