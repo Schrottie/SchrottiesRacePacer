@@ -392,3 +392,22 @@ input {
     font-size: 0.9em;
     margin-left: 10px;
 }
+
+.form-group {
+    display: flex; /* Nutzt Flexbox für die Ausrichtung */
+    align-items: center; /* Zentriert die Elemente vertikal */
+    margin-bottom: 1rem; /* Abstand nach unten */
+}
+
+.form-group label {
+    margin-left: 0.5rem; /* Abstand zwischen Checkbox und Label */
+}
+
+input[type="text"],
+input[type="time"] {
+    width: 100%; /* Breite für die Text- und Zeit-Eingaben */
+}
+
+input[type="checkbox"] {
+    margin-right: 0.5rem; /* Abstand zwischen Checkbox und Label */
+}

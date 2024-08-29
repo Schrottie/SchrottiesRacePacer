@@ -39,8 +39,10 @@
             <label for="kurzName">Kurzname des Rennens</label>
             <input type="text" id="kurzName" placeholder="z.B. puddingultra2024" required><br /><br />
             
-            <label for="pinned">Geschützt</label>
-            <input type="checkbox" id="pinned" name="pinned"><br /><br />
+            <div class="form-group">
+                <input type="checkbox" id="pinned" name="pinned">
+                <label for="pinned">Geschützt</label>
+            </div>
 
             <label for="startTime">Startzeit des Rennens</label>
             <input type="time" id="startTime" value="10:00" required><br /><br />
@@ -89,7 +91,6 @@
     </div>
     <script src="add_race.js"></script>
     <script src="cookie_handler.js"></script>
-    <script src="print.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
