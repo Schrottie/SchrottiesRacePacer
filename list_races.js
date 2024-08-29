@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
         fetch('list_races.php')
             .then(response => response.json())
             .then(data => {
-                const sortedRaces = sortRaces(data);
-                sortedRaces.forEach(race => {
+                let rowIndex = 1; // Zähler für die Reihenfolge
+                data.forEach(race => {
                     const row = document.createElement('tr');
 
                     // Reihenfolge-Spalte
@@ -62,12 +62,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             })
             .catch(error => console.error('Fehler beim Laden der Rennen:', error));
-    }
-
-    function sortRaces(races) {
-        const pinnedRaces = races.filter(race => protectedRaces.includes(race.filename));
-        const regularRaces = races.filter(race => !protectedRaces.includes(race.filename));
-        return [...pinnedRaces, ...regularRaces];
     }
 
     function editRace(filename) {
