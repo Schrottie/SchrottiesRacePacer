@@ -23,6 +23,30 @@
     <meta name="twitter:site" content="@schrottie" />
     <link rel="stylesheet" href="styles.css" />
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' />
+    <style>
+        .form-group {
+            display: flex; /* Flexbox für horizontale Anordnung */
+            align-items: flex-start; /* Die Checkbox und das Label am oberen Rand ausrichten */
+            margin-bottom: 1rem; /* Abstand nach unten */
+        }
+
+        .form-group label {
+            margin-left: 0.5rem; /* Abstand zwischen Checkbox und Label */
+            margin-right: 0; /* Entfernen des rechten Abstands */
+        }
+
+        .form-group input[type="checkbox"] {
+            margin: 0; /* Entfernen des Standardabstands der Checkbox */
+        }
+
+        input[type="text"],
+        input[type="time"] {
+            display: block; /* Block-Elemente sorgen für eine neue Zeile */
+            width: 100%; /* Volle Breite der verfügbaren Fläche */
+            margin-bottom: 1rem; /* Abstand nach unten */
+            box-sizing: border-box; /* Padding und Border in der Breitenberechnung berücksichtigen */
+        }
+    </style>
 </head>
 <body> 
     <div class="container">
@@ -33,17 +57,22 @@
         <h1 id="raceName">Neues Race</h1>
 
         <form id="routeForm">
-            <label for="name">Name des Rennens</label>
-            <input type="text" id="name" placeholder="z.B. Ultralauf um den Pudding 2024" required><br /><br />
-
-            <label for="kurzName">Kurzname des Rennens</label>
-            <input type="text" id="kurzName" placeholder="z.B. puddingultra2024" required><br /><br />
-
-            <label for="pinned">Geschützt</label>
-            <input type="checkbox" id="pinned" name="pinned"><br /><br />
-            
-            <label for="startTime">Startzeit des Rennens</label>
-            <input type="time" id="startTime" value="10:00" required><br /><br />
+            <div class="form-group">
+                <label for="name">Name des Rennens</label>
+                <input type="text" id="name" placeholder="z.B. Ultralauf um den Pudding 2024" required>
+            </div>
+            <div class="form-group">
+                <label for="kurzName">Kurzname des Rennens</label>
+                <input type="text" id="kurzName" placeholder="z.B. puddingultra2024" required>
+            </div>
+            <div class="form-group">
+                <input type="checkbox" id="pinned" name="pinned">
+                <label for="pinned">Geschützt</label>
+            </div>
+            <div class="form-group">
+                <label for="startTime">Startzeit des Rennens</label>
+                <input type="time" id="startTime" value="10:00" required>
+            </div>
 
             <table id="routeTable">
                 <thead>
