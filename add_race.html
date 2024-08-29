@@ -39,8 +39,10 @@
             <label for="kurzName">Kurzname des Rennens</label>
             <input type="text" id="kurzName" placeholder="z.B. puddingultra2024" required><br /><br />
 
-            <label for="pinned">Als geschützt markieren</label>
-            <input type="checkbox" id="pinned"><br /><br />
+            <div class="checkbox-container">
+                <label for="pinned">Geschützt:</label>
+                <input type="checkbox" id="pinned" name="pinned">
+            </div>
 
             <label for="startTime">Startzeit des Rennens</label>
             <input type="time" id="startTime" value="10:00" required><br /><br />

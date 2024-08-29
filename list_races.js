@@ -1,14 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
     const racesTableBody = document.querySelector('#racesTable tbody');
-
-    // Geschützte Rennen, die nicht gelöscht werden können
-    const protectedRaces = ['mwl_iuzs.json', 'mwl_ggduzs.json', 'mwl_ggduzs_old.json'];
+    let protectedRaces = []; // Initial leer, wird später befüllt
 
     function fetchRaces() {
         fetch('list_races.php')
             .then(response => response.json())
             .then(data => {
                 let rowIndex = 1; // Zähler für die Reihenfolge
+
+                // Filter für gepinnte Rennen und befüllen der protectedRaces-Liste
+                protectedRaces = data.filter(race => race.pinned).map(race => `${race.kurzName}.json`);
+
                 data.forEach(race => {
                     const row = document.createElement('tr');
 

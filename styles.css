@@ -393,3 +393,20 @@ input {
     margin-left: 10px;
 }
 
+/* Container für das Label und die Checkbox */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px; /* Optional: Abstand nach oben, um Platz zwischen anderen Elementen zu schaffen */
+}
+
+/* Stil für das Label */
+.checkbox-container label {
+    margin-right: 8px; /* Abstand zwischen Label und Checkbox */
+}
+
+/* Stil für die Checkbox */
+.checkbox-container input[type="checkbox"] {
+    margin-left: 0; /* Entfernt zusätzlichen Abstand links von der Checkbox */
+}
+
