@@ -7,9 +7,9 @@ document.addEventListener('DOMContentLoaded', function () {
         newRow.innerHTML = `
             <td><input type="text" placeholder="VP Name"></td>
             <td><input type="text" placeholder="Kilometer" pattern="\\d*\\.?\\d{0,2}"></td>
-            <td><input type="time" placeholder="Cutoff"></td>
-            <td><input type="time" placeholder="Open"></td>
-            <td><input type="time" placeholder="Close"></td>
+            <td><input type="text" placeholder="H:MM" pattern="\\d{1,2}:\\d{2}"></td>
+            <td><input type="text" placeholder="H:MM" pattern="\\d{1,2}:\\d{2}"></td>
+            <td><input type="text" placeholder="H:MM" pattern="\\d{1,2}:\\d{2}"></td>
             <td><button type="button" class="remove">Entfernen</button></td>
         `;
 
@@ -42,9 +42,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 raceData.checkpoints.push({
                     vp: inputs[0].value,
                     kilometer: parseFloat(inputs[1].value) || 0,
-                    cutoff: inputs[2].value,
-                    open: inputs[3].value,
-                    close: inputs[4].value
+                    cutoff: formatTime(inputs[2].value),
+                    open: formatTime(inputs[3].value),
+                    close: formatTime(inputs[4].value)
                 });
             }
         });
@@ -68,12 +68,18 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    function formatTime(time) {
+        const [hours, minutes] = time.split(':').map(part => parseInt(part, 10));
+        return `${hours}:${minutes < 10 ? '0' + minutes : minutes}`;
+    }
+
     function loadRaceForEdit(filename) {
         fetch(`races/${filename}`)
         .then(response => response.json())
         .then(data => {
             document.getElementById('name').value = data.title || '';
-            document.getElementById('kurzName').value = filename.replace('.json', '');
+            const kurzName = filename.replace('.json', '');
+            document.getElementById('kurzName').value = kurzName;
             document.getElementById('kurzName').setAttribute('readonly', true); 
             document.getElementById('startTime').value = data.startTime || '06:00';
             document.getElementById('raceName').textContent = `Rennen bearbeiten: ${data.title || 'Unbenannt'}`;
@@ -87,9 +93,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 newRow.innerHTML = `
                     <td><input type="text" value="${cp.vp || ''}"></td>
                     <td><input type="text" value="${cp.kilometer || ''}"></td>
-                    <td><input type="time" value="${cp.cutoff || ''}"></td>
-                    <td><input type="time" value="${cp.open || ''}"></td>
-                    <td><input type="time" value="${cp.close || ''}"></td>
+                    <td><input type="text" value="${cp.cutoff || ''}" placeholder="H:MM"></td>
+                    <td><input type="text" value="${cp.open || ''}" placeholder="H:MM"></td>
+                    <td><input type="text" value="${cp.close || ''}" placeholder="H:MM"></td>
                     <td><button type="button" class="remove">Entfernen</button></td>
                 `;
 
@@ -143,8 +149,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function populateFormWithData(data, filename) {
         document.getElementById('name').value = data.title || '';
-        document.getElementById('kurzName').value = filename.replace('.json', ''); // Kurzname übernehmen
+        
+        // Dateiname ohne Endung als Kurzname übernehmen
+        const kurzName = filename.replace('.json', '');
+        document.getElementById('kurzName').value = kurzName;
         document.getElementById('kurzName').setAttribute('readonly', true);
+        
         document.getElementById('startTime').value = data.startTime || '06:00';
         document.getElementById('raceName').textContent = `Rennen bearbeiten: ${data.title || 'Unbenannt'}`;
         document.getElementById('saveButton').textContent = 'Änderungen speichern';
@@ -157,9 +167,9 @@ document.addEventListener('DOMContentLoaded', function () {
             newRow.innerHTML = `
                 <td><input type="text" value="${cp.vp || ''}"></td>
                 <td><input type="text" value="${cp.kilometer || ''}"></td>
-                <td><input type="time" value="${cp.cutoff || ''}"></td>
-                <td><input type="time" value="${cp.open || ''}"></td>
-                <td><input type="time" value="${cp.close || ''}"></td>
+                <td><input type="text" value="${cp.cutoff || ''}" placeholder="H:MM"></td>
+                <td><input type="text" value="${cp.open || ''}" placeholder="H:MM"></td>
+                <td><input type="text" value="${cp.close || ''}" placeholder="H:MM"></td>
                 <td><button type="button" class="remove">Entfernen</button></td>
             `;
 
