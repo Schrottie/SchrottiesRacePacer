@@ -378,3 +378,18 @@ input {
     background-color: #0056b3;
 }
 
+.race-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.pinned-badge {
+    background-color: #f39c12;
+    color: white;
+    padding: 3px 6px;
+    border-radius: 3px;
+    font-size: 0.9em;
+    margin-left: 10px;
+}
+

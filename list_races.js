@@ -1,98 +1,41 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const racesTableBody = document.querySelector('#racesTable tbody');
+    fetch('get_races.php')
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById('raceList');
+            container.innerHTML = '';  // Leeren, um alte Rennen zu entfernen
 
-    // Geschützte Rennen, die nicht gelöscht werden können
-    const protectedRaces = ['mwl_iuzs.json', 'mwl_ggduzs.json', 'mwl_ggduzs_old.json'];
+            data.forEach(race => {
+                const raceDiv = document.createElement('div');
+                raceDiv.classList.add('race-item');
 
-    function fetchRaces() {
-        fetch('list_races.php')
-            .then(response => response.json())
-            .then(data => {
-                let rowIndex = 1; // Zähler für die Reihenfolge
-                data.forEach(race => {
-                    const row = document.createElement('tr');
+                const raceName = document.createElement('h2');
+                raceName.textContent = race.title;
+                raceDiv.appendChild(raceName);
 
-                    // Reihenfolge-Spalte
-                    const indexCell = document.createElement('td');
-                    indexCell.textContent = rowIndex++;
+                if (race.pinned) {
+                    const pinnedBadge = document.createElement('span');
+                    pinnedBadge.classList.add('pinned-badge');
+                    pinnedBadge.textContent = 'Geschützt';
+                    raceDiv.appendChild(pinnedBadge);
+                }
 
-                    // Titel
-                    const titleCell = document.createElement('td');
-                    titleCell.textContent = race.fullName;
+                const startTime = document.createElement('p');
+                startTime.textContent = `Startzeit: ${race.startTime}`;
+                raceDiv.appendChild(startTime);
 
-                    // Dateiname
-                    const filenameCell = document.createElement('td');
-                    filenameCell.textContent = race.filename;
-
-                    // Aktionen
-                    const actionsCell = document.createElement('td');
-
-                    // Bearbeiten-Button (Font Awesome: fa-edit)
-                    const editButton = document.createElement('button');
-                    editButton.innerHTML = '<i class="fas fa-edit"></i>';
-                    editButton.className = 'action-button edit';
-                    editButton.title = 'Bearbeiten';
-                    editButton.addEventListener('click', () => editRace(race.filename));
-                    actionsCell.appendChild(editButton);
-
-                    // Löschen-Button (Font Awesome: fa-trash), nur wenn das Rennen nicht geschützt ist
-                    if (!protectedRaces.includes(race.filename)) {
-                        const deleteButton = document.createElement('button');
-                        deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
-                        deleteButton.className = 'action-button delete';
-                        deleteButton.title = 'Löschen';
-                        deleteButton.addEventListener('click', () => deleteRace(race.filename));
-                        actionsCell.appendChild(deleteButton);
-                    }
-
-                    // Download-Button (Font Awesome: fa-download)
-                    const downloadButton = document.createElement('button');
-                    downloadButton.innerHTML = '<i class="fas fa-download"></i>';
-                    downloadButton.className = 'action-button download';
-                    downloadButton.title = 'Download';
-                    downloadButton.addEventListener('click', () => downloadRace(race.filename));
-                    actionsCell.appendChild(downloadButton);
-
-                    row.appendChild(indexCell);
-                    row.appendChild(titleCell);
-                    row.appendChild(filenameCell);
-                    row.appendChild(actionsCell);
-
-                    racesTableBody.appendChild(row);
+                const checkpointsList = document.createElement('ul');
+                race.checkpoints.forEach(checkpoint => {
+                    const checkpointItem = document.createElement('li');
+                    checkpointItem.textContent = `VP: ${checkpoint.vp}, Kilometer: ${checkpoint.kilometer}, Cutoff: ${checkpoint.cutoff}, Öffnungszeit: ${checkpoint.open}, Schließzeit: ${checkpoint.close}`;
+                    checkpointsList.appendChild(checkpointItem);
                 });
-            })
-            .catch(error => console.error('Fehler beim Laden der Rennen:', error));
-    }
+                raceDiv.appendChild(checkpointsList);
 
-    function editRace(filename) {
-        window.location.href = `add_race.html?edit=${encodeURIComponent(filename)}`;
-    }
-
-    function deleteRace(filename) {
-        if (protectedRaces.includes(filename)) {
-            alert('Dieses Rennen kann nicht gelöscht werden.');
-            return;
-        }
-
-        if (confirm('Sind Sie sicher, dass Sie dieses Rennen löschen möchten?')) {
-            fetch(`delete_race.php?filename=${encodeURIComponent(filename)}`)
-                .then(response => response.text())
-                .then(result => {
-                    console.log(result);
-                    window.location.reload(); // Seite neu laden, um aktualisierte Liste zu zeigen
-                })
-                .catch(error => console.error('Fehler beim Löschen der Rennen:', error));
-        }
-    }
-
-    function downloadRace(filename) {
-        const downloadLink = document.createElement('a');
-        downloadLink.href = `races/${encodeURIComponent(filename)}`;
-        downloadLink.download = filename;
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-        document.body.removeChild(downloadLink);
-    }
-
-    fetchRaces();
+                container.appendChild(raceDiv);
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 });
