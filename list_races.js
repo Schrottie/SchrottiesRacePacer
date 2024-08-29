@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
     const racesTableBody = document.querySelector('#racesTable tbody');
-    const editRaceButton = document.getElementById('editRace');
 
     // Geschützte Rennen, die nicht gelöscht werden können
     const protectedRaces = ['mwl_iuzs.json', 'mwl_ggduzs.json', 'mwl_ggduzs_old.json'];
@@ -94,16 +93,6 @@ document.addEventListener('DOMContentLoaded', function () {
         downloadLink.click();
         document.body.removeChild(downloadLink);
     }
-
-    editRaceButton.addEventListener('click', function () {
-        const selectedRace = racesTableBody.querySelector('input[type="checkbox"]:checked');
-        if (!selectedRace) {
-            alert('Bitte wählen Sie ein Rennen zur Bearbeitung aus.');
-            return;
-        }
-
-        editRace(selectedRace.value);
-    });
 
     fetchRaces();
 });
