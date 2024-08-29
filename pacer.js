@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const paceSlider = document.getElementById('paceSlider');
     const paceDisplay = document.getElementById('paceDisplay');
     const paceTableBody = document.querySelector('#paceTable tbody');
+    let startTime = 6 * 60; // Standardmäßig 6:00 Uhr in Minuten
 
     // Lädt die Liste der Renn-Dateien und füllt das Dropdown-Menü
     function fetchRaceFiles() {
@@ -50,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(data => {
                 const raceTitle = data.title || data[0]?.vp;
+                startTime = parseTimeToMinutes(data.start || "06:00"); // Startzeit aus dem JSON setzen
                 updateRaceTitle(raceTitle);
                 updateTable(data.checkpoints || data);
             })
@@ -64,9 +66,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Aktualisiert die Tabelle mit den Daten
     function updateTable(values) {
         paceTableBody.innerHTML = '';
-
-        const startTime = 6 * 60; // 6:00 Uhr in Minuten
-
         let previousKilometer = 0;
 
         values.forEach(item => {
@@ -116,6 +115,11 @@ document.addEventListener('DOMContentLoaded', function() {
             calories: Math.round(caloriesPerKm * distance),
             water: Math.round(waterPerKm * distance)
         };
+    }
+
+    function parseTimeToMinutes(time) {
+        const [hours, minutes] = time.split(':').map(Number);
+        return (hours * 60) + minutes;
     }
 
     function handlePaceChange() {

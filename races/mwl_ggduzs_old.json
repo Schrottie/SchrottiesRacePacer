@@ -1,5 +1,6 @@
 {
     "title": "100 Meilen Berlin (Lauf gegen den Uhrzeigersinn, ab Erika-Hess-Eisstadion)",
+    "startTime": "06:00",
     "checkpoints": [
     { "vp": "Start - Erika-Hess-Stadion", "kilometer": 0, "cutoff": "07:00", "open": "04:00", "close": "08:30" },
     { "vp": "VP 1 - Mauerpark", "kilometer": 4.5, "cutoff": "07:50", "open": "06:05", "close": "08:45" },

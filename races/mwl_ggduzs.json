@@ -1,5 +1,6 @@
 {
     "title": "100 Meilen Berlin (Lauf gegen den Uhrzeigersinn)",
+    "startTime": "06:00",
     "checkpoints": [
         { "vp": "Start - Werner-Kluge-Sportplatz", "kilometer": 0, "cutoff": "06:00", "open": "04:30", "close": "08:30" },
         { "vp": "VP 1 - Lauftreff Lübars", "kilometer": 8.6, "cutoff": "07:27", "open": "06:30", "close": "09:30" },

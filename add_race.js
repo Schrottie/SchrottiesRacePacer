@@ -21,6 +21,7 @@ document.getElementById('routeForm').addEventListener('submit', function (e) {
     e.preventDefault();
     const name = document.getElementById('name').value;
     const kurzName = document.getElementById('kurzName').value;
+    const startTime = document.getElementById('startTime').value; // Neue Startzeit
     const rows = document.querySelectorAll('#routeTable tbody tr');
 
     if (!name.trim() || !kurzName.trim()) {
@@ -30,6 +31,7 @@ document.getElementById('routeForm').addEventListener('submit', function (e) {
 
     let raceData = {
         title: name,
+        startTime: startTime, // Startzeit wird in das JSON übernommen
         checkpoints: []
     };
 
@@ -71,7 +73,8 @@ function loadRaceForEdit(filename) {
     .then(data => {
         document.getElementById('name').value = data.title;
         document.getElementById('kurzName').value = filename.replace('.json', '');
-        document.getElementById('kurzName').setAttribute('readonly', true); // Setzt das Feld auf readonly
+        document.getElementById('kurzName').setAttribute('readonly', true); 
+        document.getElementById('startTime').value = data.startTime || '06:00'; // Startzeit laden
         document.getElementById('raceName').textContent = `Rennen bearbeiten: ${data.title}`;
         document.getElementById('saveButton').textContent = 'Änderungen speichern';
 
@@ -104,7 +107,7 @@ function checkEditMode() {
         loadRaceForEdit(filename);
     } else {
         document.getElementById('raceName').textContent = 'Neues Rennen anlegen';
-        document.getElementById('kurzName').removeAttribute('readonly'); // Stellt sicher, dass das Feld im neuen Modus bearbeitbar ist
+        document.getElementById('kurzName').removeAttribute('readonly');
     }
 }
 
