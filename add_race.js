@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let raceData = {
             title: name,
             startTime: startTime,
-            pinned: pinned,
+            pinned: pinned, // pinned-Flag hinzufügen
             checkpoints: []
         };
 
@@ -65,13 +65,121 @@ document.addEventListener('DOMContentLoaded', function () {
             alert(result);
         })
         .catch(error => {
-            console.error('Error:', error);
+            console.error('Fehler:', error);
+            alert('Fehler beim Speichern der Datei.');
         });
     });
 
-    function formatCutoffTime(timeString) {
-        const [hours, minutes] = timeString.split(':').map(Number);
-        if (isNaN(hours) || isNaN(minutes)) return '--:--';
-        return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+    function formatCutoffTime(time) {
+        if (!time.trim() || time === '--:--') return ''; // Bei leerem Eingabefeld oder '--:--' nichts zurückgeben
+        const [hours, minutes] = time.split(':').map(part => parseInt(part, 10));
+        if (isNaN(hours) || isNaN(minutes)) return ''; // Bei ungültigen Eingaben nichts zurückgeben
+        return `${hours}:${minutes < 10 ? '0' + minutes : minutes}`;
     }
+
+    function loadRaceForEdit(filename) {
+        fetch(`races/${filename}`)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('name').value = data.title || '';
+            
+            // Dateiname ohne Endung als Kurzname übernehmen
+            const kurzName = filename.replace('.json', '');
+            document.getElementById('kurzName').value = kurzName;
+            document.getElementById('kurzName').setAttribute('readonly', true);
+            document.getElementById('startTime').value = data.startTime || '06:00';
+            document.getElementById('pinned').checked = data.pinned || false; // pinned-Flag auslesen und setzen
+            document.getElementById('raceName').textContent = `Rennen bearbeiten: ${data.title || 'Unbenannt'}`;
+            document.getElementById('saveButton').textContent = 'Änderungen speichern';
+
+            const table = document.getElementById('routeTable').getElementsByTagName('tbody')[0];
+            table.innerHTML = '';
+
+            data.checkpoints.forEach(cp => {
+                const newRow = table.insertRow();
+                newRow.innerHTML = `
+                    <td><input type="text" value="${cp.vp || ''}"></td>
+                    <td><input type="text" value="${cp.kilometer || ''}"></td>
+                    <td><input type="text" value="${cp.cutoff || '--:--'}" placeholder="--:--" pattern="\\d{1,2}:\\d{2}" title="Zeitformat H:MM (z.B. 25:30)"></td>
+                    <td><input type="time" value="${cp.open || ''}"></td>
+                    <td><input type="time" value="${cp.close || ''}"></td>
+                    <td><button type="button" class="remove">Entfernen</button></td>
+                `;
+
+                newRow.querySelector('.remove').addEventListener('click', function () {
+                    newRow.remove();
+                });
+            });
+        })
+        .catch(error => console.error('Fehler beim Laden des Rennens:', error));
+    }
+
+    document.getElementById('uploadButton').addEventListener('click', function () {
+        const fileInput = document.getElementById('fileUpload');
+        if (fileInput.files.length === 0) {
+            alert('Bitte wählen Sie eine Datei aus.');
+            return;
+        }
+        
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+        
+        reader.onload = function (e) {
+            try {
+                const json = JSON.parse(e.target.result);
+                if (json && json.title && json.checkpoints) {
+                    // Setze die Werte in das Formular ein
+                    document.getElementById('name').value = json.title || '';
+                    
+                    // Dateiname ohne Endung als Kurzname übernehmen
+                    const kurzName = file.name.replace('.json', '');
+                    document.getElementById('kurzName').value = kurzName;
+                    document.getElementById('kurzName').setAttribute('readonly', true);
+                    document.getElementById('startTime').value = json.startTime || '06:00';
+                    document.getElementById('pinned').checked = json.pinned || false; // pinned-Flag auslesen und setzen
+                    document.getElementById('raceName').textContent = `Rennen bearbeiten: ${json.title || 'Unbenannt'}`;
+                    document.getElementById('saveButton').textContent = 'Änderungen speichern';
+
+                    const table = document.getElementById('routeTable').getElementsByTagName('tbody')[0];
+                    table.innerHTML = '';
+
+                    json.checkpoints.forEach(cp => {
+                        const newRow = table.insertRow();
+                        newRow.innerHTML = `
+                            <td><input type="text" value="${cp.vp || ''}"></td>
+                            <td><input type="text" value="${cp.kilometer || ''}"></td>
+                            <td><input type="text" value="${cp.cutoff || '--:--'}" placeholder="--:--" pattern="\\d{1,2}:\\d{2}" title="Zeitformat H:MM (z.B. 25:30)"></td>
+                            <td><input type="time" value="${cp.open || ''}"></td>
+                            <td><input type="time" value="${cp.close || ''}"></td>
+                            <td><button type="button" class="remove">Entfernen</button></td>
+                        `;
+
+                        newRow.querySelector('.remove').addEventListener('click', function () {
+                            newRow.remove();
+                        });
+                    });
+                } else {
+                    alert('Die hochgeladene Datei enthält keine gültigen Renndaten.');
+                }
+            } catch (error) {
+                alert('Fehler beim Verarbeiten der Datei.');
+                console.error('Fehler:', error);
+            }
+        };
+
+        reader.readAsText(file);
+    });
+
+    function checkEditMode() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const filename = urlParams.get('edit');
+        if (filename) {
+            loadRaceForEdit(filename);
+        } else {
+            document.getElementById('raceName').textContent = 'Neues Rennen anlegen';
+            document.getElementById('kurzName').removeAttribute('readonly');
+        }
+    }
+
+    checkEditMode();
 });
