@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const editRaceButton = document.getElementById('editRace');
 
     // Geschützte Rennen, die nicht gelöscht werden können
-    const protectedRaces = ['mwl_iuzs.json', 'mwl_ggduzs.json'];
+    const protectedRaces = ['mwl_iuzs.json', 'mwl_ggduzs.json', 'mwl_ggduzs_old.json'];
 
     function fetchRaces() {
         fetch('list_races.php')
