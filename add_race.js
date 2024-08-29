@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function () {
         reader.onload = function (e) {
             try {
                 const data = JSON.parse(e.target.result);
-                populateFormWithData(data);
+                populateFormWithData(data, file.name);
             } catch (error) {
                 console.error('Fehler beim Verarbeiten der JSON-Datei:', error);
                 alert('Die hochgeladene Datei ist kein gültiges JSON.');
@@ -141,9 +141,9 @@ document.addEventListener('DOMContentLoaded', function () {
         reader.readAsText(file);
     });
 
-    function populateFormWithData(data) {
+    function populateFormWithData(data, filename) {
         document.getElementById('name').value = data.title || '';
-        document.getElementById('kurzName').value = '';
+        document.getElementById('kurzName').value = filename.replace('.json', ''); // Kurzname übernehmen
         document.getElementById('kurzName').setAttribute('readonly', true);
         document.getElementById('startTime').value = data.startTime || '06:00';
         document.getElementById('raceName').textContent = `Rennen bearbeiten: ${data.title || 'Unbenannt'}`;
