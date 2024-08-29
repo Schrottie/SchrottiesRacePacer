@@ -64,30 +64,56 @@ document.addEventListener('DOMContentLoaded', function() {
 
         let previousKilometer = 0;
 
+        // Fügt die Startzeile (Kilometer 0) hinzu
+        addTableRow({
+            vp: 'Start',
+            kilometer: 0,
+            time: formatTime(startTime),
+            cutoff: '',
+            open: '',
+            close: '',
+            water: '',
+            calories: ''
+        });
+
         values.forEach(item => {
             if (item && item.kilometer && item.vp) {
                 const distance = item.kilometer - previousKilometer;
                 const { calories, water } = calculateNutrition(distance);
 
                 const formattedTime = calculateTime(startTime, item.kilometer, paceSlider.value / 60);
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${item.vp}</td>
-                    <td>${item.kilometer}</td>
-                    <td>${formattedTime}</td>
-                    <td>${item.cutoff}</td>
-                    <td>${item.open}</td>
-                    <td>${item.close}</td>
-                    <td>${water}</td>
-                    <td>${calories}</td>
-                `;
-                paceTableBody.appendChild(row);
+                addTableRow({
+                    vp: item.vp,
+                    kilometer: item.kilometer,
+                    time: formattedTime,
+                    cutoff: item.cutoff,
+                    open: item.open,
+                    close: item.close,
+                    water: water,
+                    calories: calories
+                });
 
                 previousKilometer = item.kilometer;
             } else {
                 console.warn('Einträge in values entsprechen nicht dem erwarteten Format:', item);
             }
         });
+    }
+
+    // Fügt eine Zeile zur Tabelle hinzu
+    function addTableRow({ vp, kilometer, time, cutoff, open, close, water, calories }) {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${vp}</td>
+            <td>${kilometer}</td>
+            <td>${time}</td>
+            <td>${cutoff}</td>
+            <td>${open}</td>
+            <td>${close}</td>
+            <td>${water}</td>
+            <td>${calories}</td>
+        `;
+        paceTableBody.appendChild(row);
     }
 
     function formatTime(minutes) {
@@ -128,12 +154,12 @@ document.addEventListener('DOMContentLoaded', function() {
         if (raceDropdown.value) {
             loadRaceData(`races/${raceDropdown.value}`);
         }
-        saveSettings();
+        saveSettings();  // Speichert die geänderte Pace in den Cookies
     }
 
     function handleRaceChange() {
         loadRaceData(`races/${raceDropdown.value}`);
-        saveSettings();
+        saveSettings();  // Speichert das geänderte Rennen in den Cookies
     }
 
     function loadSettings() {
@@ -146,6 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (savedPace) {
             paceSlider.value = savedPace;
+            handlePaceChange(); // Damit die Pace-Anzeige korrekt aktualisiert wird
         }
 
         if (savedRace) {
