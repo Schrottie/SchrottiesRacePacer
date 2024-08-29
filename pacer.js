@@ -64,20 +64,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         let previousKilometer = 0;
 
-        // Fügt die Startzeile (Kilometer 0) hinzu
-        addTableRow({
-            vp: 'Start',
-            kilometer: 0,
-            time: formatTime(startTime),
-            cutoff: '',
-            open: '',
-            close: '',
-            water: '',
-            calories: ''
-        });
-
+        // Geht durch alle Checkpoints, einschließlich des ersten
         values.forEach(item => {
-            if (item && item.kilometer && item.vp) {
+            if (item && item.kilometer !== undefined && item.vp) {
                 const distance = item.kilometer - previousKilometer;
                 const { calories, water } = calculateNutrition(distance);
 
