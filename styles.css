@@ -396,7 +396,7 @@ input {
 /* Container für Formularelemente */
 .form-group {
     display: flex; /* Flexbox für horizontale Anordnung */
-    align-items: center; /* Vertikal zentrieren */
+    align-items: flex-start; /* Vertikal zentrieren */
     margin-bottom: 1rem; /* Abstand nach unten, kann angepasst werden */
 }
 
@@ -409,13 +409,4 @@ input {
 /* Stile für die Checkbox */
 .form-group input[type="checkbox"] {
     margin: 0; /* Entfernen des Standardabstands der Checkbox */
-}
-
-/* Stile für andere Eingabefelder */
-input[type="text"],
-input[type="time"] {
-    display: block; /* Block-Elemente sorgen für eine neue Zeile */
-    width: 100%; /* Volle Breite der verfügbaren Fläche */
-    margin-bottom: 1rem; /* Abstand nach unten */
-    box-sizing: border-box; /* Padding und Border in der Breitenberechnung berücksichtigen */
 }
