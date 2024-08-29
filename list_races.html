@@ -2,8 +2,8 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Schrotties Racepacer - Rennübersicht</title>
-    <meta name="description" content="Web application for calculating the running time of an individual runner in the Mauerweglauf - 100 miles Berlin - using the current average pace." />
+    <title>Schrotties Racepacer - Races verwalten</title>
+    <meta name="description" content="Verwalten Sie Ihre Renndaten und bearbeiten oder löschen Sie bestehende Rennen." />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="author" href="https://running.maik-bischoff.de/author/schrottie/" />
     <link rel="icon" href="https://i0.wp.com/running.maik-bischoff.de/wp-content/uploads/2023/01/cropped-running.png?fit=32%2C32&#038;ssl=1" sizes="32x32" />
@@ -11,8 +11,8 @@
     <link rel="apple-touch-icon" href="https://i0.wp.com/running.maik-bischoff.de/wp-content/uploads/2023/01/cropped-running.png?fit=180x180&#038;ssl=1" />
     <link rel="shortcut icon" href="https://i0.wp.com/running.maik-bischoff.de/wp-content/uploads/2023/01/cropped-running.png?fit=32x32&#038;ssl=1" sizes="32x32" type="image/png" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Schrotties Racepacer" />
-    <meta property="og:description" content="proudly presented by: Schrotties Laufblog Das Ziel steht im Weg" />
+    <meta property="og:title" content="Rennen verwalten" />
+    <meta property="og:description" content="Verwalten Sie Ihre Renndaten und bearbeiten oder löschen Sie bestehende Rennen." />
     <meta property="og:url" content="https://running.maik-bischoff.de/100meilen/" />
     <meta property="og:site_name" content="Schrotties Racepacer - Durchlaufzeitenberechnung für Ultramarathonrennen" />
     <meta property="og:image" content="https://i0.wp.com/running.maik-bischoff.de/wp-content/uploads/2023/01/cropped-running.png?fit=512x512&#038;ssl=1" />
@@ -23,33 +23,36 @@
     <meta name="twitter:site" content="@schrottie" />
     <link rel="stylesheet" href="styles.css" />
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head>
-<body> 
+<body>
     <div class="container">
         <div class="header">
             <h1>Schrotties Racepacer</h1>
             <!-- Platzhalter für das Menü -->
         </div>
-        <table id="raceTable">
-            <thead>
+
+        <h1 id="raceName">Rennen verwalten</h1>
+
+        <table id="racesTable">
+            <thead> 
                 <tr>
-                    <th>Rennen</th>
-                    <th>Startzeit</th>
-                    <th>VP</th>
-                    <th>Kilometer</th>
-                    <th>Cutoff</th>
-                    <th>Öffnungszeit</th>
-                    <th>Schließzeit</th>
-                    <th>Geschützt</th>
+                    <th>#</th>
+                    <th>Titel</th>
+                    <th>Dateiname</th>
+                    <th>Aktionen</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Hier werden die Renndaten eingefügt -->
+                <!-- Hier werden die Renndaten dynamisch eingefügt -->
             </tbody>
         </table>
     </div>
+
     <script src="list_races.js"></script>
     <script src="cookie_handler.js"></script>
     <script src="print.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
