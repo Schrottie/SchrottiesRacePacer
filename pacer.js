@@ -32,10 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 raceDropdown.appendChild(option);
                             });
 
-                            const currentYear = new Date().getFullYear();
-                            const defaultFile = (currentYear % 2 === 0) ? 'mwl_ggduzs.json' : 'mwl_iuzs.json';
-                            raceDropdown.value = defaultFile;
-                            loadRaceData(`races/${defaultFile}`);
+                            loadSettings(); // Settings nach dem Laden der Dropdown-Optionen anwenden
                         })
                         .catch(error => console.error('Fehler beim Laden der Renn-Titel:', error));
                 }
@@ -136,6 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function handleRaceChange() {
         loadRaceData(`races/${raceDropdown.value}`);
+        saveSettings();
     }
 
     function loadSettings() {
@@ -144,12 +142,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (savedRace) {
             raceDropdown.value = savedRace;
-            loadRaceData(`races/${savedRace}`);
         }
 
         if (savedPace) {
             paceSlider.value = savedPace;
-            handlePaceChange();
+        }
+
+        if (savedRace) {
+            loadRaceData(`races/${savedRace}`);
+        } else {
+            handleRaceChange(); // Falls kein Cookie vorhanden ist, wird das aktuelle Dropdown-Rennen geladen
         }
     }
 
@@ -158,10 +160,26 @@ document.addEventListener('DOMContentLoaded', function() {
         setCookie('selectedPace', paceSlider.value, 30);
     }
 
-    fetchRaceFiles();
+    // Hilfsfunktionen für Cookies
+    function setCookie(name, value, days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        const expires = `expires=${date.toUTCString()}`;
+        document.cookie = `${name}=${value}; ${expires}; path=/`;
+    }
 
-    loadSettings();
-    
+    function getCookie(name) {
+        const nameEQ = `${name}=`;
+        const ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    fetchRaceFiles();
     paceSlider.addEventListener('input', handlePaceChange);
     raceDropdown.addEventListener('change', handleRaceChange);
 });
