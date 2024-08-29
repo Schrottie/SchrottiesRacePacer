@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     actionsCell.appendChild(editButton);
 
                     // Löschen-Button (Font Awesome: fa-trash), nur wenn das Rennen nicht geschützt ist
-                    if (!race.pinned) {
+                    if (!race.pinned) { // Überprüfen, ob das Rennen nicht gepinnt ist
                         const deleteButton = document.createElement('button');
                         deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
                         deleteButton.className = 'action-button delete';

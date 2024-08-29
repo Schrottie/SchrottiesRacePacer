@@ -402,7 +402,7 @@ input {
 
 /* Stil für das Label */
 .checkbox-container label {
-    margin-right: 8px; /* Abstand zwischen Label und Checkbox */
+    margin-left: 8px; /* Abstand zwischen Label und Checkbox */
 }
 
 /* Stil für die Checkbox */
