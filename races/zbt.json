@@ -1,0 +1,90 @@
+{
+    "title": "Zugspitz Basetrail",
+    "startTime": "10:00",
+    "checkpoints": [
+        {
+            "vp": "Start",
+            "kilometer": 0,
+            "cutoff": "",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "Abzweig Kochelberg",
+            "kilometer": 1.8,
+            "cutoff": "",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "Kochelbergalm",
+            "kilometer": 2.9,
+            "cutoff": "",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "V8 Partnachalm",
+            "kilometer": 5.6,
+            "cutoff": "01:30",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "Abzweig Bodenlaimtal, Laubhütte",
+            "kilometer": 8.5,
+            "cutoff": "",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "lisahütte",
+            "kilometer": 9.6,
+            "cutoff": "",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "Hochalmweg",
+            "kilometer": 12.1,
+            "cutoff": "",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "V9 Hochalm",
+            "kilometer": 13.2,
+            "cutoff": "03:30",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "Bergstation Alpspitzbahn",
+            "kilometer": 15.7,
+            "cutoff": "",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "V10 Beginn Jägersteig",
+            "kilometer": 18.9,
+            "cutoff": "05:00",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "Hammersbach, Einmündung Höllentalstraße",
+            "kilometer": 23,
+            "cutoff": "",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "Ziel Grainau",
+            "kilometer": 24.9,
+            "cutoff": "06:15",
+            "open": "",
+            "close": ""
+        }
+    ]
+}

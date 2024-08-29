@@ -1,0 +1,90 @@
+{
+    "title": "Zugstpitz Supertrail XL",
+    "startTime": "10:00",
+    "checkpoints": [
+        {
+            "vp": "Start",
+            "kilometer": 0,
+            "cutoff": "",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "V3 Pestkapelle",
+            "kilometer": 6.7,
+            "cutoff": "02:00",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "Feldernjöchl, Abzweig Gatterl",
+            "kilometer": 10.3,
+            "cutoff": "",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "V4 Hämmermoosalm",
+            "kilometer": 20.1,
+            "cutoff": "05:15",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "Scharnitzjoch",
+            "kilometer": 26.4,
+            "cutoff": "",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "V5 Hubertushof Reindlau",
+            "kilometer": 33.1,
+            "cutoff": "08:30",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "V6 Schützenhaus Mittenwald",
+            "kilometer": 42.7,
+            "cutoff": "10:45",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "V7 Gasthof ferchensee",
+            "kilometer": 47.3,
+            "cutoff": "12:00",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "V8 Partnachalm",
+            "kilometer": 61.4,
+            "cutoff": "15:00",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "V9 Hochalm",
+            "kilometer": 69.5,
+            "cutoff": "17:15",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "V10 Einstieg Jägersteig",
+            "kilometer": 75.9,
+            "cutoff": "19:00",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "Ziel Grainau",
+            "kilometer": 81.1,
+            "cutoff": "20:30",
+            "open": "",
+            "close": ""
+        }
+    ]
+}

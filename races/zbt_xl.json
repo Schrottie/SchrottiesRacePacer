@@ -1,0 +1,90 @@
+{
+    "title": "Zugspitz Basetrail XL",
+    "startTime": "10:00",
+    "checkpoints": [
+        {
+            "vp": "Start",
+            "kilometer": 0,
+            "cutoff": "00:00",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "Lautersee Café",
+            "kilometer": 3,
+            "cutoff": "",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "V7 Ferchensee Gasthof",
+            "kilometer": 5.7,
+            "cutoff": "01:15",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "Elmau, Ortsausgang",
+            "kilometer": 9.9,
+            "cutoff": "",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "Wamberg",
+            "kilometer": 13.4,
+            "cutoff": "",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "Eckbauer",
+            "kilometer": 16.1,
+            "cutoff": "",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "V8 Partnachalm",
+            "kilometer": 19.7,
+            "cutoff": "04:15",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "V9 Hochalm",
+            "kilometer": 27.4,
+            "cutoff": "06:30",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "Station Alpspitzbahn",
+            "kilometer": 30,
+            "cutoff": "",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "V10 Beginn Jägersteig",
+            "kilometer": 33.4,
+            "cutoff": "08:00",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "Hammersbach, Einmündung Höllentalstraße",
+            "kilometer": 37.5,
+            "cutoff": "",
+            "open": "",
+            "close": ""
+        },
+        {
+            "vp": "Ziel Grainau",
+            "kilometer": 39.4,
+            "cutoff": "09:00",
+            "open": "",
+            "close": ""
+        }
+    ]
+}

@@ -21,7 +21,7 @@ document.getElementById('routeForm').addEventListener('submit', function (e) {
     e.preventDefault();
     const name = document.getElementById('name').value;
     const kurzName = document.getElementById('kurzName').value;
-    const startTime = document.getElementById('startTime').value; // Neue Startzeit
+    const startTime = document.getElementById('startTime').value;
     const rows = document.querySelectorAll('#routeTable tbody tr');
 
     if (!name.trim() || !kurzName.trim()) {
@@ -31,7 +31,7 @@ document.getElementById('routeForm').addEventListener('submit', function (e) {
 
     let raceData = {
         title: name,
-        startTime: startTime, // Startzeit wird in das JSON übernommen
+        startTime: startTime,
         checkpoints: []
     };
 
@@ -73,8 +73,8 @@ function loadRaceForEdit(filename) {
     .then(data => {
         document.getElementById('name').value = data.title;
         document.getElementById('kurzName').value = filename.replace('.json', '');
-        document.getElementById('kurzName').setAttribute('readonly', true); 
-        document.getElementById('startTime').value = data.startTime || '06:00'; // Startzeit laden
+        document.getElementById('kurzName').setAttribute('readonly', true);
+        document.getElementById('startTime').value = data.startTime || '06:00';
         document.getElementById('raceName').textContent = `Rennen bearbeiten: ${data.title}`;
         document.getElementById('saveButton').textContent = 'Änderungen speichern';
 
@@ -110,5 +110,51 @@ function checkEditMode() {
         document.getElementById('kurzName').removeAttribute('readonly');
     }
 }
+
+document.getElementById('uploadButton').addEventListener('click', function () {
+    const fileInput = document.getElementById('fileUpload');
+    const file = fileInput.files[0];
+
+    if (!file) {
+        alert('Bitte wählen Sie eine JSON-Datei zum Hochladen aus.');
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        try {
+            const data = JSON.parse(e.target.result);
+            document.getElementById('name').value = data.title || '';
+            document.getElementById('kurzName').value = '';
+            document.getElementById('kurzName').setAttribute('readonly', true);
+            document.getElementById('startTime').value = data.startTime || '06:00';
+            document.getElementById('raceName').textContent = `Rennen bearbeiten: ${data.title || 'Unbenannt'}`;
+            document.getElementById('saveButton').textContent = 'Änderungen speichern';
+
+            const table = document.getElementById('routeTable').getElementsByTagName('tbody')[0];
+            table.innerHTML = '';
+
+            data.checkpoints.forEach(cp => {
+                const newRow = table.insertRow();
+                newRow.innerHTML = `
+                    <td><input type="text" value="${cp.vp || ''}"></td>
+                    <td><input type="text" value="${cp.kilometer || ''}"></td>
+                    <td><input type="time" value="${cp.cutoff || ''}"></td>
+                    <td><input type="time" value="${cp.open || ''}"></td>
+                    <td><input type="time" value="${cp.close || ''}"></td>
+                    <td><button type="button" class="remove">Entfernen</button></td>
+                `;
+
+                newRow.querySelector('.remove').addEventListener('click', function () {
+                    newRow.remove();
+                });
+            });
+        } catch (error) {
+            console.error('Fehler beim Verarbeiten der JSON-Datei:', error);
+            alert('Die hochgeladene Datei ist kein gültiges JSON.');
+        }
+    };
+    reader.readAsText(file);
+});
 
 checkEditMode();
