@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
         newRow.innerHTML = `
             <td><input type="text" placeholder="VP Name"></td>
             <td><input type="text" placeholder="Kilometer" pattern="\\d*\\.?\\d{0,2}"></td>
-            <td><input type="text" placeholder="HH:MM" pattern="\\d{1,2}:\\d{2}" title="Zeitformat H:MM (z.B. 25:30)"></td>
+            <td><input type="text" placeholder="--:--" pattern="\\d{1,2}:\\d{2}" title="Zeitformat HH:MM (z.B. 25:30)"></td>
             <td><input type="time"></td>
             <td><input type="time"></td>
             <td><button type="button" class="remove">Entfernen</button></td>
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 raceData.checkpoints.push({
                     vp: inputs[0].value,
                     kilometer: parseFloat(inputs[1].value) || 0,
-                    cutoff: convertTimeToMinutes(inputs[2].value),
+                    cutoff: formatCutoffTime(inputs[2].value),
                     open: inputs[3].value,
                     close: inputs[4].value
                 });
@@ -68,11 +68,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    function convertTimeToMinutes(time) {
+    function formatCutoffTime(time) {
+        if (!time.trim()) return ''; // Bei leerem Eingabefeld nichts zurückgeben
         const [hours, minutes] = time.split(':').map(part => parseInt(part, 10));
-        if (isNaN(hours) || isNaN(minutes)) {
-            return '00:00'; // Default-Wert, falls ungültige Zeit eingegeben wird
-        }
+        if (isNaN(hours) || isNaN(minutes)) return ''; // Bei ungültigen Eingaben nichts zurückgeben
         return `${hours}:${minutes < 10 ? '0' + minutes : minutes}`;
     }
 
@@ -85,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Dateiname ohne Endung als Kurzname übernehmen
             const kurzName = filename.replace('.json', '');
             document.getElementById('kurzName').value = kurzName;
-            document.getElementById('kurzName').setAttribute('readonly', true); 
+            document.getElementById('kurzName').setAttribute('readonly', true);
             document.getElementById('startTime').value = data.startTime || '06:00';
             document.getElementById('raceName').textContent = `Rennen bearbeiten: ${data.title || 'Unbenannt'}`;
             document.getElementById('saveButton').textContent = 'Änderungen speichern';
@@ -98,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 newRow.innerHTML = `
                     <td><input type="text" value="${cp.vp || ''}"></td>
                     <td><input type="text" value="${cp.kilometer || ''}"></td>
-                    <td><input type="text" value="${cp.cutoff || ''}" placeholder="HH:MM"></td>
+                    <td><input type="text" value="${cp.cutoff || ''}" placeholder="--:--" pattern="\\d{1,2}:\\d{2}" title="Zeitformat H:MM (z.B. 25:30)"></td>
                     <td><input type="time" value="${cp.open || ''}"></td>
                     <td><input type="time" value="${cp.close || ''}"></td>
                     <td><button type="button" class="remove">Entfernen</button></td>
@@ -112,75 +111,58 @@ document.addEventListener('DOMContentLoaded', function () {
         .catch(error => console.error('Fehler beim Laden des Rennens:', error));
     }
 
-    function checkEditMode() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const filename = urlParams.get('edit');
-        if (filename) {
-            loadRaceForEdit(filename);
-        } else {
-            document.getElementById('raceName').textContent = 'Neues Rennen anlegen';
-            document.getElementById('kurzName').removeAttribute('readonly');
-        }
-    }
-
-    checkEditMode();
-
-    // Upload-Funktion
     document.getElementById('uploadButton').addEventListener('click', function () {
         const fileInput = document.getElementById('fileUpload');
-        const file = fileInput.files[0];
-
-        if (!file) {
-            alert('Bitte wählen Sie eine JSON-Datei zum Hochladen aus.');
+        if (fileInput.files.length === 0) {
+            alert('Bitte wählen Sie eine Datei aus.');
             return;
         }
-
+        
+        const file = fileInput.files[0];
         const reader = new FileReader();
+        
         reader.onload = function (e) {
             try {
-                const data = JSON.parse(e.target.result);
-                populateFormWithData(data, file.name);
+                const json = JSON.parse(e.target.result);
+                if (json && json.title && json.checkpoints) {
+                    // Setze die Werte in das Formular ein
+                    document.getElementById('name').value = json.title || '';
+                    
+                    // Dateiname ohne Endung als Kurzname übernehmen
+                    const kurzName = file.name.replace('.json', '');
+                    document.getElementById('kurzName').value = kurzName;
+                    document.getElementById('kurzName').setAttribute('readonly', true);
+                    document.getElementById('startTime').value = json.startTime || '06:00';
+                    document.getElementById('raceName').textContent = `Rennen bearbeiten: ${json.title || 'Unbenannt'}`;
+                    document.getElementById('saveButton').textContent = 'Änderungen speichern';
+
+                    const table = document.getElementById('routeTable').getElementsByTagName('tbody')[0];
+                    table.innerHTML = '';
+
+                    json.checkpoints.forEach(cp => {
+                        const newRow = table.insertRow();
+                        newRow.innerHTML = `
+                            <td><input type="text" value="${cp.vp || ''}"></td>
+                            <td><input type="text" value="${cp.kilometer || ''}"></td>
+                            <td><input type="text" value="${cp.cutoff || ''}" placeholder="--:--" pattern="\\d{1,2}:\\d{2}" title="Zeitformat H:MM (z.B. 25:30)"></td>
+                            <td><input type="time" value="${cp.open || ''}"></td>
+                            <td><input type="time" value="${cp.close || ''}"></td>
+                            <td><button type="button" class="remove">Entfernen</button></td>
+                        `;
+
+                        newRow.querySelector('.remove').addEventListener('click', function () {
+                            newRow.remove();
+                        });
+                    });
+                } else {
+                    alert('Die hochgeladene Datei enthält keine gültigen Renndaten.');
+                }
             } catch (error) {
-                console.error('Fehler beim Verarbeiten der JSON-Datei:', error);
-                alert('Die hochgeladene Datei ist kein gültiges JSON.');
+                alert('Fehler beim Verarbeiten der Datei.');
+                console.error('Fehler:', error);
             }
         };
-        reader.onerror = function (error) {
-            console.error('Fehler beim Lesen der Datei:', error);
-            alert('Fehler beim Lesen der Datei.');
-        };
+
         reader.readAsText(file);
     });
-
-    function populateFormWithData(data, filename) {
-        document.getElementById('name').value = data.title || '';
-
-        // Dateiname ohne Endung als Kurzname übernehmen
-        const kurzName = filename.replace('.json', '');
-        document.getElementById('kurzName').value = kurzName;
-        document.getElementById('kurzName').setAttribute('readonly', true);
-
-        document.getElementById('startTime').value = data.startTime || '06:00';
-        document.getElementById('raceName').textContent = `Rennen bearbeiten: ${data.title || 'Unbenannt'}`;
-        document.getElementById('saveButton').textContent = 'Änderungen speichern';
-
-        const table = document.getElementById('routeTable').getElementsByTagName('tbody')[0];
-        table.innerHTML = '';
-
-        data.checkpoints.forEach(cp => {
-            const newRow = table.insertRow();
-            newRow.innerHTML = `
-                <td><input type="text" value="${cp.vp || ''}"></td>
-                <td><input type="text" value="${cp.kilometer || ''}"></td>
-                <td><input type="text" value="${cp.cutoff || ''}" placeholder="HH:MM" pattern="\d{1,2}:\d{2}" title="Zeitformat H:MM (z.B. 25:30)"></td>
-                <td><input type="time" value="${cp.open || ''}"></td>
-                <td><input type="time" value="${cp.close || ''}"></td>
-                <td><button type="button" class="remove">Entfernen</button></td>
-            `;
-
-            newRow.querySelector('.remove').addEventListener('click', function () {
-                newRow.remove();
-            });
-        });
-    }
 });
