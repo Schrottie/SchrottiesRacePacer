@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const name = document.getElementById('name').value;
         const kurzName = document.getElementById('kurzName').value;
         const startTime = document.getElementById('startTime').value;
-        const pinned = document.getElementById('pinned').checked;
+        const pinned = document.getElementById('pinned').checked; // Hier wird das pinned-Flag übernommen
         const rows = document.querySelectorAll('#routeTable tbody tr');
 
         if (!name.trim() || !kurzName.trim()) {
