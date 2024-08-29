@@ -410,3 +410,6 @@ input {
     margin-left: 0; /* Entfernt zusätzlichen Abstand links von der Checkbox */
 }
 
+#racesTable {
+    margin-top: 15px;
+}
