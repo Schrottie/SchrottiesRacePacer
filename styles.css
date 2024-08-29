@@ -396,7 +396,7 @@ input {
 /* Container für das Label und die Checkbox */
 .checkbox-container {
     display: flex;
-    align-items: left;
+    align-items: normal;
     margin-top: 10px; /* Optional: Abstand nach oben, um Platz zwischen anderen Elementen zu schaffen */
 }
 
