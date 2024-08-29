@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
         newRow.innerHTML = `
             <td><input type="text" placeholder="VP Name"></td>
             <td><input type="text" placeholder="Kilometer" pattern="\\d*\\.?\\d{0,2}"></td>
-            <td><input type="text" placeholder="--:--" pattern="\\d{1,2}:\\d{2}" title="Zeitformat HH:MM (z.B. 25:30)"></td>
+            <td><input type="text" placeholder="--:--" pattern="\\d{1,2}:\\d{2}" title="Zeitformat H:MM (z.B. 25:30)"></td>
             <td><input type="time"></td>
             <td><input type="time"></td>
             <td><button type="button" class="remove">Entfernen</button></td>
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function formatCutoffTime(time) {
-        if (!time.trim()) return ''; // Bei leerem Eingabefeld nichts zurückgeben
+        if (!time.trim() || time === '--:--') return ''; // Bei leerem Eingabefeld oder '--:--' nichts zurückgeben
         const [hours, minutes] = time.split(':').map(part => parseInt(part, 10));
         if (isNaN(hours) || isNaN(minutes)) return ''; // Bei ungültigen Eingaben nichts zurückgeben
         return `${hours}:${minutes < 10 ? '0' + minutes : minutes}`;
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 newRow.innerHTML = `
                     <td><input type="text" value="${cp.vp || ''}"></td>
                     <td><input type="text" value="${cp.kilometer || ''}"></td>
-                    <td><input type="text" value="${cp.cutoff || ''}" placeholder="--:--" pattern="\\d{1,2}:\\d{2}" title="Zeitformat H:MM (z.B. 25:30)"></td>
+                    <td><input type="text" value="${cp.cutoff || '--:--'}" placeholder="--:--" pattern="\\d{1,2}:\\d{2}" title="Zeitformat H:MM (z.B. 25:30)"></td>
                     <td><input type="time" value="${cp.open || ''}"></td>
                     <td><input type="time" value="${cp.close || ''}"></td>
                     <td><button type="button" class="remove">Entfernen</button></td>
@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         newRow.innerHTML = `
                             <td><input type="text" value="${cp.vp || ''}"></td>
                             <td><input type="text" value="${cp.kilometer || ''}"></td>
-                            <td><input type="text" value="${cp.cutoff || ''}" placeholder="--:--" pattern="\\d{1,2}:\\d{2}" title="Zeitformat H:MM (z.B. 25:30)"></td>
+                            <td><input type="text" value="${cp.cutoff || '--:--'}" placeholder="--:--" pattern="\\d{1,2}:\\d{2}" title="Zeitformat H:MM (z.B. 25:30)"></td>
                             <td><input type="time" value="${cp.open || ''}"></td>
                             <td><input type="time" value="${cp.close || ''}"></td>
                             <td><button type="button" class="remove">Entfernen</button></td>
@@ -165,4 +165,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
         reader.readAsText(file);
     });
+
+    function checkEditMode() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const filename = urlParams.get('edit');
+        if (filename) {
+            loadRaceForEdit(filename);
+        } else {
+            document.getElementById('raceName').textContent = 'Neues Rennen anlegen';
+            document.getElementById('kurzName').removeAttribute('readonly');
+        }
+    }
+
+    checkEditMode();
 });
