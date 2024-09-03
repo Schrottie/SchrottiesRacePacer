@@ -103,3 +103,17 @@ function getCookie(name) {
     }
     return "";
 }
+
+// Druckfunktion, wenn Print-Icon vorhanden
+document.addEventListener('DOMContentLoaded', function() {
+    const printIcon = document.getElementById('printIcon');
+
+    // Überprüfe, ob printIcon existiert
+    if (printIcon) {
+        printIcon.addEventListener('click', function() {
+            window.print();
+        });
+    } else {
+        console.warn('Das Element mit der ID "printIcon" wurde nicht gefunden.');
+    }
+});
