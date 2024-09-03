@@ -46,7 +46,7 @@ function loadRaceData(filename) {
         .then(response => response.json())
         .then(data => {
             const raceTitle = data.title || data[0]?.vp;
-            const startTime = data.start ? convertTimeToMinutes(data.start) : null; // Startzeit nur setzen, wenn vorhanden
+            const startTime = data.startTime ? convertTimeToMinutes(data.startTime) : null; // Startzeit nur setzen, wenn vorhanden
 
             if (startTime === null) {
                 console.warn(`Keine Startzeit im Rennen ${filename} gefunden, Standardwert von 10:00 Uhr wird verwendet.`);
