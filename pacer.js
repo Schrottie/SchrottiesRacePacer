@@ -40,18 +40,24 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Fehler beim Abrufen der Renn-Dateien:', error));
     }
 
-    // Lädt die Daten für das ausgewählte Rennen
-    function loadRaceData(filename) {
-        fetch(filename)
-            .then(response => response.json())
-            .then(data => {
-                const raceTitle = data.title || data[0]?.vp;
-                const startTime = data.start ? convertTimeToMinutes(data.start) : 600; // Default zu 10:00 Uhr, wenn keine Startzeit angegeben
-                updateRaceTitle(raceTitle);
-                updateTable(data.checkpoints || data, startTime);
-            })
-            .catch(error => console.error('Fehler beim Laden der Renn-Daten:', error));
-    }
+// Lädt die Daten für das ausgewählte Rennen
+function loadRaceData(filename) {
+    fetch(filename)
+        .then(response => response.json())
+        .then(data => {
+            const raceTitle = data.title || data[0]?.vp;
+            const startTime = data.start ? convertTimeToMinutes(data.start) : null; // Startzeit nur setzen, wenn vorhanden
+
+            if (startTime === null) {
+                console.warn(`Keine Startzeit im Rennen ${filename} gefunden, Standardwert von 10:00 Uhr wird verwendet.`);
+            }
+
+            updateRaceTitle(raceTitle);
+            updateTable(data.checkpoints || data, startTime || 600); // Falls keine Startzeit, 600 (10:00 Uhr) verwenden
+        })
+        .catch(error => console.error('Fehler beim Laden der Renn-Daten:', error));
+}
+
 
     // Aktualisiert die Anzeige des Rennnamens
     function updateRaceTitle(title) {
