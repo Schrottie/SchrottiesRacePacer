@@ -49,7 +49,7 @@
         <div class="row g-4">
             <div class="col-md-6">
                 <div class="card h-100 shadow-sm">
-                    <img src="https://i0.wp.com/maik-bischoff.de/wp-content/uploads/2021/01/IMG_20210108_110154-01-scaled.jpeg?resize=300%2C300&ssl=1" class="card-img-top book-cover" alt="Buchcover Die Seeburg-Verschwörung">
+                    <img src="https://i0.wp.com/maik-bischoff.de/wp-content/uploads/2021/01/IMG_20210108_110154-01-scaled.jpeg" class="card-img-top book-cover" alt="Buchcover Die Seeburg-Verschwörung">
                     <div class="card-body">
                         <h5 class="card-title">Die Seeburg-Verschwörung</h5>
                         <p class="card-text">Ein Fall für Böhme & Dost</p>
@@ -70,7 +70,7 @@
 
             <div class="col-md-6">
                 <div class="card h-100 shadow-sm">
-                    <img src="https://i0.wp.com/maik-bischoff.de/wp-content/uploads/2021/01/IMG_20210108_110218-01-scaled.jpeg?resize=300%2C300&ssl=1" class="card-img-top book-cover" alt="Buchcover Nachts am teufelsberg">
+                    <img src="https://i0.wp.com/maik-bischoff.de/wp-content/uploads/2021/01/IMG_20210108_110218-01-scaled.jpeg" class="card-img-top book-cover" alt="Buchcover Nachts am teufelsberg">
                     <div class="card-body">
                         <h5 class="card-title">Nachts am Teufelsberg</h5>
                         <p class="card-text">Ein neuer Fall für Böhme & Dost</p>
@@ -91,7 +91,7 @@
 
             <div class="col-md-6">
                 <div class="card h-100 shadow-sm">
-                    <img src="https://i0.wp.com/maik-bischoff.de/wp-content/uploads/2021/01/IMG_20210108_110205-01-scaled.jpeg?resize=300%2C300&ssl=1" class="card-img-top book-cover" alt="Buchcover Mord Hahneberg">
+                    <img src="https://i0.wp.com/maik-bischoff.de/wp-content/uploads/2021/01/IMG_20210108_110205-01-scaled.jpeg" class="card-img-top book-cover" alt="Buchcover Mord Hahneberg">
                     <div class="card-body">
                         <h5 class="card-title">Mord Hahneberg</h5>
                         <p class="card-text">Der dritte Fall für Böhme & Dost</p>
@@ -114,9 +114,9 @@
 
             <div class="col-md-6">
                 <div class="card h-100 shadow-sm">
-                    <img src="https://i0.wp.com/maik-bischoff.de/wp-content/uploads/2022/09/IMG20220923163954-01-scaled.jpeg?resize=300%2C300&ssl=1" class="card-img-top book-cover" alt="Buchcover Menschenfischer">
+                    <img src="https://i0.wp.com/maik-bischoff.de/wp-content/uploads/2022/09/IMG20220923163954-01-scaled.jpeg" class="card-img-top book-cover" alt="Buchcover Menschenfischer">
                     <div class="card-body">
-                        <h5 class="card-title">https://amzn.to/4mVzW87</h5>
+                        <h5 class="card-title">Menschenfischer</h5>
                         <p class="card-text">Mansfeld & Jensens erster Fall</p>
                         <a href="https://amzn.to/4mVzW87" target="_blank" class="btn btn-primary w-100 mb-3">Jetzt auf Amazon ansehen*</a>
                     </div>
@@ -137,7 +137,7 @@
 
             <div class="col-md-6">
                 <div class="card h-100 shadow-sm">
-                    <img src="https://i0.wp.com/maik-bischoff.de/wp-content/uploads/2024/11/wp-17318081758662372478685061535947.jpg?resize=300%2C300&ssl=1" class="card-img-top book-cover" alt="Buchcover Rest in Kies">
+                    <img src="https://i0.wp.com/maik-bischoff.de/wp-content/uploads/2024/11/wp-17318081758662372478685061535947.jpg" class="card-img-top book-cover" alt="Buchcover Rest in Kies">
                     <div class="card-body">
                         <h5 class="card-title">Rest in Kies</h5>
                         <p class="card-text">Ein neuer Fall für Mansfeld & Jensen</p>
