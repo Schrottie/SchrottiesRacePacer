@@ -20,6 +20,13 @@
             aspect-ratio: 1 / 1; /* Sorgt für quadratische Bilder */
             object-fit: cover;
         }
+        .card-body { /* Sorgt für eine bessere vertikale Ausrichtung */
+             display: flex;
+             flex-direction: column;
+        }
+        .card-body .btn-group-custom {
+            margin-top: auto; /* Schiebt die Buttons an den unteren Rand der card-body */
+        }
         .card-footer .price-info {
             font-size: 0.9rem;
         }
@@ -34,12 +41,12 @@
             align-items: center;
         }
         .icon-kuschel .bi {
-            margin-right: 0.3rem;
+            margin-right: 0.4rem;
         }
     </style>
 </head>
 <body>
-    <div class="container mt-5 mb-5">
+    <div class="container mt-5 mb-5" style="max-width: 800px;">
         <header class="text-center mb-5">
             <img src="https://maik-bischoff.de/wp-content/uploads/2022/10/IMG20220403155420-01-scaled.jpeg" alt="Foto von Maik Bischoff" class="rounded-circle profile-img mb-3">
             <h1>Maik Bischoff</h1>
@@ -53,9 +60,12 @@
                     <div class="card-body">
                         <h5 class="card-title">Die Seeburg-Verschwörung</h5>
                         <p class="card-text">Ein Fall für Böhme & Dost</p>
-                        <a href="https://amzn.to/3HhXrry" target="_blank" class="btn btn-primary w-100 mb-3">Jetzt auf Amazon ansehen*</a>
+                        <div class="d-grid gap-2 btn-group-custom">
+                           <a href="https://amzn.to/3HhXrry" target="_blank" class="btn btn-primary"><i class="bi bi-book"></i> Taschenbuch kaufen*</a>
+                           <a href="https://amzn.to/43S6Xu4" target="_blank" class="btn btn-secondary"><i class="bi bi-tablet-landscape"></i> E-Book kaufen*</a>
+                        </div>
                     </div>
-                    <div class="card-footer bg-transparent border-top-0">
+                    <div class="card-footer bg-white">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="price-info icon-kuschel">
                                 <i class="bi bi-book"></i> <span>8,99€</span>
@@ -70,13 +80,16 @@
 
             <div class="col-md-6">
                 <div class="card h-100 shadow-sm">
-                    <img src="https://i0.wp.com/maik-bischoff.de/wp-content/uploads/2021/01/IMG_20210108_110218-01-scaled.jpeg" class="card-img-top book-cover" alt="Buchcover Nachts am teufelsberg">
+                    <img src="https://i0.wp.com/maik-bischoff.de/wp-content/uploads/2021/01/IMG_20210108_110218-01-scaled.jpeg" class="card-img-top book-cover" alt="Buchcover Nachts am Teufelsberg">
                     <div class="card-body">
                         <h5 class="card-title">Nachts am Teufelsberg</h5>
                         <p class="card-text">Ein neuer Fall für Böhme & Dost</p>
-                        <a href="https://amzn.to/4dHBhuX" target="_blank" class="btn btn-primary w-100 mb-3">Jetzt auf Amazon ansehen*</a>
+                        <div class="d-grid gap-2 btn-group-custom">
+                            <a href="https://amzn.to/4dHBhuX" target="_blank" class="btn btn-primary"><i class="bi bi-book"></i> Taschenbuch kaufen*</a>
+                            <a href="https://amzn.to/455Ul3P" target="_blank" class="btn btn-secondary"><i class="bi bi-phone"></i> E-Book kaufen*</a>
+                        </div>
                     </div>
-                    <div class="card-footer bg-transparent border-top-0">
+                    <div class="card-footer bg-white">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="price-info icon-kuschel">
                                 <i class="bi bi-book"></i> <span>11,99€</span>
@@ -95,17 +108,18 @@
                     <div class="card-body">
                         <h5 class="card-title">Mord Hahneberg</h5>
                         <p class="card-text">Der dritte Fall für Böhme & Dost</p>
-                        <a href="https://amzn.to/3HvvLiM" target="_blank" class="btn btn-primary w-100 mb-3">Jetzt auf Amazon ansehen*</a>
+                        <div class="d-grid gap-2 btn-group-custom">
+                           <a href="https://amzn.to/3HvvLiM" target="_blank" class="btn btn-primary"><i class="bi bi-book"></i> Taschenbuch kaufen*</a>
+                           <a href="https://amzn.to/4kA7tlW" target="_blank" class="btn btn-secondary"><i class="bi bi-tablet-landscape"></i> E-Book kaufen*</a>
+                        </div>
                     </div>
-                    <div class="card-footer bg-transparent border-top-0">
+                    <div class="card-footer bg-white">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="price-info icon-kuschel">
-                                <i class="bi bi-book"></i>
-                                <span>10,99€</span>
+                                <i class="bi bi-book"></i> <span>10,99€</span>
                             </div>
                             <div class="price-info icon-kuschel">
-                                <i class="bi bi-tablet-landscape"></i>
-                                <span>0,99€</span>
+                                <i class="bi bi-tablet-landscape"></i> <span>0,99€</span>
                             </div>
                         </div>
                     </div>
@@ -118,17 +132,18 @@
                     <div class="card-body">
                         <h5 class="card-title">Menschenfischer</h5>
                         <p class="card-text">Mansfeld & Jensens erster Fall</p>
-                        <a href="https://amzn.to/4mVzW87" target="_blank" class="btn btn-primary w-100 mb-3">Jetzt auf Amazon ansehen*</a>
+                        <div class="d-grid gap-2 btn-group-custom">
+                            <a href="https://amzn.to/4mVzW87" target="_blank" class="btn btn-primary"><i class="bi bi-book"></i> Taschenbuch kaufen*</a>
+                            <a href="https://amzn.to/3SZJ3GQ" target="_blank" class="btn btn-secondary"><i class="bi bi-tablet-landscape"></i> E-Book kaufen*</a>
+                        </div>
                     </div>
-                    <div class="card-footer bg-transparent border-top-0">
+                    <div class="card-footer bg-white">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="price-info icon-kuschel">
-                                <i class="bi bi-book"></i>
-                                <span>14,99€</span>
+                                <i class="bi bi-book"></i> <span>14,99€</span>
                             </div>
                             <div class="price-info icon-kuschel">
-                                <i class="bi bi-tablet-landscape"></i>
-                                <span>5,99€</span>
+                                <i class="bi bi-tablet-landscape"></i> <span>5,99€</span>
                             </div>
                         </div>
                     </div>
@@ -141,17 +156,18 @@
                     <div class="card-body">
                         <h5 class="card-title">Rest in Kies</h5>
                         <p class="card-text">Ein neuer Fall für Mansfeld & Jensen</p>
-                        <a href="https://amzn.to/4dI80QT" target="_blank" class="btn btn-primary w-100 mb-3">Jetzt auf Amazon ansehen*</a>
+                        <div class="d-grid gap-2 btn-group-custom">
+                            <a href="https://amzn.to/4dI80QT" target="_blank" class="btn btn-primary"><i class="bi bi-book"></i> Taschenbuch kaufen*</a>
+                            <a href="https://amzn.to/4kfglh9" target="_blank" class="btn btn-secondary"><i class="bi bi-tablet-landscape"></i> E-Book kaufen*</a>
+                        </div>
                     </div>
-                    <div class="card-footer bg-transparent border-top-0">
+                    <div class="card-footer bg-white">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="price-info icon-kuschel">
-                                <i class="bi bi-book"></i>
-                                <span>11,99€</span>
+                                <i class="bi bi-book"></i> <span>11,99€</span>
                             </div>
                             <div class="price-info icon-kuschel">
-                                <i class="bi bi-tablet-landscape"></i>
-                                <span>3,99€</span>
+                                <i class="bi bi-tablet-landscape"></i> <span>3,99€</span>
                             </div>
                         </div>
                     </div>
