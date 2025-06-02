@@ -41,7 +41,7 @@
 <body>
     <div class="container mt-5 mb-5">
         <header class="text-center mb-5">
-            <img src="https://via.placeholder.com/150" alt="Foto von [Autorenname]" class="rounded-circle profile-img mb-3">
+            <img src="https://maik-bischoff.de/wp-content/uploads/2022/10/IMG20220403155420-01-scaled.jpeg" alt="Foto von Maik Bischoff" class="rounded-circle profile-img mb-3">
             <h1>Maik Bischoff</h1>
             <p class="lead text-muted">Krimis aus Spandau</p>
         </header>
@@ -79,7 +79,7 @@
                     <div class="card-footer bg-transparent border-top-0">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="price-info icon-kuschel">
-                                <i class="bi bi-book-fill"></i> <span>11,99€</span>
+                                <i class="bi bi-book"></i> <span>11,99€</span>
                             </div>
                             <div class="price-info icon-kuschel">
                                 <i class="bi bi-phone"></i> <span>0,99€</span>
@@ -165,7 +165,7 @@
         </p>
 
         <footer class="text-center mt-5 pt-3 border-top">
-            <p>&copy; <script>document.write(new Date().getFullYear())</script> [Autorenname] | <a href="[Link zum Impressum]" class="text-decoration-none">Impressum</a></p>
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> Maik Bischoff | <a href="https://maik-bischoff.de/impressum/" class="text-decoration-none">Impressum</a></p>
         </footer>
     </div>
 
